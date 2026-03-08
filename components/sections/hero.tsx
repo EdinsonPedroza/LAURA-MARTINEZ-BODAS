@@ -61,8 +61,7 @@ export function Hero() {
 
           {/* Subtitle - Smaller and trust-inspiring */}
           <p className={`text-primary-foreground/80 text-sm md:text-base max-w-lg mx-auto mb-12 font-light leading-relaxed tracking-wide transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            Certificadas por INIBEP y miembros de ASOCOLWEP. Tu tranquilidad es nuestra prioridad.
-          </p>
+            Convierte tu boda en una experiencia inolvidable. Nosotros nos encargamos de cada detalle para que el camino hacia tu gran día sea tan mágico como la celebración. ¡Contáctanos hoy y empecemos a planear tu día perfecto!
 
           {/* CTA Buttons - More prominent */}
           <div className={`flex flex-col sm:flex-row gap-5 justify-center items-center transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
