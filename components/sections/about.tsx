@@ -64,7 +64,7 @@ export function About() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image */}
           <div className={`relative transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'}`}>
-            <div className="relative aspect-[4/5] rounded-sm overflow-hidden shadow-2xl">
+            <div className="relative aspect-[3/5] rounded-sm overflow-hidden shadow-2xl">
               <Image
                 src="/images/gallery-bouquet.jpg"
                 alt="Laura Martínez - Wedding Planner"
