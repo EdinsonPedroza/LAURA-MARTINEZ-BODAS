@@ -53,9 +53,7 @@ export function Header() {
           {/* Logo */}
           <Link 
             href="/" 
-            className={`font-serif text-xl md:text-2xl transition-all duration-300 hover:scale-105 ${
-              isScrolled ? 'text-primary' : 'text-primary-foreground'
-            }`}
+            className={`font-serif text-xl md:text-2xl lg:text-3xl font-semibold transition-all duration-300 hover:scale-105 ${isScrolled ? 'text-primary' : 'text-primary-foreground'}`}
           >
             Laura Martínez
           </Link>

@@ -50,8 +50,8 @@ export function Hero() {
       </div>
 
       <div className="relative z-10 container mx-auto flex min-h-screen items-center justify-center px-4 py-20 text-center">
-        <div className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
-          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl text-primary-foreground mb-8 leading-[0.9] tracking-tight max-w-6xl mx-auto">
+        <div className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"} lg:pt-20`}>
+          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-6xl xl:text-7xl text-primary-foreground mb-8 leading-[0.9] tracking-tight max-w-6xl mx-auto">
             <span className={`block transition-all duration-1000 delay-100 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
               Hacemos realidad
             </span>

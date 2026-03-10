@@ -2,44 +2,38 @@
 
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
-import { Wallet, Sparkles, Clock, Heart, Shield, Users } from "lucide-react"
+import { Wallet, Sparkles, Clock, Heart, Shield, Users, CheckCircle } from "lucide-react"
 
 const benefits = [
   {
     icon: Wallet,
     title: "Optimiza tu presupuesto",
     description: "Acceso a proveedores aliados con precios exclusivos que maximizan cada peso invertido.",
-    color: "from-emerald-500 to-teal-600"
   },
   {
     icon: Sparkles,
     title: "Detalles impecables",
-    description: "Cada elemento es cuidadosamente seleccionado para crear una experiencia visualmente espectacular.",
-    color: "from-amber-500 to-orange-600"
+    description: "Cada elemento es cuidadosamente seleccionado para crear una experiencia visualmente elegante.",
   },
   {
     icon: Clock,
     title: "Tu tiempo es valioso",
-    description: "Nos encargamos de todo para que solo te preocupes por disfrutar cada momento.",
-    color: "from-sky-500 to-blue-600"
+    description: "Nos encargamos de todo para que solo te preocupaciones por disfrutar cada momento.",
   },
   {
     icon: Heart,
     title: "Conexión emocional",
     description: "Entendemos tus sueños y los transformamos en una celebración que refleja tu historia de amor.",
-    color: "from-rose-500 to-pink-600"
   },
   {
     icon: Shield,
     title: "Tranquilidad total",
     description: "Respaldados por certificaciones internacionales que garantizan profesionalismo y calidad.",
-    color: "from-violet-500 to-purple-600"
   },
   {
     icon: Users,
     title: "Equipo dedicado",
     description: "Un equipo completo trabajando para que tu día sea absolutamente perfecto.",
-    color: "from-cyan-500 to-blue-600"
   }
 ]
 
@@ -75,8 +69,11 @@ export function Benefits() {
           fill
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-foreground/90" />
+        <div className="absolute inset-0 bg-foreground/85" />
       </div>
+
+      {/* Elegant red accent line */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent to-transparent z-20" />
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
@@ -86,41 +83,62 @@ export function Benefits() {
           </span>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-primary-foreground mb-6 text-balance leading-tight">
             La diferencia de trabajar con{" "}
-            <span className="italic">profesionales</span>
+            <span className="italic text-accent">profesionales</span>
           </h2>
           <p className="text-primary-foreground/70 text-lg">
             Más de 100 parejas felices nos respaldan
           </p>
         </div>
 
-        {/* Benefits Grid - More dynamic */}
+        {/* Benefits Grid - Elegant dark cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {benefits.map((benefit, index) => (
             <div 
               key={benefit.title}
-              className={`group relative p-8 rounded-2xl bg-primary-foreground/5 backdrop-blur-sm border border-primary-foreground/10 transition-all duration-500 cursor-pointer overflow-hidden ${
+              className={`group relative p-8 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 transition-all duration-500 cursor-pointer ${
                 isVisible 
                   ? 'opacity-100 translate-y-0' 
                   : 'opacity-0 translate-y-10'
-              } ${hoveredIndex === index ? 'bg-primary-foreground/15 scale-[1.02] -translate-y-2' : ''}`}
+              } ${hoveredIndex === index ? 'bg-white/10 border-accent/30' : ''}`}
               style={{ transitionDelay: `${(index + 1) * 100}ms` }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              {/* Gradient background on hover */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${benefit.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+              {/* Elegant left accent */}
+              <div className={`absolute left-0 top-8 bottom-8 w-0.5 bg-accent/50 transition-all duration-300 ${hoveredIndex === index ? 'w-1 bg-accent' : ''}`} />
               
-              <div className={`relative z-10`}>
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${benefit.color} flex items-center justify-center mb-6 transition-all duration-500 ${hoveredIndex === index ? 'scale-110 rotate-3' : ''}`}>
-                  <benefit.icon className="w-8 h-8 text-white" />
+              <div className="flex items-start gap-5">
+                <div className={`w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0 transition-all duration-300 ${hoveredIndex === index ? 'bg-accent scale-110' : ''}`}>
+                  <benefit.icon className={`w-6 h-6 transition-colors duration-300 ${hoveredIndex === index ? 'text-white' : 'text-accent'}`} />
                 </div>
-                <h3 className="font-serif text-2xl text-primary-foreground mb-3">
-                  {benefit.title}
-                </h3>
-                <p className="text-primary-foreground/70 leading-relaxed">
-                  {benefit.description}
-                </p>
+                <div>
+                  <h3 className="font-serif text-xl text-primary-foreground mb-2 group-hover:text-accent transition-colors duration-300">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-primary-foreground/60 leading-relaxed text-sm">
+                    {benefit.description}
+                  </p>
+                </div>
               </div>
+
+              {/* Elegant check on hover */}
+              <div className={`absolute top-4 right-4 w-6 h-6 rounded-full border border-accent/30 flex items-center justify-center transition-all duration-300 ${hoveredIndex === index ? 'bg-accent border-accent' : ''}`}>
+                <CheckCircle className={`w-4 h-4 transition-opacity duration-300 ${hoveredIndex === index ? 'opacity-100 text-white' : 'opacity-0'}`} />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Elegant stats */}
+        <div className={`mt-16 flex flex-wrap justify-center gap-12 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          {[
+            { number: "100+", label: "Bodas exitosas" },
+            { number: "14", label: "Años de experiencia" },
+            { number: "500+", label: "Proveedores aliados" }
+          ].map((stat) => (
+            <div key={stat.label} className="text-center">
+              <div className="text-4xl font-serif text-accent font-bold mb-1">{stat.number}</div>
+              <div className="text-primary-foreground/60 text-sm">{stat.label}</div>
             </div>
           ))}
         </div>
@@ -128,3 +146,4 @@ export function Benefits() {
     </section>
   )
 }
+

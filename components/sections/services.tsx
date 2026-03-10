@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { MessageCircle } from "lucide-react"
+import { MessageCircle, Check } from "lucide-react"
 
 const services = [
   {
@@ -89,33 +89,38 @@ export function Services() {
   }
 
   return (
-    <section ref={sectionRef} id="servicios" className="py-24 md:py-32 bg-foreground text-primary-foreground">
+    <section ref={sectionRef} id="servicios" className="py-24 md:py-32 bg-card relative overflow-hidden">
+      {/* Elegant background accent */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent to-transparent" />
+      <div className="absolute top-20 -left-32 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 -right-32 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
+
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <span className="text-primary-foreground/60 text-sm tracking-[0.3em] uppercase font-medium mb-4 block">
+          <span className="text-accent text-sm tracking-[0.3em] uppercase font-medium mb-4 block">
             Servicios
           </span>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-primary-foreground mb-4 text-balance">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground mb-4 text-balance">
             Qué hacemos{" "}
-            <span className="italic">por ti</span>
+            <span className="italic text-accent">por ti</span>
           </h2>
-          <p className="text-primary-foreground/60 leading-relaxed">
-            Cada pareja es única, por eso ofrecemos diferentes opciones para 
+          <p className="text-muted-foreground leading-relaxed">
+            Cada pareja es única, por eso ofrecemos diferentes opciones para
             adaptarnos a tus necesidades y presupuesto.
           </p>
         </div>
 
-        {/* Services Grid */}
+        {/* Services Grid - Elegant cards */}
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
           {services.map((service, index) => (
             <Card 
               key={service.title}
-              className={`group bg-primary-foreground/5 border-primary-foreground/10 hover:bg-primary-foreground/10 transition-all duration-500 overflow-hidden card-hover ${
+              className={`group bg-background border-border/50 hover:border-accent/30 transition-all duration-500 overflow-hidden card-hover ${
                 isVisible 
                   ? 'opacity-100 translate-y-0' 
                   : 'opacity-0 translate-y-10'
-              } ${hoveredIndex === index ? 'scale-[1.02]' : ''}`}
+              } ${hoveredIndex === index ? 'shadow-xl' : ''}`}
               style={{ transitionDelay: `${(index + 1) * 150}ms` }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
@@ -128,37 +133,38 @@ export function Services() {
                   fill
                   className={`object-cover transition-all duration-700 ${hoveredIndex === index ? 'scale-110' : 'scale-100'}`}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+                
+                {/* Elegant overlay accent */}
+                <div className={`absolute bottom-0 left-0 right-0 h-1 bg-accent transition-all duration-300 ${hoveredIndex === index ? 'h-2' : ''}`} />
               </div>
               
               <CardHeader className="pb-4">
-                <CardTitle className="font-serif text-xl text-primary-foreground">
+                <CardTitle className="font-serif text-xl text-foreground">
                   {service.title}
                 </CardTitle>
-                <CardDescription className="text-primary-foreground/60 text-sm">
+                <CardDescription className="text-muted-foreground text-sm">
                   {service.description}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 mb-4">
-                  {service.features.map((feature, featureIndex) => (
+                  {service.features.map((feature) => (
                     <li 
                       key={feature} 
-                      className={`flex items-center text-primary-foreground/70 text-sm transition-all duration-300 ${hoveredIndex === index ? 'translate-x-1' : ''}`}
-                      style={{ transitionDelay: `${featureIndex * 50}ms` }}
+                      className="flex items-center text-muted-foreground text-sm"
                     >
-                      <span className={`w-1.5 h-1.5 rounded-full bg-primary-foreground/40 mr-2 transition-all duration-300 ${hoveredIndex === index ? 'bg-primary-foreground' : ''}`} />
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent/60 mr-2" />
                       {feature}
                     </li>
                   ))}
                 </ul>
-                <p className="text-primary-foreground/80 font-medium italic text-sm pt-4 border-t border-primary-foreground/10 mb-4">
+                <p className="text-foreground/80 font-medium italic text-sm pt-4 border-t border-border/50 mb-4">
                   {service.highlight}
                 </p>
                 <Button
                   onClick={() => handleServiceClick(service.whatsappMessage)}
-                  className={`w-full bg-primary-foreground/10 hover:bg-primary-foreground text-primary-foreground hover:text-foreground transition-all duration-300 cursor-pointer ${hoveredIndex === index ? 'bg-primary-foreground/20' : ''}`}
-                  variant="ghost"
+                  className={`w-full bg-accent hover:bg-accent/90 text-accent-foreground transition-all duration-300 cursor-pointer`}
                 >
                   <MessageCircle className="w-4 h-4 mr-2" />
                   Consultar por WhatsApp
@@ -171,3 +177,4 @@ export function Services() {
     </section>
   )
 }
+
