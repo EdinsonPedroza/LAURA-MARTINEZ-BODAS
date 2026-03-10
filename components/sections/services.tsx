@@ -2,28 +2,29 @@
 
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { MessageCircle, Check } from "lucide-react"
+import { ArrowRight, Check, Heart, Star, Sparkles } from "lucide-react"
 
 const services = [
   {
     image: "/images/service-fulltime.jpg",
     title: "Wedding Planner Full Time",
-    description: "Planificación completa de tu boda desde el inicio hasta el gran día.",
+    subtitle: "Planificación completa",
+    description: "Desde el primer día hasta el gran momento, te acompañamos en cada paso del camino. Nos encargamos de cada detalle para que tú solo te dediques a disfrutar.",
     features: [
       "Proveedores seleccionados",
       "Logística completa",
       "Planificación detallada",
       "Coordinación total"
     ],
-    highlight: "Para que tú solo te preocupes por disfrutar.",
+    highlight: "Para que tú solo te preocuparse por disfrutar.",
     whatsappMessage: "Hola Laura, me interesa el servicio de Wedding Planner Full Time. Me gustaría recibir más información."
   },
   {
     image: "/images/service-coordination.jpg",
     title: "Coordinación Love Day",
-    description: "Si ya organizaste tu boda pero quieres disfrutarla sin preocupaciones.",
+    subtitle: "El día de tu boda",
+    description: "Si ya organizaste todo pero necesitas que todo salga perfecto el gran día, nuestro equipo se encarga de que nada falle.",
     features: [
       "Supervisión del evento",
       "Coordinación de proveedores",
@@ -36,7 +37,8 @@ const services = [
   {
     image: "/images/service-destination.jpg",
     title: "Bodas Destino",
-    description: "Si vives fuera de Colombia pero quieres celebrar tu boda aquí.",
+    subtitle: "Bodas en Colombia",
+    description: "Vives fuera de Colombia pero quieres una boda de ensueño aquí. Hacemos que sea posible y sin complicaciones.",
     features: [
       "Organización remota",
       "Venue scouting",
@@ -49,7 +51,8 @@ const services = [
   {
     image: "/images/service-virtual.jpg",
     title: "Asesoría Virtual",
-    description: "Sesión de asesoría personalizada de 2 horas para resolver dudas.",
+    subtitle: "Sesión personalizada",
+    description: "2 horas de asesoría personalizada para resolver todas tus dudas y darte la dirección que necesitas.",
     features: [
       "Optimización de presupuesto",
       "Organización correcta",
@@ -59,6 +62,13 @@ const services = [
     highlight: "Claridad y dirección para tu boda.",
     whatsappMessage: "Hola Laura, me interesa la Asesoría Virtual de 2 horas. Me gustaría agendar una sesión."
   }
+]
+
+const stats = [
+  { value: "14+", label: "Años creando bodas" },
+  { value: "100+", label: "Parejas felices" },
+  { value: "15+", label: "Destinos internacionales" },
+  { value: "4.9", label: "Google" }
 ]
 
 export function Services() {
@@ -89,89 +99,126 @@ export function Services() {
   }
 
   return (
-    <section ref={sectionRef} id="servicios" className="py-24 md:py-32 bg-card relative overflow-hidden">
-      {/* Elegant background accent */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent to-transparent" />
-      <div className="absolute top-20 -left-32 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 -right-32 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
+    <section ref={sectionRef} id="servicios" className="py-16 md:py-20 bg-background relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
 
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 relative">
         {/* Header */}
-        <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <span className="text-accent text-sm tracking-[0.3em] uppercase font-medium mb-4 block">
-            Servicios
-          </span>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground mb-4 text-balance">
-            Qué hacemos{" "}
-            <span className="italic text-accent">por ti</span>
+        <div className={`text-center max-w-3xl mx-auto mb-10 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <span className="text-sm font-medium text-accent uppercase tracking-widest mb-3 block">Servicios</span>
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
+            Experiencias{" "}
+            <span className="text-accent italic">únicas</span>
           </h2>
-          <p className="text-muted-foreground leading-relaxed">
-            Cada pareja es única, por eso ofrecemos diferentes opciones para
-            adaptarnos a tus necesidades y presupuesto.
+          <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+            Cada boda es diferente, y cada pareja merece una celebración que refleje su historia. 
+            Descubre cómo podemos hacer de tu día algo verdaderamente especial.
           </p>
         </div>
 
-        {/* Services Grid - Elegant cards */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+        {/* Stats - Simple and elegant */}
+        <div className={`flex justify-center gap-6 md:gap-12 mb-10 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          {stats.map((stat, index) => (
+            <div key={index} className="text-center">
+              <div className="font-serif text-2xl md:text-3xl text-foreground mb-1">{stat.value}</div>
+              <div className="text-xs text-muted-foreground uppercase tracking-wider">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Services - Full width cards */}
+        <div className="space-y-6 max-w-6xl mx-auto">
           {services.map((service, index) => (
-            <Card 
+            <div 
               key={service.title}
-              className={`group bg-background border-border/50 hover:border-accent/30 transition-all duration-500 overflow-hidden card-hover ${
-                isVisible 
-                  ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 translate-y-10'
-              } ${hoveredIndex === index ? 'shadow-xl' : ''}`}
-              style={{ transitionDelay: `${(index + 1) * 150}ms` }}
+              className={`group relative bg-card border border-border/50 rounded-2xl overflow-hidden transition-all duration-500 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              } ${hoveredIndex === index ? 'shadow-2xl shadow-accent/10' : 'shadow-lg'}`}
+              style={{ transitionDelay: `${(index + 3) * 100}ms` }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              {/* Service Image */}
-              <div className="relative h-48 overflow-hidden">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  className={`object-cover transition-all duration-700 ${hoveredIndex === index ? 'scale-110' : 'scale-100'}`}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
-                
-                {/* Elegant overlay accent */}
-                <div className={`absolute bottom-0 left-0 right-0 h-1 bg-accent transition-all duration-300 ${hoveredIndex === index ? 'h-2' : ''}`} />
+              <div className="grid md:grid-cols-5">
+                {/* Image section */}
+                <div className="relative h-64 md:h-72 md:col-span-2 overflow-hidden">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className={`object-cover transition-all duration-700 ${
+                      hoveredIndex === index ? 'scale-110' : 'scale-100'
+                    }`}
+                  />
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/20 to-transparent" />
+                  
+                  {/* Decorative corner */}
+                  <div className={`absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-accent/30 to-transparent transition-all duration-300 ${
+                    hoveredIndex === index ? 'w-28 h-28' : ''
+                  }`} />
+                </div>
+
+                {/* Content section */}
+                <div className="p-6 md:p-8 md:col-span-3 flex flex-col justify-center">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Sparkles className="w-4 h-4 text-accent" />
+                    <span className="text-sm text-accent font-medium">{service.subtitle}</span>
+                  </div>
+                  
+                  <h3 className="font-serif text-2xl md:text-3xl text-foreground mb-3 group-hover:text-accent transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  
+                  <p className="text-muted-foreground mb-5 leading-relaxed">
+                    {service.description}
+                  </p>
+
+                  {/* Features grid */}
+                  <div className="grid grid-cols-2 gap-2 mb-5">
+                    {service.features.map((feature, featureIndex) => (
+                      <div 
+                        key={feature} 
+                        className="flex items-center gap-2 text-sm text-muted-foreground"
+                      >
+                        <Check className="w-4 h-4 text-accent flex-shrink-0" />
+                        <span>{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <p className="text-foreground/80 font-medium italic mb-4">
+                    {service.highlight}
+                  </p>
+
+                  <Button
+                    onClick={() => handleServiceClick(service.whatsappMessage)}
+                    className={`self-start bg-accent hover:bg-accent/90 text-accent-foreground transition-all duration-300 ${
+                      hoveredIndex === index ? 'shadow-lg shadow-accent/30' : ''
+                    }`}
+                  >
+                    <Heart className="w-4 h-4 mr-2" />
+                    Me interesa
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </div>
               </div>
-              
-              <CardHeader className="pb-4">
-                <CardTitle className="font-serif text-xl text-foreground">
-                  {service.title}
-                </CardTitle>
-                <CardDescription className="text-muted-foreground text-sm">
-                  {service.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 mb-4">
-                  {service.features.map((feature) => (
-                    <li 
-                      key={feature} 
-                      className="flex items-center text-muted-foreground text-sm"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-accent/60 mr-2" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <p className="text-foreground/80 font-medium italic text-sm pt-4 border-t border-border/50 mb-4">
-                  {service.highlight}
-                </p>
-                <Button
-                  onClick={() => handleServiceClick(service.whatsappMessage)}
-                  className={`w-full bg-accent hover:bg-accent/90 text-accent-foreground transition-all duration-300 cursor-pointer`}
-                >
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  Consultar por WhatsApp
-                </Button>
-              </CardContent>
-            </Card>
+            </div>
           ))}
+        </div>
+
+        {/* CTA */}
+        <div className={`text-center mt-16 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <p className="text-muted-foreground mb-4">¿No sabes cuál servicio es el ideal para ti?</p>
+          <Button 
+            onClick={() => handleServiceClick("Hola Laura, me interesa conocer más sobre los servicios de wedding planner. ¿Cuál me recomiendas según mi caso?")}
+            variant="outline"
+            className="border-accent text-accent hover:bg-accent hover:text-accent-foreground"
+          >
+            Hablemos y te asesoramos
+            <ArrowRight className="w-4 h-4 ml-2" />
+          </Button>
         </div>
       </div>
     </section>

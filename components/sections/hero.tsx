@@ -96,7 +96,7 @@ export function Hero() {
         </div>
 
         <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition-all duration-1000 delay-900 ${isVisible ? "opacity-100" : "opacity-0"}`}>
-          <a href="#quien-soy" className="group flex flex-col items-center cursor-pointer">
+          <a href="#servicios" className="group flex flex-col items-center cursor-pointer">
             <div className="animate-bounce-subtle">
               <ChevronDown className="h-6 w-6 text-primary-foreground/50 transition-colors group-hover:text-primary-foreground/80" />
             </div>

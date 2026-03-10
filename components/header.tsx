@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 
@@ -44,18 +45,24 @@ export function Header() {
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled 
-          ? 'bg-card/98 backdrop-blur-md shadow-lg py-3' 
-          : 'bg-transparent py-6'
+          ? 'bg-card/98 backdrop-blur-md shadow-lg py-4' 
+          : 'bg-transparent py-8'
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link 
-            href="/" 
-            className={`font-serif text-xl md:text-2xl lg:text-3xl font-semibold transition-all duration-300 hover:scale-105 ${isScrolled ? 'text-primary' : 'text-primary-foreground'}`}
-          >
-            Laura Martínez
+          <Link href="/" className="flex items-center">
+            <div className={`relative transition-all duration-300 ${isScrolled ? 'h-8' : 'h-10'} w-auto aspect-[1536/244]`}>
+              <Image
+                src="/images/Logo-Blanco-1536x244.png"
+                alt="Laura Martínez Bodas"
+                fill
+                className={`object-contain transition-all duration-300 ${
+                  isScrolled ? 'brightness-0' : 'brightness-0 invert'
+                }`}
+              />
+            </div>
           </Link>
 
           {/* Desktop Navigation */}

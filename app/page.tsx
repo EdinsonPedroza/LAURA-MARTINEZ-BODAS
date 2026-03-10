@@ -1,7 +1,7 @@
 import { Header } from "@/components/header"
 import { Hero } from "@/components/sections/hero"
-import { About } from "@/components/sections/about"
 import { Services } from "@/components/sections/services"
+import { About } from "@/components/sections/about"
 import { Benefits } from "@/components/sections/benefits"
 import { Testimonials } from "@/components/sections/testimonials"
 import { Stats } from "@/components/sections/stats"
@@ -16,8 +16,8 @@ export default function Home() {
     <main className="overflow-x-hidden">
       <Header />
       <Hero />
-      <About />
       <Services />
+      <About />
       <Benefits />
       <Testimonials />
       <Stats />
