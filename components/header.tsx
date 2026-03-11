@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 
 const navLinks = [
-  { href: "#quien-soy", label: "Quién Soy" },
   { href: "#servicios", label: "Servicios" },
+  { href: "#quien-soy", label: "Quién Soy" },
   { href: "#testimonios", label: "Testimonios" },
   { href: "#galeria", label: "Nuestras Bodas" },
   { href: "#contacto", label: "Contacto" },
@@ -23,13 +23,14 @@ export function Header() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
       
-      // Detect active section
+      // Detect active section - iterate from top to bottom
       const sections = navLinks.map(link => link.href.replace("#", ""))
-      for (const section of sections.reverse()) {
+      for (const section of sections) {
         const element = document.getElementById(section)
         if (element) {
           const rect = element.getBoundingClientRect()
-          if (rect.top <= 150) {
+          // Check if section is visible (top of section is near top of viewport)
+          if (rect.top <= 200 && rect.bottom >= 200) {
             setActiveSection(section)
             break
           }
@@ -37,6 +38,8 @@ export function Header() {
       }
     }
 
+    // Call once on mount to set initial state
+    handleScroll()
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])

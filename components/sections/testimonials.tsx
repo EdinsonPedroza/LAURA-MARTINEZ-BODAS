@@ -58,17 +58,17 @@ export function Testimonials() {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <span className="text-primary text-sm tracking-[0.3em] uppercase font-medium mb-4 block">
+          <span className="text-2xl font-medium text-accent uppercase tracking-widest mb-4 block">
             Testimonios
           </span>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground mb-6 text-balance">
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-6 text-balance">
             Lo que dicen{" "}
-            <span className="italic text-primary">nuestras parejas</span>
+            <span className="italic text-accent">nuestras parejas</span>
           </h2>
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
           {testimonials.map((testimonial, index) => (
             <Card 
               key={testimonial.name}

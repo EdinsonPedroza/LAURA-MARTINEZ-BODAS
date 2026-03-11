@@ -78,7 +78,7 @@ export function Benefits() {
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <span className="text-accent text-sm tracking-[0.3em] uppercase font-semibold mb-4 block">
+          <span className="text-2xl font-medium text-accent uppercase tracking-widest mb-4 block">
             Por Qué Elegirnos
           </span>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-primary-foreground mb-6 text-balance leading-tight">

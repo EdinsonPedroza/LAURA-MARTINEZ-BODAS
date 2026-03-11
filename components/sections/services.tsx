@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Check, Heart, Star, Sparkles } from "lucide-react"
+import { ArrowRight, Check, Heart } from "lucide-react"
 
 const services = [
   {
@@ -17,7 +17,7 @@ const services = [
       "Planificación detallada",
       "Coordinación total"
     ],
-    highlight: "Para que tú solo te preocuparse por disfrutar.",
+    highlight: "Para que tú solo te preocupes por disfrutar.",
     whatsappMessage: "Hola Laura, me interesa el servicio de Wedding Planner Full Time. Me gustaría recibir más información."
   },
   {
@@ -64,13 +64,6 @@ const services = [
   }
 ]
 
-const stats = [
-  { value: "14+", label: "Años creando bodas" },
-  { value: "100+", label: "Parejas felices" },
-  { value: "15+", label: "Destinos internacionales" },
-  { value: "4.9", label: "Google" }
-]
-
 export function Services() {
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
@@ -107,25 +100,15 @@ export function Services() {
       <div className="container mx-auto px-4 relative">
         {/* Header */}
         <div className={`text-center max-w-3xl mx-auto mb-10 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <span className="text-sm font-medium text-accent uppercase tracking-widest mb-3 block">Servicios</span>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground mb-4">
+          <span className="text-2xl font-medium text-accent uppercase tracking-widest mb-3 mt-1 block">Servicios</span>
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-4">
             Experiencias{" "}
             <span className="text-accent italic">únicas</span>
           </h2>
-          <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+          <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto text-lg">
             Cada boda es diferente, y cada pareja merece una celebración que refleje su historia. 
             Descubre cómo podemos hacer de tu día algo verdaderamente especial.
           </p>
-        </div>
-
-        {/* Stats - Simple and elegant */}
-        <div className={`flex justify-center gap-6 md:gap-12 mb-10 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          {stats.map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="font-serif text-2xl md:text-3xl text-foreground mb-1">{stat.value}</div>
-              <div className="text-xs text-muted-foreground uppercase tracking-wider">{stat.label}</div>
-            </div>
-          ))}
         </div>
 
         {/* Services - Full width cards */}
@@ -162,10 +145,7 @@ export function Services() {
 
                 {/* Content section */}
                 <div className="p-6 md:p-8 md:col-span-3 flex flex-col justify-center">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Sparkles className="w-4 h-4 text-accent" />
-                    <span className="text-sm text-accent font-medium">{service.subtitle}</span>
-                  </div>
+                  <span className="text-sm text-accent font-medium mb-2">{service.subtitle}</span>
                   
                   <h3 className="font-serif text-2xl md:text-3xl text-foreground mb-3 group-hover:text-accent transition-colors duration-300">
                     {service.title}
@@ -177,7 +157,7 @@ export function Services() {
 
                   {/* Features grid */}
                   <div className="grid grid-cols-2 gap-2 mb-5">
-                    {service.features.map((feature, featureIndex) => (
+                    {service.features.map((feature) => (
                       <div 
                         key={feature} 
                         className="flex items-center gap-2 text-sm text-muted-foreground"
@@ -194,7 +174,7 @@ export function Services() {
 
                   <Button
                     onClick={() => handleServiceClick(service.whatsappMessage)}
-                    className={`self-start bg-accent hover:bg-accent/90 text-accent-foreground transition-all duration-300 ${
+                    className={`self-start bg-accent hover:bg-accent/90 text-accent-foreground transition-all duration-300 w-full md:w-auto justify-center md:justify-start cursor-pointer ${
                       hoveredIndex === index ? 'shadow-lg shadow-accent/30' : ''
                     }`}
                   >
@@ -214,7 +194,7 @@ export function Services() {
           <Button 
             onClick={() => handleServiceClick("Hola Laura, me interesa conocer más sobre los servicios de wedding planner. ¿Cuál me recomiendas según mi caso?")}
             variant="outline"
-            className="border-accent text-accent hover:bg-accent hover:text-accent-foreground"
+            className="border-accent text-accent hover:bg-accent hover:text-accent-foreground cursor-pointer"
           >
             Hablemos y te asesoramos
             <ArrowRight className="w-4 h-4 ml-2" />
