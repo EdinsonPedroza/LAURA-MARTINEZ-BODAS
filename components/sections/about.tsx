@@ -41,22 +41,22 @@ export function About() {
 
   const credentials = [
     {
-      title: "Formacion Profesional",
-      description: "Publicista de la Universidad Autonoma de Occidente",
+      title: "Formación Profesional",
+      description: "Publicista de la Universidad Autónoma de Occidente",
       image: "/images/descarga.png",
-      alt: "Universidad Autonoma de Occidente"
+      alt: "Universidad Autónoma de Occidente"
     },
     {
-      title: "Certificacion Internacional",
+      title: "Certificación Internacional",
       description: "Especializada con INIBEP",
       image: "/images/Certified-2-PNG-1-1000x1024-1-768x786.png",
-      alt: "Certificacion INIBEP"
+      alt: "Certificación INIBEP"
     },
     {
-      title: "Certificacion ABC",
-      description: "Asociacion de Consultoras Nupciales",
+      title: "Certificación ABC",
+      description: "Asociación de Consultoras Nupciales",
       image: "/images/1-768x768.png",
-      alt: "Certificacion ABC"
+      alt: "Certificación ABC"
     }
   ]
 
@@ -85,29 +85,29 @@ export function About() {
             <div className="absolute -bottom-6 -right-6 w-48 h-48 border border-accent/30 rounded-sm -z-10" />
             <div className="absolute -top-4 -left-4 w-24 h-24 bg-accent/10 rounded-full -z-10" />
             
-            <div className="absolute bottom-6 -right-2 md:right-6 bg-accent text-accent-foreground px-5 py-3 rounded-lg shadow-xl">
-              <p className="font-serif text-2xl font-bold">14</p>
-              <p className="text-xs">anos</p>
+<div className="absolute bottom-6 -right-2 md:right-6 bg-accent text-accent-foreground px-5 py-3 rounded-lg shadow-xl">
+              <p className="font-serif text-2xl font-bold">+14</p>
+              <p className="text-xs">años</p>
             </div>
           </div>
 
           <div className={`transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20'}`}>
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-foreground mb-6 leading-tight text-balance">
-              Conoceme
+              Conóceme
             </h2>
             
             <div className="space-y-5 text-muted-foreground leading-relaxed">
               <p className="text-lg">
                 Soy <strong className="text-foreground">Publicista de la Universidad Autonoma de Occidente</strong>, y llevo 
-                14 anos organizando bodas con todo mimo, paciencia y responsabilidad.
+                14 años organizando bodas con todo mimo, paciencia y responsabilidad.
               </p>
               <p>
-                Me especialice como Wedding Planner con <strong className="text-foreground">INIBEP</strong> (Instituto 
+                Me especialicé como Wedding Planner con <strong className="text-foreground">INIBEP</strong> (Instituto 
                 Iberoamericano Event Planner) y <strong className="text-foreground">ABC</strong> (Asociacion de Consultoras 
                 Nupciales).
               </p>
               <p>
-                Como ves, <em className="text-accent">estoy preparada y lista para hacer realidad la boda de tus suenos.</em>
+                Como ves, <em className="text-accent">estoy preparada y lista para hacer realidad la boda de tus sueños.</em>
               </p>
             </div>
 
@@ -135,14 +135,14 @@ export function About() {
 
             <div className="mt-8 p-6 bg-accent/5 border-l-4 border-accent rounded-r-lg">
               <p className="font-serif text-xl italic text-foreground leading-relaxed">
-                El dia de tu boda y durante la planificacion, tu unico trabajo es disfrutar, bailar, reir y ser feliz
+                "El día de tu boda y durante la planificación, tu único trabajo es disfrutar, bailar, reír y ser feliz."
               </p>
             </div>
 
             <p className="mt-6 text-muted-foreground">
-              Contrario a la creencia popular, un wedding planner no es un lujo que incrementara tu presupuesto. 
+              Contrario a la creencia popular, un wedding planner no es un lujo que incrementará tu presupuesto. 
               En realidad, <strong className="text-foreground">optimizamos tus recursos</strong> y supervisamos todo, 
-              trabajando con proveedores certificados para hacer de tu dia un evento inolvidable.
+              trabajando con proveedores certificados para hacer de tu día un evento inolvidable.
             </p>
 
             <div className="mt-10 pt-6 border-t border-border">

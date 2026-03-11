@@ -51,12 +51,15 @@ export function Hero() {
 
       <div className="relative z-10 container mx-auto flex min-h-screen items-center justify-center px-4 py-20 text-center">
         <div className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"} lg:pt-20`}>
-          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-6xl xl:text-7xl text-primary-foreground mb-8 leading-[0.9] tracking-tight max-w-6xl mx-auto">
+          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl text-primary-foreground mb-8 leading-[0.9] tracking-tight max-w-6xl mx-auto">
             <span className={`block transition-all duration-1000 delay-100 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
               Hacemos realidad
             </span>
             <span className={`block italic font-medium transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-              la boda de tus suenos
+              la boda de tus sueños
+            </span>
+            <span className={`block transition-all duration-1000 delay-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+              en nuestras bodas
             </span>
           </h1>
 

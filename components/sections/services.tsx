@@ -3,14 +3,14 @@
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Check, Heart } from "lucide-react"
+import { ArrowRight, Check, Heart, Phone } from "lucide-react"
 
 const services = [
   {
-    image: "/images/service-fulltime.jpg",
-    title: "Wedding Planner Full Time",
+    image: "/images/boda.png",
+    title: "Planificación de bodas Full Time",
     subtitle: "Planificación completa",
-    description: "Desde el primer día hasta el gran momento, te acompañamos en cada paso del camino. Nos encargamos de cada detalle para que tú solo te dediques a disfrutar.",
+    description: "Tú sueñas el momento, nosotros nos encargamos de hacerlo realidad.",
     features: [
       "Proveedores seleccionados",
       "Logística completa",
@@ -49,7 +49,7 @@ const services = [
     whatsappMessage: "Hola Laura, me interesa el servicio de Bodas Destino. Vivo fuera de Colombia y me gustaría organizar mi boda allá."
   },
   {
-    image: "/images/service-virtual.jpg",
+    image: "/images/Gemini_Generated_Image_8hax0w8hax0w8hax.png",
     title: "Asesoría Virtual",
     subtitle: "Sesión personalizada",
     description: "2 horas de asesoría personalizada para resolver todas tus dudas y darte la dirección que necesitas.",
@@ -92,113 +92,172 @@ export function Services() {
   }
 
   return (
-    <section ref={sectionRef} id="servicios" className="py-16 md:py-20 bg-background relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+    <section ref={sectionRef} id="servicios" className="py-16 md:py-20 relative overflow-hidden">
+      {/* Section background image with overlay */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/boda.png"
+          alt="Boda"
+          fill
+          className="object-cover"
+        />
+        {/* White/gray overlay for contrast */}
+        <div className="absolute inset-0 bg-white/90" />
+      </div>
 
-      <div className="container mx-auto px-4 relative">
+      {/* Decorative elements */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent z-10" />
+      
+      {/* Decorative light effects */}
+      <div className="absolute top-20 left-0 w-64 h-64 bg-accent/5 rounded-full blur-[100px] -translate-x-1/2 z-5" />
+      <div className="absolute bottom-20 right-0 w-64 h-64 bg-rose-500/5 rounded-full blur-[100px] translate-x-1/2 z-5" />
+
+      <div className="container mx-auto px-4 relative z-20">
         {/* Header */}
         <div className={`text-center max-w-3xl mx-auto mb-10 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <span className="text-2xl font-medium text-accent uppercase tracking-widest mb-3 mt-1 block">Servicios</span>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-foreground mb-4">
-            Experiencias{" "}
-            <span className="text-accent italic">únicas</span>
+          <span className="text-2xl font-medium text-accent uppercase tracking-widest mb-5 mt-1 block">Servicios</span>
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-4">
+            Qué hacemos{" "}
+            <span className="text-accent italic">por ti.</span>
           </h2>
-          <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto text-lg">
-            Cada boda es diferente, y cada pareja merece una celebración que refleje su historia. 
-            Descubre cómo podemos hacer de tu día algo verdaderamente especial.
+          <p className="text-gray-700 leading-relaxed max-w-2xl mx-auto text-lg font-medium">
+            Cada historia de amor es única, tu historia de amor merece una celebración inolvidable.
+            Diseñamos bodas extraordinarias para historias de amor irrepetibles.
           </p>
         </div>
 
-        {/* Services - Full width cards */}
-        <div className="space-y-6 max-w-6xl mx-auto">
+        {/* Services - Cards with image as background AND overlaid */}
+        <div className="space-y-8 max-w-6xl mx-auto">
           {services.map((service, index) => (
             <div 
               key={service.title}
-              className={`group relative bg-card border border-border/50 rounded-2xl overflow-hidden transition-all duration-500 ${
+              className={`group relative rounded-2xl overflow-hidden transition-all duration-500 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              } ${hoveredIndex === index ? 'shadow-2xl shadow-accent/10' : 'shadow-lg'}`}
+              } ${hoveredIndex === index ? '-translate-y-1' : ''}`}
               style={{ transitionDelay: `${(index + 3) * 100}ms` }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              <div className="grid md:grid-cols-5">
-                {/* Image section */}
-                <div className="relative h-64 md:h-72 md:col-span-2 overflow-hidden">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    className={`object-cover transition-all duration-700 ${
-                      hoveredIndex === index ? 'scale-110' : 'scale-100'
-                    }`}
-                  />
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/20 to-transparent" />
-                  
-                  {/* Decorative corner */}
-                  <div className={`absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-accent/30 to-transparent transition-all duration-300 ${
-                    hoveredIndex === index ? 'w-28 h-28' : ''
-                  }`} />
+              {/* Glow effect */}
+              <div className={`absolute -inset-1 bg-gradient-to-r from-accent/30 via-rose-500/20 to-accent/30 rounded-2xl blur-lg transition-all duration-500 ${
+                hoveredIndex === index ? 'opacity-100 scale-[1.02]' : 'opacity-0 scale-100'
+              }`} />
+              
+              {/* Card with image as background - darker but not completely black */}
+              <div className="relative rounded-2xl overflow-hidden">
+                {/* Background Image (card background) - darker overlay */}
+                <div className="absolute inset-0 z-0">
+                  <div className={`absolute inset-0 bg-black/92 transition-transform duration-700 ${
+                    hoveredIndex === index ? 'scale-110' : 'scale-100'
+                  }`} style={{ backgroundImage: `url(${service.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+                  {/* Dark gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/90 to-black/85" />
                 </div>
-
-                {/* Content section */}
-                <div className="p-6 md:p-8 md:col-span-3 flex flex-col justify-center">
-                  <span className="text-sm text-accent font-medium mb-2">{service.subtitle}</span>
-                  
-                  <h3 className="font-serif text-2xl md:text-3xl text-foreground mb-3 group-hover:text-accent transition-colors duration-300">
-                    {service.title}
-                  </h3>
-                  
-                  <p className="text-muted-foreground mb-5 leading-relaxed">
-                    {service.description}
-                  </p>
-
-                  {/* Features grid */}
-                  <div className="grid grid-cols-2 gap-2 mb-5">
-                    {service.features.map((feature) => (
-                      <div 
-                        key={feature} 
-                        className="flex items-center gap-2 text-sm text-muted-foreground"
-                      >
-                        <Check className="w-4 h-4 text-accent flex-shrink-0" />
-                        <span>{feature}</span>
-                      </div>
-                    ))}
+                
+                {/* Content with overlaid image - full height on left */}
+                <div className="relative z-10 p-0 md:p-0 grid md:grid-cols-5">
+                  {/* Image overlaid on left side - FULL HEIGHT and left border */}
+                  <div className="relative h-64 md:h-auto md:col-span-2 overflow-hidden">
+                    {/* Container that scales with image - includes overlay */}
+                    <div className={`absolute inset-0 transition-transform duration-700 ${
+                      hoveredIndex === index ? 'scale-110' : 'scale-100'
+                    }`}>
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        className="object-cover"
+                      />
+                      {/* Pure black overlay - scales with image */}
+                      <div className="absolute inset-0 bg-black/40" />
+                    </div>
                   </div>
 
-                  <p className="text-foreground/80 font-medium italic mb-4">
-                    {service.highlight}
-                  </p>
+                  {/* Text content */}
+                  <div className="p-8 md:p-10 md:col-span-3 flex flex-col justify-center">
+                    {/* Subtitle badge */}
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/20 text-white text-sm font-semibold mb-3 w-fit">
+                      {service.subtitle}
+                    </div>
+                    
+                    <h3 className="font-serif text-2xl md:text-3xl text-white mb-3 group-hover:text-accent transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                    
+                    <p className="text-white/80 mb-5 leading-relaxed">
+                      {service.description}
+                    </p>
 
-                  <Button
-                    onClick={() => handleServiceClick(service.whatsappMessage)}
-                    className={`self-start bg-accent hover:bg-accent/90 text-accent-foreground transition-all duration-300 w-full md:w-auto justify-center md:justify-start cursor-pointer ${
-                      hoveredIndex === index ? 'shadow-lg shadow-accent/30' : ''
-                    }`}
-                  >
-                    <Heart className="w-4 h-4 mr-2" />
-                    Me interesa
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
+                    {/* Features - SIMPLE LIST with green checkmarks */}
+                    <div className="mb-5">
+                      <p className="text-xs text-accent uppercase tracking-wider font-semibold mb-3">¿Qué incluye?</p>
+                      <div className="grid grid-cols-1 gap-2">
+                        {service.features.map((feature) => (
+                          <div 
+                            key={feature} 
+                            className="flex items-center gap-3"
+                          >
+                            <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                              <Check className="w-3 h-3 text-green-400" />
+                            </div>
+                            <span className="text-sm font-medium text-white">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Highlight with icon */}
+                    <div className="flex items-center gap-2 mb-5 text-white/80">
+                      <Heart className="w-4 h-4 text-accent" />
+                      <p className="font-medium italic text-sm">
+                        {service.highlight}
+                      </p>
+                    </div>
+
+                    {/* Button on the right side - more emotional text */}
+                    <div className="flex justify-end">
+                      <Button
+                        onClick={() => handleServiceClick(service.whatsappMessage)}
+                        className="bg-white text-gray-900 hover:bg-accent hover:text-white transition-all duration-300 cursor-pointer font-semibold"
+                      >
+                        <Heart className="w-4 h-4 mr-2" />
+                        Planifica tu boda
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </div>
+                  </div>
                 </div>
+
+                {/* Shine effect */}
+                <div className={`absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transition-all duration-1000 pointer-events-none ${
+                  hoveredIndex === index ? 'translate-x-full' : '-translate-x-full'
+                }`} />
               </div>
             </div>
           ))}
         </div>
 
-        {/* CTA */}
+        {/* CTA - SIMPLE VERSION with bigger button and regular font */}
         <div className={`text-center mt-16 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <p className="text-muted-foreground mb-4">¿No sabes cuál servicio es el ideal para ti?</p>
+          <p className="text-gray-700 mb-4 font-medium text-lg">¿No sabes cuál servicio es el ideal para ti?</p>
           <Button 
             onClick={() => handleServiceClick("Hola Laura, me interesa conocer más sobre los servicios de wedding planner. ¿Cuál me recomiendas según mi caso?")}
-            variant="outline"
-            className="border-accent text-accent hover:bg-accent hover:text-accent-foreground cursor-pointer"
+            className="bg-accent hover:bg-accent/90 text-white cursor-pointer transition-all duration-300 hover:shadow-xl hover:shadow-accent/30 text-xl px-12 py-6"
           >
+            <Phone className="w-5 h-5 mr-2" />
             Hablemos y te asesoramos
-            <ArrowRight className="w-4 h-4 ml-2" />
+            <ArrowRight className="w-5 h-5 ml-2" />
           </Button>
+        </div>
+
+        {/* Bottom decorative line */}
+        <div className={`flex justify-center mt-12 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-px bg-gradient-to-r from-transparent to-accent/50" />
+            <div className="w-2 h-2 bg-accent rounded-full animate-pulse shadow-lg shadow-accent/50" />
+            <div className="w-12 h-px bg-gradient-to-l from-transparent to-accent/50" />
+          </div>
         </div>
       </div>
     </section>

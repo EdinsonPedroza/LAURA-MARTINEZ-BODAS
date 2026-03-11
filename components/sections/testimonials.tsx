@@ -70,7 +70,7 @@ export function Testimonials() {
         {/* Testimonials Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
           {testimonials.map((testimonial, index) => (
-            <Card 
+<Card 
               key={testimonial.name}
               className={`bg-secondary border-0 transition-all duration-700 cursor-pointer ${
                 isVisible 
@@ -97,7 +97,7 @@ export function Testimonials() {
                 </div>
                 
                 {/* Quote */}
-                <p className="text-foreground leading-relaxed mb-6 italic text-lg">
+<p className="text-foreground leading-relaxed mb-6 italic text-lg">
                   &ldquo;{testimonial.text}&rdquo;
                 </p>
                 
