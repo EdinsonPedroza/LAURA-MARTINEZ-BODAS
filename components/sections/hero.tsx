@@ -58,9 +58,6 @@ export function Hero() {
             <span className={`block italic font-medium transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
               la boda de tus sueños
             </span>
-            <span className={`block transition-all duration-1000 delay-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-              en nuestras bodas
-            </span>
           </h1>
 
           {/* Subtitle - Smaller and trust-inspiring */}
