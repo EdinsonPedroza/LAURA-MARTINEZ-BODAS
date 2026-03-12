@@ -4,12 +4,19 @@ import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 
 const images = [
-  { src: "/images/gallery-ceremony.jpg", alt: "Ceremonia de boda elegante", span: "md:col-span-2" },
-  { src: "/images/gallery-table.jpg", alt: "Decoración de mesa de boda", span: "" },
-  { src: "/images/gallery-lighting.jpg", alt: "Iluminación romántica de boda", span: "" },
-  { src: "/images/gallery-venue.jpg", alt: "Venue de boda de lujo", span: "md:col-span-2" },
-  { src: "/images/gallery-couple.jpg", alt: "Pareja de novios", span: "" },
-  { src: "/images/gallery-bouquet.jpg", alt: "Ramo de novia", span: "" },
+
+  { src: "/images/6.jpg", alt: "Festejo de npvios", span: "" },
+  { src: "/images/7.jpg", alt: "Baile de novios", span: "" },
+  { src: "/images/1.jpg", alt: "Beso de novios", span: "" },
+  { src: "/images/2.jpg", alt: "Novios felices", span: "" },
+  { src: "/images/3.jpg", alt: "Ceremonia de boda", span: "" },
+  { src: "/images/4.jpg", alt: "ceremonia en Iglesia", span: "" },
+  { src: "/images/noviosfelices.jpg", alt: "Pareja de novios", span: "" },
+  { src: "/images/5.jpg", alt: "Boda en el altar", span: "" },
+  { src: "/images/Decoracion.jpg", alt: "Decoración de mesa de boda", span: "" },
+  { src: "/images/atardecer.jpg", alt: "Iluminación romántica de boda", span: "" },
+  { src: "/images/8.jpg", alt: "Boda en iglesia", span: "" },
+  { src: "/images/9.jpg", alt: "Foto de novios", span: "" },
 ]
 
 export function Gallery() {
