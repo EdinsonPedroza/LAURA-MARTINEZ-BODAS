@@ -3,27 +3,22 @@
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Calendar, MessageCircle, Sparkles } from "lucide-react"
+import { Calendar, MessageCircle } from "lucide-react"
 
 export function CTA() {
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
   const [scrollY, setScrollY] = useState(0)
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
+        if (entry.isIntersecting) setIsVisible(true)
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current)
     return () => observer.disconnect()
   }, [])
 
@@ -31,21 +26,42 @@ export function CTA() {
     const handleScroll = () => {
       if (sectionRef.current) {
         const rect = sectionRef.current.getBoundingClientRect()
-        const scrollProgress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height)
-        setScrollY(scrollProgress * 50)
+        const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height)
+        setScrollY(progress * 60)
       }
     }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+    const handleMouse = (e: MouseEvent) => {
+      if (!sectionRef.current) return
+      const rect = sectionRef.current.getBoundingClientRect()
+      const x = (e.clientX - rect.left - rect.width / 2) / 60
+      const y = (e.clientY - rect.top - rect.height / 2) / 60
+      setMousePos({ x, y })
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    window.addEventListener("mousemove", handleMouse, { passive: true })
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      window.removeEventListener("mousemove", handleMouse)
+    }
   }, [])
 
+  const revealStyle = (delay: number) => ({
+    opacity: isVisible ? 1 : 0,
+    transform: isVisible ? "translateY(0) scale(1)" : "translateY(50px) scale(0.96)",
+    filter: isVisible ? "blur(0)" : "blur(6px)",
+    transition: `opacity 1.2s ${delay}ms cubic-bezier(0.16,1,0.3,1), transform 1.2s ${delay}ms cubic-bezier(0.16,1,0.3,1), filter 1.2s ${delay}ms cubic-bezier(0.16,1,0.3,1)`,
+  })
+
   return (
-    <section ref={sectionRef} className="relative py-32 md:py-48 overflow-hidden">
-      {/* Background Image with Parallax */}
-      <div 
-        className="absolute inset-0 z-0 transition-transform duration-100"
-        style={{ transform: `translateY(${scrollY}px) scale(1.1)` }}
+    <section ref={sectionRef} className="relative py-40 md:py-56 overflow-hidden">
+      {/* Background with parallax + mouse tilt */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          transform: `translateY(${scrollY}px) translate(${mousePos.x}px, ${mousePos.y}px) scale(1.14)`,
+          transition: "transform 0.2s ease-out",
+          willChange: "transform",
+        }}
       >
         <Image
           src="/images/gallery-couple.jpg"
@@ -53,64 +69,102 @@ export function CTA() {
           fill
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/80 to-foreground/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/65 to-black/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40" />
       </div>
 
-      {/* Floating decorative elements */}
-      <div className="absolute top-20 left-10 opacity-20">
-        <Sparkles className="w-12 h-12 text-primary-foreground floating-element" />
-      </div>
-      <div className="absolute bottom-20 right-10 opacity-20">
-        <Sparkles className="w-8 h-8 text-primary-foreground floating-element-delay" />
-      </div>
+      {/* Decorative lines */}
+      <div
+        className="absolute top-0 left-0 right-0 h-px z-10 origin-center"
+        style={{
+          background: "linear-gradient(90deg, transparent, oklch(0.45 0.15 25 / 0.7), transparent)",
+          animation: isVisible ? "line-grow 1.2s 0.3s cubic-bezier(0.16,1,0.3,1) forwards" : "none",
+          transform: "scaleX(0)",
+        }}
+      />
+      <div
+        className="absolute bottom-0 left-0 right-0 h-px z-10 origin-center"
+        style={{
+          background: "linear-gradient(90deg, transparent, oklch(0.45 0.15 25 / 0.5), transparent)",
+          animation: isVisible ? "line-grow 1.2s 0.5s cubic-bezier(0.16,1,0.3,1) forwards" : "none",
+          transform: "scaleX(0)",
+        }}
+      />
+
+      {/* Floating light orbs */}
+      <div className="absolute top-16 left-8 w-2 h-2 bg-accent/60 rounded-full animate-float" />
+      <div className="absolute bottom-16 right-12 w-1.5 h-1.5 bg-white/40 rounded-full animate-float animation-delay-400" />
+      <div className="absolute top-1/2 left-16 w-1 h-1 bg-accent/50 rounded-full animate-float animation-delay-200" />
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center">
-        <div className={`max-w-4xl mx-auto transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <span className={`inline-block text-primary-foreground/70 text-sm tracking-[0.3em] uppercase font-medium mb-6 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-            Empieza tu historia
-          </span>
-          
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-7xl text-primary-foreground mb-8 leading-tight">
-            <span className={`block transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              Tu boda merece ser
-            </span>
-            <span className={`block italic transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              perfecta
-            </span>
-          </h2>
-          
-          <p className={`text-primary-foreground/80 text-xl md:text-2xl mb-12 leading-relaxed transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            Permítenos ayudarte a crear uno de los días más importantes de tu vida.
-          </p>
+        <div className="max-w-4xl mx-auto">
 
-          {/* CTA Buttons */}
-          <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center transition-all duration-1000 delay-900 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <Button 
-              size="lg" 
-              className="btn-elegant bg-primary-foreground text-foreground hover:bg-primary-foreground/90 px-10 py-7 text-lg font-medium tracking-wide shadow-2xl hover:scale-105 transition-all duration-300"
-              asChild
-            >
-              <a href="#contacto">
-                <Calendar className="mr-2 h-5 w-5" />
-                Agendar asesoría
-              </a>
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="btn-elegant border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground px-10 py-7 text-lg font-medium tracking-wide bg-transparent hover:scale-105 transition-all duration-300"
-              asChild
-            >
-              <a 
-                href="https://wa.me/573186049903?text=Hola,%20estoy%20interesado/a%20en%20los%20servicios%20de%20wedding%20planner" 
-                target="_blank" 
-                rel="noopener noreferrer"
+          {/* Label */}
+          <div style={revealStyle(0)}>
+            <span className="font-display inline-block text-white/50 text-xs tracking-[0.45em] uppercase mb-8">
+              Empieza tu historia
+            </span>
+          </div>
+
+          {/* Title */}
+          <div style={revealStyle(150)}>
+            <h2 className="font-display text-5xl md:text-6xl lg:text-8xl font-bold text-white mb-4 leading-[0.95] tracking-tight">
+              Tu boda merece ser
+            </h2>
+          </div>
+          <div style={revealStyle(280)}>
+            <h2 className="font-serif text-5xl md:text-6xl lg:text-8xl font-semibold text-accent italic mb-10 leading-[0.95] tracking-tight">
+              perfecta
+            </h2>
+          </div>
+
+          {/* Divider */}
+          <div
+            className="mx-auto mb-10 h-px max-w-xs origin-center"
+            style={{
+              background: "linear-gradient(90deg, transparent, oklch(0.45 0.15 25 / 0.6), transparent)",
+              animation: isVisible ? "line-grow 0.9s 500ms cubic-bezier(0.16,1,0.3,1) forwards" : "none",
+              transform: "scaleX(0)",
+            }}
+          />
+
+          {/* Subtitle */}
+          <div style={revealStyle(450)}>
+            <p className="text-white/70 text-lg md:text-xl mb-14 leading-relaxed max-w-xl mx-auto">
+              Permítenos ayudarte a crear uno de los días más importantes de tu vida.
+            </p>
+          </div>
+
+          {/* Buttons */}
+          <div style={revealStyle(600)}>
+            <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
+              <Button
+                size="lg"
+                className="btn-elegant group bg-white text-foreground hover:bg-white/90 px-12 py-7 text-lg font-medium tracking-wide shadow-2xl border-0"
+                asChild
               >
-                <MessageCircle className="mr-2 h-5 w-5" />
-                Escribir por WhatsApp
-              </a>
-            </Button>
+                <a href="#contacto">
+                  <Calendar className="mr-2 h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
+                  Agendar asesoría
+                </a>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="btn-elegant border-2 border-white/50 text-white hover:bg-white/10 hover:border-white px-12 py-7 text-lg font-medium tracking-wide bg-transparent"
+                asChild
+              >
+                <a
+                  href="https://wa.me/573186049903?text=Hola,%20estoy%20interesado/a%20en%20los%20servicios%20de%20wedding%20planner"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <MessageCircle className="mr-2 h-5 w-5" />
+                  Escribir por WhatsApp
+                </a>
+              </Button>
+            </div>
           </div>
         </div>
       </div>

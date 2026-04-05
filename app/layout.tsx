@@ -1,6 +1,30 @@
 import type { Metadata } from 'next'
+import { Cormorant_Garamond, Outfit, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { ScrollProgress } from '@/components/scroll-progress'
 import './globals.css'
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600'],
+  variable: '--font-inter',
+  display: 'swap',
+})
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-cormorant',
+  display: 'swap',
+})
+
+const outfit = Outfit({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-outfit',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: 'Laura Martínez Bodas | Wedding Planner en Palmira, Valle del Cauca',
@@ -27,7 +51,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className="font-sans antialiased">
+      <body className={`${inter.variable} ${cormorant.variable} ${outfit.variable} font-sans antialiased`}>
+        <ScrollProgress />
         {children}
         <Analytics />
       </body>

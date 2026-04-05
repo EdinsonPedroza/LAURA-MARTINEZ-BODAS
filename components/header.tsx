@@ -45,11 +45,11 @@ export function Header() {
   }, [])
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled 
-          ? 'bg-card/98 backdrop-blur-md shadow-lg py-4' 
-          : 'bg-transparent py-8'
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        isScrolled
+          ? 'bg-card/97 backdrop-blur-xl shadow-xl py-3 border-b border-border/30'
+          : 'bg-transparent py-7'
       }`}
     >
       <div className="container mx-auto px-4">
@@ -74,16 +74,20 @@ export function Header() {
               <a
                 key={link.href}
                 href={link.href}
-                className={`relative text-sm font-medium tracking-wide transition-all duration-300 hover:opacity-100 ${
+                className={`relative text-sm font-medium tracking-wider transition-all duration-500 hover:opacity-100 ${
                   isScrolled ? 'text-foreground' : 'text-primary-foreground'
-                } ${activeSection === link.href.replace("#", "") ? 'opacity-100' : 'opacity-70'}`}
+                } ${activeSection === link.href.replace("#", "") ? 'opacity-100' : 'opacity-60'}`}
               >
                 {link.label}
                 {/* Active indicator */}
-                <span 
-                  className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${
+                <span
+                  className={`absolute -bottom-1.5 left-0 h-px transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                     activeSection === link.href.replace("#", "") ? 'w-full' : 'w-0'
                   }`}
+                  style={{
+                    background: "oklch(0.44 0.225 15)",
+                    boxShadow: activeSection === link.href.replace("#", "") ? "0 0 10px oklch(0.44 0.225 15 / 0.6)" : "none",
+                  }}
                 />
               </a>
             ))}
@@ -117,10 +121,10 @@ export function Header() {
             </div>
             <Button 
               size="sm"
-              className={`btn-elegant transition-all duration-300 hover:scale-105 ${
-                isScrolled 
-                  ? 'bg-primary text-primary-foreground hover:bg-primary/90' 
-                  : 'bg-primary-foreground text-foreground hover:bg-primary-foreground/90'
+              className={`btn-elegant transition-all duration-300 hover:scale-105 text-white ${
+                isScrolled
+                  ? 'bg-primary hover:bg-primary/90 shadow-lg'
+                  : 'bg-primary/90 hover:bg-primary border border-white/20'
               }`}
               asChild
             >

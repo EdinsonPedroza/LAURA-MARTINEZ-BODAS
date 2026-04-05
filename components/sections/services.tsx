@@ -115,11 +115,19 @@ export function Services() {
 
       <div className="container mx-auto px-4 relative z-20">
         {/* Header */}
-        <div className={`text-center max-w-3xl mx-auto mb-10 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <span className="text-2xl font-medium text-accent uppercase tracking-widest mb-5 mt-1 block">Servicios</span>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-4">
+        <div
+          className="text-center max-w-3xl mx-auto mb-10"
+          style={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "translateY(0) scale(1)" : "translateY(60px) scale(0.96)",
+            filter: isVisible ? "blur(0)" : "blur(8px)",
+            transition: "opacity 1.1s cubic-bezier(0.16,1,0.3,1), transform 1.1s cubic-bezier(0.16,1,0.3,1), filter 1.1s cubic-bezier(0.16,1,0.3,1)",
+          }}
+        >
+          <span className="font-display text-[11px] tracking-[0.45em] uppercase text-accent mb-5 mt-1 block font-medium">Servicios</span>
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 leading-[1.05] tracking-tight">
             Qué hacemos{" "}
-            <span className="text-accent italic">por ti.</span>
+            <span className="font-serif italic font-semibold text-accent">por ti.</span>
           </h2>
           <p className="text-gray-700 leading-relaxed max-w-2xl mx-auto text-lg font-medium">
             Cada historia de amor es única, tu historia de amor merece una celebración inolvidable.
@@ -130,12 +138,19 @@ export function Services() {
         {/* Services - Cards with image as background AND overlaid */}
         <div className="space-y-8 max-w-6xl mx-auto">
           {services.map((service, index) => (
-            <div 
+            <div
               key={service.title}
-              className={`group relative rounded-2xl overflow-hidden transition-all duration-500 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              } ${hoveredIndex === index ? '-translate-y-1' : ''}`}
-              style={{ transitionDelay: `${(index + 3) * 100}ms` }}
+              className="group relative rounded-2xl overflow-hidden"
+              style={{
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible
+                  ? hoveredIndex === index ? "translateY(-6px) scale(1.005)" : "translateY(0) scale(1)"
+                  : "translateY(70px) scale(0.94)",
+                filter: isVisible ? "blur(0)" : "blur(8px)",
+                transition: isVisible
+                  ? `box-shadow 0.4s ease, transform 0.45s cubic-bezier(0.34,1.56,0.64,1)`
+                  : `opacity 1s ${(index + 2) * 130}ms cubic-bezier(0.16,1,0.3,1), transform 1s ${(index + 2) * 130}ms cubic-bezier(0.16,1,0.3,1), filter 1s ${(index + 2) * 130}ms cubic-bezier(0.16,1,0.3,1)`,
+              }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >

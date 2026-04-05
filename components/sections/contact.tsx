@@ -95,13 +95,21 @@ ${formData.message}
     <section ref={sectionRef} id="contacto" className="py-24 md:py-32 bg-foreground text-primary-foreground">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <span className="text-primary-foreground/70 text-sm tracking-[0.3em] uppercase font-medium mb-4 block">
+        <div
+          className="text-center max-w-3xl mx-auto mb-16"
+          style={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "translateY(0) scale(1)" : "translateY(60px) scale(0.96)",
+            filter: isVisible ? "blur(0)" : "blur(8px)",
+            transition: "opacity 1.1s cubic-bezier(0.16,1,0.3,1), transform 1.1s cubic-bezier(0.16,1,0.3,1), filter 1.1s cubic-bezier(0.16,1,0.3,1)",
+          }}
+        >
+          <span className="font-display text-[11px] tracking-[0.45em] uppercase text-primary-foreground/70 mb-5 block font-medium">
             Contacto
           </span>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-primary-foreground mb-6 text-balance">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-5 text-balance leading-[1.05] tracking-tight">
             Comienza a planear tu{" "}
-            <span className="italic">boda soñada</span>
+            <span className="font-serif italic font-semibold text-primary-foreground/85">boda soñada</span>
           </h2>
           <p className="text-primary-foreground/70 leading-relaxed">
             Estamos listos para escucharte y crear la boda perfecta para ti.
@@ -110,7 +118,14 @@ ${formData.message}
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Contact Form */}
-          <div className={`transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+          <div
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? "translateX(0) scale(1)" : "translateX(-80px) scale(0.97)",
+              filter: isVisible ? "blur(0)" : "blur(8px)",
+              transition: "opacity 1.1s 200ms cubic-bezier(0.16,1,0.3,1), transform 1.1s 200ms cubic-bezier(0.16,1,0.3,1), filter 1.1s 200ms cubic-bezier(0.16,1,0.3,1)",
+            }}
+          >
             <Card className="bg-primary-foreground/10 border-primary-foreground/20 shadow-2xl backdrop-blur-sm">
               <CardContent className="p-6 md:p-8">
                 <h3 className="font-serif text-2xl text-primary-foreground mb-6">
@@ -214,7 +229,14 @@ ${formData.message}
           </div>
 
           {/* Contact Info */}
-          <div className={`transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
+          <div
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? "translateX(0) scale(1)" : "translateX(80px) scale(0.97)",
+              filter: isVisible ? "blur(0)" : "blur(8px)",
+              transition: "opacity 1.1s 400ms cubic-bezier(0.16,1,0.3,1), transform 1.1s 400ms cubic-bezier(0.16,1,0.3,1), filter 1.1s 400ms cubic-bezier(0.16,1,0.3,1)",
+            }}
+          >
             <div className="space-y-6">
               <h3 className="font-serif text-2xl text-primary-foreground mb-8">
                 Información de contacto

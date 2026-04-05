@@ -1,20 +1,25 @@
+import dynamic from "next/dynamic"
 import { Header } from "@/components/header"
 import { Hero } from "@/components/sections/hero"
-import { Services } from "@/components/sections/services"
-import { About } from "@/components/sections/about"
-import { Benefits } from "@/components/sections/benefits"
-import { Testimonials } from "@/components/sections/testimonials"
-import { Gallery } from "@/components/sections/gallery"
-import { CTA } from "@/components/sections/cta"
-import { Contact } from "@/components/sections/contact"
+import { Stats } from "@/components/sections/stats"
 import { Footer } from "@/components/sections/footer"
 import { WhatsAppButton } from "@/components/whatsapp-button"
+
+// Lazy loading the sections that operate below the fold
+const Services = dynamic(() => import("@/components/sections/services").then(mod => mod.Services))
+const About = dynamic(() => import("@/components/sections/about").then(mod => mod.About))
+const Benefits = dynamic(() => import("@/components/sections/benefits").then(mod => mod.Benefits))
+const Testimonials = dynamic(() => import("@/components/sections/testimonials").then(mod => mod.Testimonials))
+const Gallery = dynamic(() => import("@/components/sections/gallery").then(mod => mod.Gallery))
+const CTA = dynamic(() => import("@/components/sections/cta").then(mod => mod.CTA))
+const Contact = dynamic(() => import("@/components/sections/contact").then(mod => mod.Contact))
 
 export default function Home() {
   return (
     <main className="overflow-x-hidden">
       <Header />
       <Hero />
+      <Stats />
       <Services />
       <About />
       <Benefits />
