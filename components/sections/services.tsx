@@ -51,7 +51,7 @@ export function Services() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIsVisible(true) },
+      ([entry]) => { if (entry.isIntersecting) { setIsVisible(true); observer.disconnect() } },
       { threshold: 0.08 }
     )
     if (sectionRef.current) observer.observe(sectionRef.current)
@@ -59,7 +59,7 @@ export function Services() {
   }, [])
 
   const handleClick = (msg: string) => {
-    window.open(`https://wa.me/573186049903?text=${encodeURIComponent(msg)}`, "_blank")
+    window.open(`https://wa.me/573186049903?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer")
   }
 
   return (
@@ -236,7 +236,7 @@ export function Services() {
                     </span>
 
                     <h3
-                      className="font-display text-xl md:text-2xl font-extrabold tracking-tight mb-2"
+                      className="font-display text-xl md:text-2xl font-extrabold tracking-tight mt-1 mb-3"
                       style={{
                         color: hovered === i ? "oklch(0.72 0.18 18)" : "oklch(0.97 0.005 50)",
                         transition: "color 0.3s",

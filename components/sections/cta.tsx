@@ -7,14 +7,15 @@ import { Calendar, MessageCircle } from "lucide-react"
 
 export function CTA() {
   const sectionRef = useRef<HTMLElement>(null)
+  const bgRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
-  const [scrollY, setScrollY] = useState(0)
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+  // parallax values stored in refs — no re-renders on scroll/mousemove
+  const parallax = useRef({ scrollY: 0, mouseX: 0, mouseY: 0 })
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true)
+        if (entry.isIntersecting) { setIsVisible(true); observer.disconnect() }
       },
       { threshold: 0.15 }
     )
@@ -24,18 +25,25 @@ export function CTA() {
 
   useEffect(() => {
     const isTouch = window.matchMedia("(hover: none)").matches
+    const applyTransform = () => {
+      if (!bgRef.current) return
+      const { scrollY, mouseX, mouseY } = parallax.current
+      bgRef.current.style.transform =
+        `translateY(${scrollY}px) translate(${mouseX}px, ${mouseY}px) scale(1.14)`
+    }
     const handleScroll = () => {
       if (isTouch || !sectionRef.current) return
       const rect = sectionRef.current.getBoundingClientRect()
       const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height)
-      setScrollY(progress * 60)
+      parallax.current.scrollY = progress * 60
+      applyTransform()
     }
     const handleMouse = (e: MouseEvent) => {
       if (isTouch || !sectionRef.current) return
       const rect = sectionRef.current.getBoundingClientRect()
-      const x = (e.clientX - rect.left - rect.width / 2) / 60
-      const y = (e.clientY - rect.top - rect.height / 2) / 60
-      setMousePos({ x, y })
+      parallax.current.mouseX = (e.clientX - rect.left - rect.width / 2) / 60
+      parallax.current.mouseY = (e.clientY - rect.top - rect.height / 2) / 60
+      applyTransform()
     }
     window.addEventListener("scroll", handleScroll, { passive: true })
     window.addEventListener("mousemove", handleMouse, { passive: true })
@@ -56,9 +64,10 @@ export function CTA() {
     <section id="empieza-tu-historia" ref={sectionRef} className="relative py-40 md:py-56 overflow-hidden">
       {/* Background with parallax + mouse tilt */}
       <div
+        ref={bgRef}
         className="absolute inset-0 z-0"
         style={{
-          transform: `translateY(${scrollY}px) translate(${mousePos.x}px, ${mousePos.y}px) scale(1.14)`,
+          transform: "translateY(0px) translate(0px, 0px) scale(1.14)",
           transition: "transform 0.2s ease-out",
           willChange: "transform",
         }}

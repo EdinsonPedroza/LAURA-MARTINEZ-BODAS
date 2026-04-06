@@ -10,8 +10,8 @@ export function PageIntro() {
     const timers = [
       setTimeout(() => setStep(1), 0),
       setTimeout(() => setStep(2), 300),
-      setTimeout(() => setStep(3), 1300),  // ~1.0s para leer tras aparecer el texto
-      setTimeout(() => setStep(4), 2200),
+      setTimeout(() => setStep(3), 1050),
+      setTimeout(() => setStep(4), 1950),
     ]
     return () => timers.forEach(clearTimeout)
   }, [])

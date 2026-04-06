@@ -1,5 +1,3 @@
-"use client"
-
 import { Heart } from "lucide-react"
 import Image from "next/image"
 
@@ -33,6 +31,7 @@ export function Footer() {
                 src="/images/Logo-Blanco-1536x244.png"
                 alt="Laura Martínez Bodas"
                 fill
+                sizes="192px"
                 className="object-contain object-left brightness-0 invert opacity-70"
               />
             </div>
@@ -56,10 +55,7 @@ export function Footer() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-xs tracking-widest uppercase font-light transition-colors duration-300"
-                style={{ color: "oklch(0.50 0.025 30)" }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "oklch(0.60 0.20 18)" }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "oklch(0.50 0.025 30)" }}
+                className="footer-nav-link text-xs tracking-widest uppercase font-light"
               >
                 {link.l}
               </a>

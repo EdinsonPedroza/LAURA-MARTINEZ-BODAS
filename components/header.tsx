@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { X, Menu } from "lucide-react"
@@ -29,16 +29,29 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("")
+  // Refs to guard against unnecessary re-renders on every scroll event
+  const prevScrolled = useRef(false)
+  const prevSection = useRef("")
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 60)
+      const scrolled = window.scrollY > 60
+      if (scrolled !== prevScrolled.current) {
+        prevScrolled.current = scrolled
+        setIsScrolled(scrolled)
+      }
       const sections = navLinks.map(l => l.href.replace("#", ""))
       for (const id of sections) {
         const el = document.getElementById(id)
         if (el) {
           const { top, bottom } = el.getBoundingClientRect()
-          if (top <= 200 && bottom >= 200) { setActiveSection(id); break }
+          if (top <= 200 && bottom >= 200) {
+            if (id !== prevSection.current) {
+              prevSection.current = id
+              setActiveSection(id)
+            }
+            break
+          }
         }
       }
     }

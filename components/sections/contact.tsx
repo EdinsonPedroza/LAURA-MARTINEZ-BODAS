@@ -50,6 +50,7 @@ export function Contact() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true)
+          observer.disconnect()
         }
       },
       { threshold: 0.1 }
@@ -88,7 +89,7 @@ ${formData.message}
     const encodedMessage = encodeURIComponent(message)
     
     // Open WhatsApp with the message
-    window.open(`https://wa.me/573186049903?text=${encodedMessage}`, "_blank")
+    window.open(`https://wa.me/573186049903?text=${encodedMessage}`, "_blank", "noopener,noreferrer")
   }
 
   return (
@@ -138,9 +139,10 @@ ${formData.message}
                       <label htmlFor="name" className="block text-sm font-medium text-primary-foreground mb-2">
                         Nombre completo *
                       </label>
-                      <Input 
+                      <Input
                         id="name"
                         name="name"
+                        autoComplete="name"
                         placeholder="Tu nombre"
                         required
                         value={formData.name}
@@ -152,10 +154,11 @@ ${formData.message}
                       <label htmlFor="phone" className="block text-sm font-medium text-primary-foreground mb-2">
                         Teléfono *
                       </label>
-                      <Input 
+                      <Input
                         id="phone"
                         name="phone"
                         type="tel"
+                        autoComplete="tel"
                         placeholder="Tu teléfono"
                         required
                         value={formData.phone}
@@ -169,10 +172,11 @@ ${formData.message}
                     <label htmlFor="email" className="block text-sm font-medium text-primary-foreground mb-2">
                       Email *
                     </label>
-                    <Input 
+                    <Input
                       id="email"
                       name="email"
                       type="email"
+                      autoComplete="email"
                       placeholder="tu@email.com"
                       required
                       value={formData.email}

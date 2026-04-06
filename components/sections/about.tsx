@@ -31,7 +31,7 @@ export function About() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIsVisible(true) },
+      ([entry]) => { if (entry.isIntersecting) { setIsVisible(true); observer.disconnect() } },
       { threshold: 0.1 }
     )
     if (sectionRef.current) observer.observe(sectionRef.current)
@@ -110,6 +110,7 @@ export function About() {
         >
           {/* Ghost watermark number */}
           <div
+            aria-hidden="true"
             className="absolute inset-0 flex items-center justify-end pointer-events-none z-0 select-none"
             style={{ padding: "2rem", paddingRight: "8%" }}
           >
@@ -134,6 +135,7 @@ export function About() {
               style={{
                 transform: `translate(${mousePos.x * -0.4}px, ${mousePos.y * -0.4}px)`,
                 transition: "transform 0.6s ease-out",
+                willChange: "transform",
                 boxShadow: "0 30px 60px -15px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0,0,0,0.05)",
               }}
             >
@@ -167,9 +169,9 @@ export function About() {
             </div>
           </div>
 
-          {/* Vertical label */}
-          <div className="absolute top-1/2 right-6 -translate-y-[50%] pointer-events-none z-20"
-            style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }} 
+          {/* Vertical label — hidden on mobile to avoid clutter */}
+          <div className="hidden md:block absolute top-1/2 right-6 -translate-y-[50%] pointer-events-none z-20"
+            style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
           >
             <span
               className="font-display text-[9px] tracking-[0.5em] uppercase font-semibold drop-shadow-sm"
@@ -180,35 +182,35 @@ export function About() {
           </div>
 
           {/* Bottom info badge */}
-          <div className="absolute bottom-[10%] right-[10%] md:right-[6%] lg:right-[4%] z-30 pointer-events-none group">
+          <div className="absolute bottom-[8%] right-[8%] md:right-[6%] lg:right-[4%] z-30 pointer-events-none">
             <div
-              className="flex items-center gap-6 px-7 pt-4 pb-5 rounded-[2rem]"
+              className="flex items-center gap-3 md:gap-6 px-4 py-3 md:px-7 md:pt-4 md:pb-5 rounded-2xl md:rounded-[2rem]"
               style={{
                 background: "oklch(0.44 0.225 15)",
                 color: "white",
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? "translateY(0)" : "translateY(30px)",
                 transition: "opacity 1s 0.6s, transform 1s 0.6s cubic-bezier(0.16,1,0.3,1)",
-                boxShadow: "0 20px 40px -10px oklch(0.44 0.225 15 / 0.4), inset 0 1px 0 rgba(255,255,255,0.15)",
+                boxShadow: "0 12px 28px -8px oklch(0.44 0.225 15 / 0.5), inset 0 1px 0 rgba(255,255,255,0.15)",
               }}
             >
               <div className="flex items-start">
                 <span
                   className="font-display font-bold leading-none tracking-tighter"
-                  style={{ fontSize: "clamp(3.5rem, 6vw, 4.5rem)" }}
+                  style={{ fontSize: "clamp(2rem, 5vw, 4.5rem)" }}
                 >
                   14
                 </span>
-                <span 
+                <span
                   className="font-display font-medium opacity-80"
-                  style={{ fontSize: "clamp(1.5rem, 3vw, 2.2rem)", marginLeft: "0.05em", marginTop: "0.2em" }}
+                  style={{ fontSize: "clamp(0.9rem, 2.5vw, 2.2rem)", marginLeft: "0.05em", marginTop: "0.15em" }}
                 >
                   +
                 </span>
               </div>
               <div className="flex flex-col justify-center">
-                <div className="w-10 h-[1.5px] mb-2.5 bg-white/60" />
-                <p className="font-display text-[9px] tracking-[0.4em] uppercase font-bold text-white/90 leading-[1.6]">
+                <div className="w-6 md:w-10 h-[1px] md:h-[1.5px] mb-1.5 md:mb-2.5 bg-white/60" />
+                <p className="font-display text-[8px] md:text-[9px] tracking-[0.3em] md:tracking-[0.4em] uppercase font-bold text-white/90 leading-[1.6]">
                   Años de<br />experiencia
                 </p>
               </div>
@@ -333,7 +335,7 @@ export function About() {
                 Wedding Planner Certificada
               </p>
             </div>
-            <div className="ml-auto flex gap-1.5">
+            <div aria-hidden="true" className="ml-auto flex gap-1.5">
               {[...Array(3)].map((_, i) => (
                 <div key={i} className="w-1.5 h-1.5 rounded-full"
                   style={{ background: i === 0 ? "oklch(0.44 0.225 15)" : "oklch(0.44 0.225 15 / 0.3)" }}

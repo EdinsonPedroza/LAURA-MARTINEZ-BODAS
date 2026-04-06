@@ -26,7 +26,7 @@ export function Gallery() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setIsVisible(true) },
+      ([entry]) => { if (entry.isIntersecting) { setIsVisible(true); observer.disconnect() } },
       { threshold: 0.04 }
     )
     if (sectionRef.current) observer.observe(sectionRef.current)
@@ -151,6 +151,7 @@ export function Gallery() {
 
               {/* Film counter — top left */}
               <div
+                aria-hidden="true"
                 className="absolute top-3 left-3 font-display font-black leading-none select-none"
                 style={{
                   fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
@@ -173,7 +174,7 @@ export function Gallery() {
                 }}
               >
                 {/* Film number on hover */}
-                <p className="font-display font-black text-white/20 leading-none mb-1 select-none"
+                <p aria-hidden="true" className="font-display font-black text-white/20 leading-none mb-1 select-none"
                   style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", letterSpacing: "-0.05em" }}>
                   {String(i + 1).padStart(2, "0")}
                 </p>

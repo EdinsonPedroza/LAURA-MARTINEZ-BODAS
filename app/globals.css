@@ -679,6 +679,16 @@ html { scroll-behavior: smooth; }
 ::selection { background: oklch(0.44 0.225 15 / 0.2); color: oklch(0.10 0.025 8); }
 
 /* ═══════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════ */
+
+.footer-nav-link {
+  color: oklch(0.50 0.025 30);
+  transition: color 0.3s ease;
+}
+.footer-nav-link:hover { color: oklch(0.60 0.20 18); }
+
+/* ═══════════════════════════════════════════
    MOBILE — TOUCH & A11Y
    ═══════════════════════════════════════════ */
 
