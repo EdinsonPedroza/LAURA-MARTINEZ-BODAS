@@ -19,7 +19,7 @@ export function Hero() {
   })
 
   return (
-    <section className="relative h-[100dvh] min-h-[640px] overflow-hidden bg-black">
+    <section id="hero" className="relative h-[100svh] min-h-[500px] overflow-hidden bg-black">
 
       {/* Image — full screen */}
       <div
@@ -34,6 +34,7 @@ export function Hero() {
           src="/images/noviosfelices.jpg"
           alt="Boda de ensueño"
           fill
+          sizes="100vw"
           className="object-cover"
           style={{ objectPosition: "0% 30%", transform: "translateX(4%)" }}
           priority
@@ -54,7 +55,7 @@ export function Hero() {
       </div>
 
       {/* Content — tercio inferior */}
-      <div className="relative z-10 h-full flex items-end pb-[7vh]">
+      <div className="relative z-10 h-full flex items-end pb-[20svh] md:pb-[15svh]">
         <div className="w-full pl-8 sm:pl-12 md:pl-16 lg:pl-24 xl:pl-32 pr-6">
           <div className="max-w-[500px]">
 
@@ -192,20 +193,6 @@ export function Hero() {
 
           </div>
         </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none"
-        style={{
-          opacity: visible ? 0.5 : 0,
-          transition: "opacity 1s 2.5s ease",
-        }}
-      >
-        <ChevronDown
-          className="animate-scroll-arrow text-white"
-          style={{ width: "16px", height: "16px" }}
-        />
       </div>
 
     </section>

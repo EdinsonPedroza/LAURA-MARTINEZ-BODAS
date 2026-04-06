@@ -3,7 +3,8 @@
     "allow": [
       "Bash(npx next:*)",
       "Bash(npm run:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Read(//c/Users/57318/Desktop/LANDING PALMIRA/LAURA MARTINEZ BODAS/LAURA-MARTINEZ-BODAS/**)"
     ]
   }
 }

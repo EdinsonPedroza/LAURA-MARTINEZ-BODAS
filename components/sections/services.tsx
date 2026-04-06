@@ -2,280 +2,328 @@
 
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Check, Heart, Phone } from "lucide-react"
+import { Check, ArrowRight } from "lucide-react"
 
 const services = [
   {
+    number: "01",
     image: "/images/boda.png",
-    title: "Planificación de bodas Full Time",
-    subtitle: "Planificación completa",
-    description: "Tú sueñas el momento, nosotros nos encargamos de hacerlo realidad.",
-    features: [
-      "Proveedores seleccionados",
-      "Logística completa",
-      "Planificación detallada",
-      "Coordinación total"
-    ],
-    highlight: "Para que tú solo te preocupes por disfrutar.",
-    whatsappMessage: "Hola Laura, me interesa el servicio de Wedding Planner Full Time. Me gustaría recibir más información."
+    objectPosition: "center 70%",
+    title: "Planificación Full Time",
+    subtitle: "Desde el primer sí hasta el último baile",
+    description: "Tú sueñas el momento, nosotros nos encargamos de hacerlo realidad. Gestión completa de tu boda de principio a fin.",
+    features: ["Proveedores seleccionados", "Logística completa", "Planificación detallada", "Coordinación total"],
+    whatsappMessage: "Hola Laura, me interesa el servicio de Wedding Planner Full Time. Me gustaría recibir más información.",
   },
   {
+    number: "02",
     image: "/images/service-coordination.jpg",
     title: "Coordinación Love Day",
-    subtitle: "El día de tu boda",
-    description: "Si ya organizaste todo pero necesitas que todo salga perfecto el gran día, nuestro equipo se encarga de que nada falle.",
-    features: [
-      "Supervisión del evento",
-      "Coordinación de proveedores",
-      "Timeline del día",
-      "Resolución de imprevistos"
-    ],
-    highlight: "Nos encargamos de que todo funcione perfectamente.",
-    whatsappMessage: "Hola Laura, me interesa el servicio de Coordinación Love Day. Me gustaría recibir más información."
+    subtitle: "El gran día en manos expertas",
+    description: "Ya organizaste todo, pero necesitas que el día sea perfecto. Nuestro equipo asegura que nada falle.",
+    features: ["Supervisión del evento", "Coordinación de proveedores", "Timeline del día", "Resolución de imprevistos"],
+    whatsappMessage: "Hola Laura, me interesa el servicio de Coordinación Love Day. Me gustaría recibir más información.",
   },
   {
+    number: "03",
     image: "/images/service-destination.jpg",
     title: "Bodas Destino",
-    subtitle: "Bodas en Colombia",
-    description: "Vives fuera de Colombia pero quieres una boda de ensueño aquí. Hacemos que sea posible y sin complicaciones.",
-    features: [
-      "Organización remota",
-      "Venue scouting",
-      "Proveedores locales",
-      "Coordinación internacional"
-    ],
-    highlight: "Tu boda de ensueño en Colombia.",
-    whatsappMessage: "Hola Laura, me interesa el servicio de Bodas Destino. Vivo fuera de Colombia y me gustaría organizar mi boda allá."
+    subtitle: "Colombia como escenario de tu amor",
+    description: "Vives fuera pero quieres casarte en Colombia. Organizamos todo de forma remota, sin complicaciones.",
+    features: ["Organización remota", "Venue scouting", "Proveedores locales", "Coordinación internacional"],
+    whatsappMessage: "Hola Laura, me interesa el servicio de Bodas Destino. Vivo fuera de Colombia y me gustaría organizar mi boda allá.",
   },
   {
+    number: "04",
     image: "/images/Gemini_Generated_Image_8hax0w8hax0w8hax.png",
     title: "Asesoría Virtual",
-    subtitle: "Sesión personalizada",
-    description: "2 horas de asesoría personalizada para resolver todas tus dudas y darte la dirección que necesitas.",
-    features: [
-      "Optimización de presupuesto",
-      "Organización correcta",
-      "Consejos profesionales",
-      "Plan de acción"
-    ],
-    highlight: "Claridad y dirección para tu boda.",
-    whatsappMessage: "Hola Laura, me interesa la Asesoría Virtual de 2 horas. Me gustaría agendar una sesión."
-  }
+    subtitle: "2 horas de claridad y dirección",
+    description: "Sesión personalizada para resolver todas tus dudas y darte el plan de acción que necesitas.",
+    features: ["Optimización de presupuesto", "Organización correcta", "Consejos profesionales", "Plan de acción"],
+    whatsappMessage: "Hola Laura, me interesa la Asesoría Virtual de 2 horas. Me gustaría agendar una sesión.",
+  },
 ]
 
 export function Services() {
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const [hovered, setHovered] = useState<number | null>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.1 }
+      ([entry]) => { if (entry.isIntersecting) setIsVisible(true) },
+      { threshold: 0.08 }
     )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current)
     return () => observer.disconnect()
   }, [])
 
-  const handleServiceClick = (whatsappMessage: string) => {
-    const encodedMessage = encodeURIComponent(whatsappMessage)
-    window.open(`https://wa.me/573186049903?text=${encodedMessage}`, '_blank')
+  const handleClick = (msg: string) => {
+    window.open(`https://wa.me/573186049903?text=${encodeURIComponent(msg)}`, "_blank")
   }
 
   return (
-    <section ref={sectionRef} id="servicios" className="py-16 md:py-20 relative overflow-hidden">
-      {/* Section background image with overlay */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/boda.png"
-          alt="Boda"
-          fill
-          className="object-cover"
-        />
-        {/* White/gray overlay for contrast */}
-        <div className="absolute inset-0 bg-white/90" />
-      </div>
+    <section
+      ref={sectionRef}
+      id="servicios"
+      className="relative overflow-hidden"
+      style={{ background: "oklch(0.983 0.014 52)" }}
+    >
+      {/* SVG fractal noise — warm paper grain */}
+      <div className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.68' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23n)' opacity='0.038'/%3E%3C/svg%3E\")",
+          backgroundRepeat: "repeat",
+          backgroundSize: "320px 320px",
+        }}
+      />
 
-      {/* Decorative elements */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent z-10" />
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent z-10" />
-      
-      {/* Decorative light effects */}
-      <div className="absolute top-20 left-0 w-64 h-64 bg-accent/5 rounded-full blur-[100px] -translate-x-1/2 z-5" />
-      <div className="absolute bottom-20 right-0 w-64 h-64 bg-rose-500/5 rounded-full blur-[100px] translate-x-1/2 z-5" />
+      {/* Warm off-center light bloom */}
+      <div className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "radial-gradient(ellipse 75% 80% at 40% 42%, oklch(0.994 0.006 56 / 0.85) 0%, transparent 100%)",
+        }}
+      />
 
-      <div className="container mx-auto px-4 relative z-20">
+      {/* Directional edge darkening — bottom heavier */}
+      <div className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "linear-gradient(to bottom, transparent 50%, oklch(0.96 0.014 50 / 0.4) 100%)",
+        }}
+      />
+
+      {/* Crimson warmth — top-right corner blush */}
+      <div className="absolute -top-10 -right-10 w-80 h-80 pointer-events-none"
+        style={{ background: "radial-gradient(circle, oklch(0.44 0.225 15 / 0.06) 0%, transparent 65%)" }}
+      />
+
+      {/* Accent lines */}
+      <div className="absolute top-0 left-0 right-0 h-px pointer-events-none"
+        style={{ background: "linear-gradient(90deg, transparent 10%, oklch(0.44 0.225 15 / 0.20) 50%, transparent 90%)" }}
+      />
+      <div className="absolute bottom-0 left-0 right-0 h-px pointer-events-none"
+        style={{ background: "linear-gradient(90deg, transparent 10%, oklch(0.44 0.225 15 / 0.10) 50%, transparent 90%)" }}
+      />
+
+      <div className="container mx-auto px-4 py-20 md:py-28 relative z-10">
+
         {/* Header */}
         <div
-          className="text-center max-w-3xl mx-auto mb-10"
+          className="max-w-2xl mx-auto text-center mb-16 md:mb-20"
           style={{
             opacity: isVisible ? 1 : 0,
-            transform: isVisible ? "translateY(0) scale(1)" : "translateY(60px) scale(0.96)",
-            filter: isVisible ? "blur(0)" : "blur(8px)",
-            transition: "opacity 1.1s cubic-bezier(0.16,1,0.3,1), transform 1.1s cubic-bezier(0.16,1,0.3,1), filter 1.1s cubic-bezier(0.16,1,0.3,1)",
+            transform: isVisible ? "translateY(0) scale(1)" : "translateY(80px) scale(0.92)",
+            filter: isVisible ? "blur(0)" : "blur(14px)",
+            transition: "opacity 1.2s cubic-bezier(0.16,1,0.3,1), transform 1.2s cubic-bezier(0.16,1,0.3,1), filter 1.1s cubic-bezier(0.16,1,0.3,1)",
           }}
         >
-          <span className="font-display text-[11px] tracking-[0.45em] uppercase text-accent mb-5 mt-1 block font-medium">Servicios</span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-4 leading-[1.0] tracking-tight">
+          <span className="font-display text-[11px] tracking-[0.45em] uppercase text-accent mb-5 block font-semibold mx-auto">
+            Servicios
+          </span>
+          <h2 className="font-display text-4xl md:text-5xl lg:text-[3.4rem] font-extrabold text-foreground leading-[1.0] tracking-tight mb-5 mx-auto">
             Qué hacemos{" "}
-            <span className="font-serif font-black text-accent">por ti.</span>
+            <span className="font-serif font-black text-accent italic">por ti.</span>
           </h2>
-          <p className="text-gray-700 leading-relaxed max-w-2xl mx-auto text-lg font-medium">
-            Cada historia de amor es única, tu historia de amor merece una celebración inolvidable.
-            Diseñamos bodas extraordinarias para historias de amor irrepetibles.
+          <p className="text-muted-foreground text-lg font-light leading-relaxed max-w-lg mx-auto">
+            Cada historia de amor es única. Tu celebración merece una atención igual de especial.
           </p>
         </div>
 
-        {/* Services - Cards with image as background AND overlaid */}
-        <div className="space-y-8 max-w-6xl mx-auto">
-          {services.map((service, index) => (
+        {/* Service list */}
+        <div className="space-y-3">
+          {services.map((s, i) => (
             <div
-              key={service.title}
-              className="group relative rounded-2xl overflow-hidden"
+              key={s.title}
+              className="group cursor-default"
               style={{
                 opacity: isVisible ? 1 : 0,
-                transform: isVisible
-                  ? hoveredIndex === index ? "translateY(-6px) scale(1.005)" : "translateY(0) scale(1)"
-                  : "translateY(70px) scale(0.94)",
-                filter: isVisible ? "blur(0)" : "blur(8px)",
-                transition: isVisible
-                  ? `box-shadow 0.4s ease, transform 0.45s cubic-bezier(0.34,1.56,0.64,1)`
-                  : `opacity 1s ${(index + 2) * 130}ms cubic-bezier(0.16,1,0.3,1), transform 1s ${(index + 2) * 130}ms cubic-bezier(0.16,1,0.3,1), filter 1s ${(index + 2) * 130}ms cubic-bezier(0.16,1,0.3,1)`,
+                transform: isVisible ? "translateY(0) scale(1)" : "translateY(70px) scale(0.94)",
+                filter: isVisible ? "blur(0)" : "blur(10px)",
+                transition: `opacity 1s ${i * 150 + 200}ms cubic-bezier(0.16,1,0.3,1), transform 1s ${i * 150 + 200}ms cubic-bezier(0.16,1,0.3,1), filter 1s ${i * 150 + 200}ms cubic-bezier(0.16,1,0.3,1)`,
               }}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
+              onMouseEnter={() => setHovered(i)}
+              onMouseLeave={() => setHovered(null)}
             >
-              {/* Glow effect */}
-              <div className={`absolute -inset-1 bg-gradient-to-r from-accent/30 via-rose-500/20 to-accent/30 rounded-2xl blur-lg transition-all duration-500 ${
-                hoveredIndex === index ? 'opacity-100 scale-[1.02]' : 'opacity-0 scale-100'
-              }`} />
-              
-              {/* Card with image as background - darker but not completely black */}
-              <div className="relative rounded-2xl overflow-hidden">
-                {/* Background Image (card background) - darker overlay */}
-                <div className="absolute inset-0 z-0">
-                  <div className={`absolute inset-0 bg-black/92 transition-transform duration-700 ${
-                    hoveredIndex === index ? 'scale-110' : 'scale-100'
-                  }`} style={{ backgroundImage: `url(${service.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
-                  {/* Dark gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/90 to-black/85" />
-                </div>
-                
-                {/* Content with overlaid image - full height on left */}
-                <div className="relative z-10 p-0 md:p-0 grid md:grid-cols-5">
-                  {/* Image overlaid on left side - FULL HEIGHT and left border */}
-                  <div className="relative h-64 md:h-auto md:col-span-2 overflow-hidden">
-                    {/* Container that scales with image - includes overlay */}
-                    <div className={`absolute inset-0 transition-transform duration-700 ${
-                      hoveredIndex === index ? 'scale-110' : 'scale-100'
-                    }`}>
-                      <Image
-                        src={service.image}
-                        alt={service.title}
-                        fill
-                        className="object-cover"
-                      />
-                      {/* Pure black overlay - scales with image */}
-                      <div className="absolute inset-0 bg-black/40" />
-                    </div>
+              <div
+                className="grid md:grid-cols-[2fr_3fr] rounded-2xl overflow-hidden"
+                style={{
+                  background: "oklch(0.10 0.020 8)",
+                  border: hovered === i
+                    ? "1px solid oklch(0.44 0.225 15 / 0.40)"
+                    : "1px solid oklch(0.44 0.225 15 / 0.10)",
+                  boxShadow: hovered === i
+                    ? "0 24px 60px rgba(0,0,0,0.6), 0 0 40px oklch(0.44 0.225 15 / 0.10)"
+                    : "0 4px 24px rgba(0,0,0,0.35)",
+                  transform: hovered === i ? "translateY(-5px)" : "translateY(0)",
+                  transition: "border 0.4s ease, box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1)",
+                }}
+              >
+                {/* Image */}
+                <div className="relative h-44 md:h-auto overflow-hidden">
+                  <Image
+                    src={s.image}
+                    alt={s.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 40vw"
+                    className="object-cover"
+                    style={{
+                      objectPosition: (s as any).objectPosition || "center center",
+                      transform: hovered === i ? "scale(1.06)" : "scale(1)",
+                      transition: "transform 0.7s cubic-bezier(0.34,1.56,0.64,1)",
+                    }}
+                  />
+                  {/* Overlay */}
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background: "linear-gradient(to right, rgba(0,0,0,0.12) 0%, transparent 100%)",
+                    }}
+                  />
+                  {/* Service number */}
+                  <div
+                    className="absolute top-4 left-4 font-display font-black leading-none select-none"
+                    style={{
+                      fontSize: "3.5rem",
+                      color: "rgba(255,255,255,0.18)",
+                      letterSpacing: "-0.05em",
+                    }}
+                  >
+                    {s.number}
                   </div>
+                </div>
 
-                  {/* Text content */}
-                  <div className="p-8 md:p-10 md:col-span-3 flex flex-col justify-center">
-                    {/* Subtitle badge */}
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/20 text-white text-sm font-semibold mb-3 w-fit">
-                      {service.subtitle}
-                    </div>
-                    
-                    <h3 className="font-display text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-accent transition-colors duration-300">
-                      {service.title}
+                {/* Content */}
+                <div
+                  className="p-5 md:p-7 flex flex-col justify-center relative overflow-hidden"
+                  style={{
+                    backgroundColor: "oklch(0.10 0.020 8)",
+                    backgroundImage: "radial-gradient(circle at 1px 1px, oklch(0.44 0.225 15 / 0.10) 1px, transparent 0)",
+                    backgroundSize: "24px 24px",
+                  }}
+                >
+                  {/* Hover glow inside content */}
+                  <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background: "radial-gradient(ellipse at 0% 50%, oklch(0.44 0.225 15 / 0.08) 0%, transparent 60%)",
+                      opacity: hovered === i ? 1 : 0,
+                      transition: "opacity 0.5s ease",
+                    }}
+                  />
+
+                  {/* Left accent bar */}
+                  <div
+                    className="absolute left-0 top-8 bottom-8 rounded-r-full pointer-events-none"
+                    style={{
+                      width: hovered === i ? "3px" : "1px",
+                      background: "linear-gradient(to bottom, transparent, oklch(0.44 0.225 15), transparent)",
+                      boxShadow: hovered === i ? "0 0 10px oklch(0.44 0.225 15 / 0.7)" : "none",
+                      transition: "width 0.3s, box-shadow 0.3s",
+                    }}
+                  />
+
+                  <div className="relative z-10">
+                    {/* Badge */}
+                    <span
+                      className="inline-block self-start px-3 py-1 rounded-full text-[10px] tracking-[0.3em] uppercase font-semibold mb-2"
+                      style={{
+                        background: "oklch(0.44 0.225 15 / 0.15)",
+                        color: "oklch(0.65 0.18 18)",
+                        border: "1px solid oklch(0.44 0.225 15 / 0.20)",
+                      }}
+                    >
+                      {s.subtitle}
+                    </span>
+
+                    <h3
+                      className="font-display text-xl md:text-2xl font-extrabold tracking-tight mb-2"
+                      style={{
+                        color: hovered === i ? "oklch(0.72 0.18 18)" : "oklch(0.97 0.005 50)",
+                        transition: "color 0.3s",
+                        textShadow: hovered === i ? "0 0 30px oklch(0.44 0.225 15 / 0.3)" : "none",
+                      }}
+                    >
+                      {s.title}
                     </h3>
-                    
-                    <p className="text-white/80 mb-5 leading-relaxed">
-                      {service.description}
+
+                    <p className="text-sm leading-relaxed mb-3 max-w-md" style={{ color: "oklch(0.65 0.012 30)" }}>
+                      {s.description}
                     </p>
 
-                    {/* Features - SIMPLE LIST with green checkmarks */}
-                    <div className="mb-5">
-                      <p className="text-xs text-accent uppercase tracking-wider font-semibold mb-3">¿Qué incluye?</p>
-                      <div className="grid grid-cols-1 gap-2">
-                        {service.features.map((feature) => (
-                          <div 
-                            key={feature} 
-                            className="flex items-center gap-3"
+                    {/* Features */}
+                    <div className="grid grid-cols-2 gap-y-1.5 gap-x-4 mb-4">
+                      {s.features.map((f) => (
+                        <div key={f} className="flex items-center gap-2">
+                          <div
+                            className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0"
+                            style={{ background: "oklch(0.44 0.225 15 / 0.20)" }}
                           >
-                            <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
-                              <Check className="w-3 h-3 text-green-400" />
-                            </div>
-                            <span className="text-sm font-medium text-white">{feature}</span>
+                            <Check className="w-2.5 h-2.5" style={{ color: "oklch(0.65 0.18 18)" }} />
                           </div>
-                        ))}
-                      </div>
+                          <span className="text-xs font-semibold" style={{ color: "oklch(0.62 0.012 30)" }}>{f}</span>
+                        </div>
+                      ))}
                     </div>
 
-                    {/* Highlight with icon */}
-                    <div className="flex items-center gap-2 mb-5 text-white/80">
-                      <Heart className="w-4 h-4 text-accent" />
-                      <p className="font-medium italic text-sm">
-                        {service.highlight}
-                      </p>
-                    </div>
+                    {/* Divider */}
+                    <div
+                      className="mb-3"
+                      style={{
+                        height: "1px",
+                        background: "linear-gradient(90deg, oklch(0.44 0.225 15 / 0.25), transparent)",
+                      }}
+                    />
 
-                    {/* Button on the right side - more emotional text */}
-                    <div className="flex justify-end">
-                      <Button
-                        onClick={() => handleServiceClick(service.whatsappMessage)}
-                        className="bg-white text-gray-900 hover:bg-accent hover:text-white transition-all duration-300 cursor-pointer font-semibold"
+                    {/* CTA */}
+                    <div className="mt-4 flex justify-end">
+                      <button
+                        onClick={() => handleClick(s.whatsappMessage)}
+                        className="inline-flex items-center justify-center gap-2 group/btn cursor-pointer overflow-hidden relative"
+                        style={{
+                          padding: "8px 20px",
+                          borderRadius: "40px",
+                          fontFamily: "var(--font-inter)",
+                          fontSize: "11px",
+                          fontWeight: 600,
+                          letterSpacing: "0.15em",
+                          textTransform: "uppercase",
+                          color: "#ffffff",
+                          background: "rgba(255, 255, 255, 0.04)",
+                          border: "1px solid rgba(255, 255, 255, 0.4)",
+                          boxShadow: "0 0 16px rgba(255, 255, 255, 0.12)",
+                          transition: "all 0.3s cubic-bezier(0.34,1.56,0.64,1)",
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.transform = "translateY(-2px) scale(1.02)";
+                          e.currentTarget.style.background = "rgba(255, 255, 255, 0.12)";
+                          e.currentTarget.style.border = "1px solid rgba(255, 255, 255, 0.9)";
+                          e.currentTarget.style.boxShadow = "0 0 25px rgba(255, 255, 255, 0.3)";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.transform = "translateY(0) scale(1)";
+                          e.currentTarget.style.background = "rgba(255, 255, 255, 0.04)";
+                          e.currentTarget.style.border = "1px solid rgba(255, 255, 255, 0.4)";
+                          e.currentTarget.style.boxShadow = "0 0 16px rgba(255, 255, 255, 0.12)";
+                        }}
                       >
-                        <Heart className="w-4 h-4 mr-2" />
-                        Planifica tu boda
-                        <ArrowRight className="w-4 h-4 ml-2" />
-                      </Button>
+                        <span className="relative z-10 text-center">Quiero este servicio</span>
+                        <ArrowRight
+                          className="w-3.5 h-3.5 relative z-10 transition-transform duration-300 group-hover/btn:translate-x-1.5"
+                        />
+                      </button>
                     </div>
                   </div>
                 </div>
-
-                {/* Shine effect */}
-                <div className={`absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transition-all duration-1000 pointer-events-none ${
-                  hoveredIndex === index ? 'translate-x-full' : '-translate-x-full'
-                }`} />
               </div>
             </div>
           ))}
         </div>
 
-        {/* CTA - SIMPLE VERSION with bigger button and regular font */}
-        <div className={`text-center mt-16 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <p className="text-gray-700 mb-4 font-medium text-lg">¿No sabes cuál servicio es el ideal para ti?</p>
-          <Button 
-            onClick={() => handleServiceClick("Hola Laura, me interesa conocer más sobre los servicios de wedding planner. ¿Cuál me recomiendas según mi caso?")}
-            className="bg-accent hover:bg-accent/90 text-white cursor-pointer transition-all duration-300 hover:shadow-xl hover:shadow-accent/30 text-xl px-12 py-6"
-          >
-            <Phone className="w-5 h-5 mr-2" />
-            Hablemos y te asesoramos
-            <ArrowRight className="w-5 h-5 ml-2" />
-          </Button>
-        </div>
-
-        {/* Bottom decorative line */}
-        <div className={`flex justify-center mt-12 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-px bg-gradient-to-r from-transparent to-accent/50" />
-            <div className="w-2 h-2 bg-accent rounded-full animate-pulse shadow-lg shadow-accent/50" />
-            <div className="w-12 h-px bg-gradient-to-l from-transparent to-accent/50" />
-          </div>
-        </div>
       </div>
+
+      {/* Bottom divider */}
+      <div className="absolute bottom-0 left-0 right-0 h-px"
+        style={{ background: "linear-gradient(90deg, transparent, oklch(0.44 0.225 15 / 0.18), transparent)" }} />
     </section>
   )
 }
-

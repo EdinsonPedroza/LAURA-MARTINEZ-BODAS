@@ -23,15 +23,15 @@ export function CTA() {
   }, [])
 
   useEffect(() => {
+    const isTouch = window.matchMedia("(hover: none)").matches
     const handleScroll = () => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect()
-        const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height)
-        setScrollY(progress * 60)
-      }
+      if (isTouch || !sectionRef.current) return
+      const rect = sectionRef.current.getBoundingClientRect()
+      const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height)
+      setScrollY(progress * 60)
     }
     const handleMouse = (e: MouseEvent) => {
-      if (!sectionRef.current) return
+      if (isTouch || !sectionRef.current) return
       const rect = sectionRef.current.getBoundingClientRect()
       const x = (e.clientX - rect.left - rect.width / 2) / 60
       const y = (e.clientY - rect.top - rect.height / 2) / 60
@@ -53,7 +53,7 @@ export function CTA() {
   })
 
   return (
-    <section ref={sectionRef} className="relative py-40 md:py-56 overflow-hidden">
+    <section id="empieza-tu-historia" ref={sectionRef} className="relative py-40 md:py-56 overflow-hidden">
       {/* Background with parallax + mouse tilt */}
       <div
         className="absolute inset-0 z-0"
@@ -67,6 +67,7 @@ export function CTA() {
           src="/images/gallery-couple.jpg"
           alt="Pareja de novios"
           fill
+          sizes="100vw"
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/65 to-black/80" />
