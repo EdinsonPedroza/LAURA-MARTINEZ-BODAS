@@ -236,7 +236,7 @@ export function Services() {
                     </span>
 
                     <h3
-                      className="font-display text-xl md:text-2xl font-extrabold tracking-tight mt-1 mb-3"
+                      className="font-display text-xl md:text-2xl font-extrabold tracking-tight mt-2 mb-4"
                       style={{
                         color: hovered === i ? "oklch(0.72 0.18 18)" : "oklch(0.97 0.005 50)",
                         transition: "color 0.3s",

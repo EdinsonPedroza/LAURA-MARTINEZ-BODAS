@@ -114,7 +114,8 @@ export function Gallery() {
                 src={img.src}
                 alt={img.alt}
                 fill
-                sizes={img.span ? "(max-width: 768px) 50vw, 50vw" : "(max-width: 768px) 50vw, 25vw"}
+                quality={88}
+                sizes={img.span ? "(max-width: 768px) 50vw, 55vw" : "(max-width: 768px) 50vw, 30vw"}
                 className="object-cover"
                 style={{
                   transform: hovered === i ? "scale(1.08)" : "scale(1.02)",
