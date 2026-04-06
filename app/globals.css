@@ -63,9 +63,9 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-inter), system-ui, sans-serif;
-  --font-serif: var(--font-cormorant), 'Georgia', serif;
-  --font-display: var(--font-outfit), system-ui, sans-serif;
+  --font-sans: var(--font-inter), 'DM Sans', system-ui, sans-serif;
+  --font-serif: var(--font-cormorant), 'Playfair Display', Georgia, serif;
+  --font-display: var(--font-outfit), 'Plus Jakarta Sans', system-ui, sans-serif;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -201,11 +201,32 @@
 @keyframes scroll-arrow   { 0%, 100% { opacity: 0.25; transform: translateY(0); } 50% { opacity: 1; transform: translateY(7px); } }
 @keyframes rotate-slow    { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
+/* Scroll line drip */
+@keyframes scroll-line {
+  0%   { transform: translateY(-100%); opacity: 0.9; }
+  80%  { opacity: 0.6; }
+  100% { transform: translateY(200%); opacity: 0; }
+}
+.animate-scroll-line {
+  animation: scroll-line 1.8s cubic-bezier(0.4,0,0.6,1) infinite;
+}
+
 /* Vignette breathing */
 @keyframes vignette-breathe {
   0%, 100% { opacity: 0.6; }
   50%       { opacity: 0.85; }
 }
+
+/* Ken Burns slow zoom */
+@keyframes ken-burns {
+  0%   { transform: scale(1)    translate(0, 0); }
+  50%  { transform: scale(1.06) translate(-1%, -0.5%); }
+  100% { transform: scale(1.10) translate(-2%, -1%); }
+}
+
+/* Curtain wipe — used by hero bars */
+@keyframes curtain-up   { from { transform: scaleY(1); } to { transform: scaleY(0); } }
+@keyframes curtain-down { from { transform: scaleY(1); } to { transform: scaleY(0); } }
 
 /* Stats counter pop */
 @keyframes stat-pop {
@@ -218,6 +239,105 @@
 @keyframes border-dance {
   0%, 100% { opacity: 0.3; }
   50%       { opacity: 0.8; }
+}
+
+/* Breathing orb (used in Stats) */
+@keyframes breathe {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.12); }
+}
+@keyframes breathe-center {
+  0%, 100% { transform: translate(-50%, -50%) scale(1);    opacity: 0.8; }
+  50%       { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+}
+
+/* Neon flicker */
+@keyframes neon-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow: 0 0 10px oklch(0.44 0.225 15 / 0.9), 0 0 30px oklch(0.44 0.225 15 / 0.5), 0 0 60px oklch(0.44 0.225 15 / 0.3);
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+  }
+}
+
+/* Ripple from center */
+@keyframes ripple-out {
+  0%   { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+/* Glitch */
+@keyframes glitch-1 {
+  0%, 100% { clip-path: inset(0 0 95% 0); transform: translate(-3px, 0); }
+  20%       { clip-path: inset(30% 0 50% 0); transform: translate(3px, 0); }
+  40%       { clip-path: inset(70% 0 5% 0);  transform: translate(-2px, 0); }
+  60%       { clip-path: inset(10% 0 80% 0); transform: translate(2px, 0); }
+  80%       { clip-path: inset(50% 0 30% 0); transform: translate(-1px, 0); }
+}
+@keyframes glitch-2 {
+  0%, 100% { clip-path: inset(92% 0 1% 0);  transform: translate(3px, 0); color: oklch(0.44 0.225 15); }
+  20%       { clip-path: inset(40% 0 43% 0); transform: translate(-3px, 0); }
+  40%       { clip-path: inset(5% 0 85% 0);  transform: translate(2px, 0); }
+  60%       { clip-path: inset(80% 0 5% 0);  transform: translate(-2px, 0); }
+  80%       { clip-path: inset(20% 0 60% 0); transform: translate(1px, 0); }
+}
+
+/* Orbit ring */
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(60px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(60px) rotate(-360deg); }
+}
+@keyframes orbit-reverse {
+  from { transform: rotate(0deg) translateX(50px) rotate(0deg); }
+  to   { transform: rotate(-360deg) translateX(50px) rotate(360deg); }
+}
+
+/* Starburst entrance */
+@keyframes starburst {
+  0%   { transform: scale(0) rotate(-30deg); opacity: 0; filter: blur(12px); }
+  60%  { transform: scale(1.15) rotate(5deg); opacity: 1; filter: blur(0); }
+  80%  { transform: scale(0.97) rotate(-2deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; filter: blur(0); }
+}
+
+/* Diagonal wipe — for section backgrounds */
+@keyframes diagonal-wipe {
+  from { clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); }
+  to   { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+}
+
+/* Smooth height collapse */
+@keyframes collapse {
+  from { max-height: 400px; opacity: 1; }
+  to   { max-height: 0;     opacity: 0; }
+}
+
+/* Page entrance — very first load */
+@keyframes page-enter {
+  0%   { opacity: 0; transform: translateY(12px); filter: blur(4px); }
+  100% { opacity: 1; transform: translateY(0);    filter: blur(0); }
+}
+
+/* Number explode (for counter finish) */
+@keyframes number-explode {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.18); filter: brightness(1.4); }
+  70%  { transform: scale(0.96); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
+
+/* Gradient border sweep */
+@keyframes border-sweep {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Magnetic pull (used with JS) */
+@keyframes magnetic-snap {
+  0%   { transform: translate(var(--mx), var(--my)) scale(1.04); }
+  100% { transform: translate(0, 0) scale(1); }
 }
 
 /* ═══════════════════════════════════════════
@@ -251,6 +371,12 @@
 .animate-scroll-arrow   { animation: scroll-arrow 1.8s ease-in-out infinite; }
 .animate-stat-pop       { animation: stat-pop 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 .animate-border-dance   { animation: border-dance 2.5s ease-in-out infinite; }
+.animate-neon-flicker   { animation: neon-flicker 4s ease-in-out infinite; }
+.animate-starburst      { animation: starburst 0.9s cubic-bezier(0.16,1,0.3,1) forwards; }
+.animate-orbit          { animation: orbit 8s linear infinite; }
+.animate-orbit-reverse  { animation: orbit-reverse 11s linear infinite; }
+.animate-breathe        { animation: breathe 6s ease-in-out infinite; }
+.animate-page-enter     { animation: page-enter 1.1s cubic-bezier(0.16,1,0.3,1) forwards; }
 
 .animate-shimmer {
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
@@ -278,14 +404,25 @@
 
 .scroll-animate {
   opacity: 0;
-  transform: translateY(75px) scale(0.95);
-  filter: blur(10px);
+  transform: translateY(80px) scale(0.94);
+  filter: blur(12px);
   transition:
-    opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 1.3s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.3s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 1.1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .scroll-animate.visible { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+
+.scroll-animate-scale {
+  opacity: 0;
+  transform: scale(0.75);
+  filter: blur(16px);
+  transition:
+    opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.scroll-animate-scale.visible { opacity: 1; transform: scale(1); filter: blur(0); }
 
 .scroll-animate-left {
   opacity: 0;
@@ -326,12 +463,15 @@
    ═══════════════════════════════════════════ */
 
 .card-hover {
-  transition: transform 0.45s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.45s ease;
+  transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.5s ease, filter 0.4s ease;
+  will-change: transform;
 }
 .card-hover:hover {
-  transform: translateY(-14px) scale(1.01);
-  box-shadow: 0 35px 70px rgba(0,0,0,0.15), 0 0 50px oklch(0.44 0.225 15 / 0.1);
+  transform: translateY(-18px) scale(1.015);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.18), 0 0 60px oklch(0.44 0.225 15 / 0.12);
+  filter: brightness(1.03);
 }
+.card-hover:active { transform: translateY(-8px) scale(0.99); }
 
 /* ═══════════════════════════════════════════
    3D PERSPECTIVE CARD TILT
@@ -412,6 +552,74 @@
 }
 
 .parallax { transition: transform 0.15s ease-out; will-change: transform; }
+
+/* ═══════════════════════════════════════════
+   GLITCH TEXT EFFECT
+   ═══════════════════════════════════════════ */
+
+.glitch {
+  position: relative;
+}
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.glitch::before {
+  animation: glitch-1 3.5s infinite linear;
+  color: oklch(0.44 0.225 15);
+  opacity: 0.7;
+}
+.glitch::after {
+  animation: glitch-2 3.5s infinite linear 0.1s;
+  color: oklch(0.72 0.065 70);
+  opacity: 0.6;
+}
+
+/* ═══════════════════════════════════════════
+   ANIMATED GRADIENT BORDER
+   ═══════════════════════════════════════════ */
+
+.border-gradient-animate {
+  position: relative;
+  border-radius: inherit;
+}
+.border-gradient-animate::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(90deg,
+    oklch(0.44 0.225 15),
+    oklch(0.72 0.065 70),
+    oklch(0.55 0.20 18),
+    oklch(0.44 0.225 15)
+  );
+  background-size: 300% 100%;
+  animation: border-sweep 3s linear infinite;
+  z-index: -1;
+}
+
+/* ═══════════════════════════════════════════
+   RIPPLE BUTTON EFFECT
+   ═══════════════════════════════════════════ */
+
+.ripple-btn {
+  position: relative;
+  overflow: hidden;
+}
+.ripple-btn::after {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  border-radius: 50%;
+  background: oklch(0.44 0.225 15 / 0.25);
+  animation: ripple-out 1.8s ease-out infinite;
+}
 
 /* ═══════════════════════════════════════════
    WHATSAPP BUTTON

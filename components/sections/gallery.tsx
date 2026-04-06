@@ -51,9 +51,9 @@ export function Gallery() {
           <span className="font-display text-[11px] tracking-[0.45em] uppercase text-accent mb-5 block font-medium">
             Nuestras Bodas
           </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-5 text-balance leading-[1.05] tracking-tight">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground mb-5 text-balance leading-[1.0] tracking-tight">
             Momentos que{" "}
-            <span className="font-serif italic font-semibold text-accent">inspiran</span>
+            <span className="font-serif font-black text-accent">inspiran</span>
           </h2>
           <p className="text-muted-foreground leading-relaxed">
             Una muestra de las bodas que hemos tenido el honor de crear.

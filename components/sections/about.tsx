@@ -147,9 +147,9 @@ export function About() {
               Conoce a Laura
             </span>
 
-            <h2 className="font-display text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-foreground mb-8 leading-[1.05] tracking-tight text-balance">
+            <h2 className="font-display text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold text-foreground mb-8 leading-[1.0] tracking-tight text-balance">
               Con pasión, experiencia<br />
-              <span className="font-serif italic font-semibold text-accent">y corazón</span>
+              <span className="font-serif font-black text-accent">y corazón</span>
             </h2>
 
             <div className="space-y-5 text-muted-foreground leading-relaxed">
@@ -200,7 +200,7 @@ export function About() {
                 transition: "opacity 0.9s 700ms cubic-bezier(0.16,1,0.3,1), transform 0.9s 700ms cubic-bezier(0.16,1,0.3,1)",
               }}
             >
-              <p className="font-serif text-xl italic text-foreground leading-relaxed">
+              <p className="font-serif text-xl font-medium text-foreground leading-relaxed">
                 "El día de tu boda y durante la planificación, tu único trabajo es disfrutar, bailar, reír y ser feliz."
               </p>
             </div>
@@ -212,7 +212,7 @@ export function About() {
             </p>
 
             <div className="mt-10 pt-6 border-t border-border">
-              <p className="font-serif text-2xl italic text-accent">Laura Martinez</p>
+              <p className="font-serif text-2xl font-bold text-accent">Laura Martinez</p>
               <p className="text-xs tracking-[0.25em] uppercase text-muted-foreground mt-1">Wedding Planner Certificada</p>
             </div>
           </div>

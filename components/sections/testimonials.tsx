@@ -106,9 +106,9 @@ export function Testimonials() {
           <span className="font-display text-[11px] tracking-[0.45em] uppercase text-accent mb-5 block font-medium">
             Testimonios
           </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 text-balance leading-[1.05] tracking-tight">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground mb-4 text-balance leading-[1.0] tracking-tight">
             Lo que dicen{" "}
-            <span className="font-serif italic font-semibold text-accent">nuestras parejas</span>
+            <span className="font-serif font-black text-accent">nuestras parejas</span>
           </h2>
           <p className="text-muted-foreground leading-relaxed">
             Más de 100 bodas soñadas. Cada historia, única.

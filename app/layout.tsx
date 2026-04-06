@@ -1,27 +1,27 @@
 import type { Metadata } from 'next'
-import { Cormorant_Garamond, Outfit, Inter } from 'next/font/google'
+import { Playfair_Display, Plus_Jakarta_Sans, DM_Sans } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ScrollProgress } from '@/components/scroll-progress'
 import './globals.css'
 
-const inter = Inter({
+const dmSans = DM_Sans({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
+  weight: ['300', '400', '500', '600', '700'],
   variable: '--font-inter',
   display: 'swap',
 })
 
-const cormorant = Cormorant_Garamond({
+const playfair = Playfair_Display({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  style: ['normal', 'italic'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  style: ['normal'],
   variable: '--font-cormorant',
   display: 'swap',
 })
 
-const outfit = Outfit({
+const jakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  weight: ['300', '400', '500', '600', '700', '800'],
   variable: '--font-outfit',
   display: 'swap',
 })
@@ -51,7 +51,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${inter.variable} ${cormorant.variable} ${outfit.variable} font-sans antialiased`}>
+      <body className={`${dmSans.variable} ${playfair.variable} ${jakartaSans.variable} font-sans antialiased`}>
         <ScrollProgress />
         {children}
         <Analytics />

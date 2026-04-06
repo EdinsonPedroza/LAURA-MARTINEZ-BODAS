@@ -107,9 +107,9 @@ ${formData.message}
           <span className="font-display text-[11px] tracking-[0.45em] uppercase text-primary-foreground/70 mb-5 block font-medium">
             Contacto
           </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-5 text-balance leading-[1.05] tracking-tight">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary-foreground mb-5 text-balance leading-[1.0] tracking-tight">
             Comienza a planear tu{" "}
-            <span className="font-serif italic font-semibold text-primary-foreground/85">boda soñada</span>
+            <span className="font-serif font-black text-primary-foreground/90">boda soñada</span>
           </h2>
           <p className="text-primary-foreground/70 leading-relaxed">
             Estamos listos para escucharte y crear la boda perfecta para ti.
@@ -128,7 +128,7 @@ ${formData.message}
           >
             <Card className="bg-primary-foreground/10 border-primary-foreground/20 shadow-2xl backdrop-blur-sm">
               <CardContent className="p-6 md:p-8">
-                <h3 className="font-serif text-2xl text-primary-foreground mb-6">
+                <h3 className="font-display text-2xl font-bold text-primary-foreground mb-6">
                   Envíanos un mensaje
                 </h3>
                 
@@ -238,7 +238,7 @@ ${formData.message}
             }}
           >
             <div className="space-y-6">
-              <h3 className="font-serif text-2xl text-primary-foreground mb-8">
+              <h3 className="font-display text-2xl font-bold text-primary-foreground mb-8">
                 Información de contacto
               </h3>
               
@@ -271,7 +271,7 @@ ${formData.message}
 
               {/* Social Links */}
               <div className="pt-8 mt-8 border-t border-primary-foreground/20">
-                <h4 className="font-serif text-xl text-primary-foreground mb-4">
+                <h4 className="font-display text-xl font-bold text-primary-foreground mb-4">
                   Síguenos en redes
                 </h4>
                 <div className="flex flex-wrap items-center gap-4">
@@ -302,7 +302,7 @@ ${formData.message}
 
               {/* Brand Name */}
               <div className="pt-8 mt-8 border-t border-primary-foreground/20">
-                <h4 className="font-serif text-3xl text-primary-foreground mb-2">
+                <h4 className="font-display text-3xl font-extrabold text-primary-foreground mb-2">
                   Laura Martínez Bodas
                 </h4>
                 <p className="text-primary-foreground/60">

@@ -104,9 +104,9 @@ export function Benefits() {
             style={{ color: "oklch(0.60 0.20 18)" }}>
             Por Qué Elegirnos
           </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5 text-balance leading-[1.05] tracking-tight">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-5 text-balance leading-[1.0] tracking-tight">
             La diferencia de trabajar con{" "}
-            <span className="font-serif italic font-semibold" style={{ color: "oklch(0.60 0.20 18)" }}>profesionales</span>
+            <span className="font-serif font-black" style={{ color: "oklch(0.60 0.20 18)" }}>profesionales</span>
           </h2>
           <p className="text-white/75 text-base md:text-lg font-light">
             Más de 100 parejas felices nos respaldan
@@ -218,7 +218,7 @@ export function Benefits() {
               className="text-center group cursor-default"
             >
               <div
-                className="font-serif text-6xl text-white font-light mb-1 transition-all duration-500 group-hover:text-accent"
+                className="font-display text-6xl text-white font-black mb-1 transition-all duration-500 group-hover:text-accent"
                 style={{ textShadow: "0 0 0 transparent", transition: "color 0.4s ease, text-shadow 0.4s ease" }}
                 onMouseEnter={(e) => {
                   (e.target as HTMLElement).style.textShadow = "0 0 40px oklch(0.45 0.15 25 / 0.5), 0 0 80px oklch(0.45 0.15 25 / 0.2)"

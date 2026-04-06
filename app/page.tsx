@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic"
 import { Header } from "@/components/header"
 import { Hero } from "@/components/sections/hero"
-import { Stats } from "@/components/sections/stats"
 import { Footer } from "@/components/sections/footer"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 
@@ -19,7 +18,6 @@ export default function Home() {
     <main className="overflow-x-hidden">
       <Header />
       <Hero />
-      <Stats />
       <Services />
       <About />
       <Benefits />

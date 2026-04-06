@@ -125,9 +125,9 @@ export function Services() {
           }}
         >
           <span className="font-display text-[11px] tracking-[0.45em] uppercase text-accent mb-5 mt-1 block font-medium">Servicios</span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 leading-[1.05] tracking-tight">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-4 leading-[1.0] tracking-tight">
             Qué hacemos{" "}
-            <span className="font-serif italic font-semibold text-accent">por ti.</span>
+            <span className="font-serif font-black text-accent">por ti.</span>
           </h2>
           <p className="text-gray-700 leading-relaxed max-w-2xl mx-auto text-lg font-medium">
             Cada historia de amor es única, tu historia de amor merece una celebración inolvidable.
@@ -196,7 +196,7 @@ export function Services() {
                       {service.subtitle}
                     </div>
                     
-                    <h3 className="font-serif text-2xl md:text-3xl text-white mb-3 group-hover:text-accent transition-colors duration-300">
+                    <h3 className="font-display text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-accent transition-colors duration-300">
                       {service.title}
                     </h3>
                     
