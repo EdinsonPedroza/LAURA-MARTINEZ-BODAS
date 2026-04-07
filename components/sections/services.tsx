@@ -236,11 +236,12 @@ export function Services() {
                     </span>
 
                     <h3
-                      className="font-display text-xl md:text-2xl font-extrabold tracking-tight mt-2 mb-4"
+                      className="font-display text-xl md:text-2xl font-extrabold tracking-wide mt-2 mb-4"
                       style={{
                         color: hovered === i ? "oklch(0.72 0.18 18)" : "oklch(0.97 0.005 50)",
                         transition: "color 0.3s",
                         textShadow: hovered === i ? "0 0 30px oklch(0.44 0.225 15 / 0.3)" : "none",
+                        wordSpacing: "0.15em",
                       }}
                     >
                       {s.title}
