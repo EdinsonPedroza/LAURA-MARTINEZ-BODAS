@@ -252,7 +252,7 @@ export function Services() {
                       {s.title}
                     </h3>
 
-                    <p className="text-sm leading-relaxed mb-3 max-w-md" style={{ color: "oklch(0.65 0.012 30)" }}>
+                    <p className="text-sm leading-relaxed mb-3 max-w-md" style={{ color: "oklch(0.84 0.018 30)" }}>
                       {s.description}
                     </p>
 
@@ -262,11 +262,11 @@ export function Services() {
                         <div key={f} className="flex items-center gap-2">
                           <div
                             className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0"
-                            style={{ background: "oklch(0.44 0.225 15 / 0.20)" }}
+                            style={{ background: "oklch(0.44 0.225 15 / 0.30)" }}
                           >
-                            <Check className="w-2.5 h-2.5" style={{ color: "oklch(0.65 0.18 18)" }} />
+                            <Check className="w-2.5 h-2.5" style={{ color: "oklch(0.78 0.18 18)" }} />
                           </div>
-                          <span className="text-xs font-semibold" style={{ color: "oklch(0.62 0.012 30)" }}>{f}</span>
+                          <span className="text-xs font-semibold" style={{ color: "oklch(0.82 0.018 30)" }}>{f}</span>
                         </div>
                       ))}
                     </div>
