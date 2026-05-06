@@ -10,6 +10,7 @@ const navLinks = [
   { href: "#quien-soy",   label: "Quién Soy" },
   { href: "#testimonios", label: "Testimonios" },
   { href: "#galeria",     label: "Nuestras Bodas" },
+  { href: "#guia",        label: "Guía Gratis" },
   { href: "#contacto",    label: "Contacto" },
 ]
 
