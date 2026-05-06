@@ -89,7 +89,12 @@ ${formData.message}
     const encodedMessage = encodeURIComponent(message)
     
     // Open WhatsApp with the message
-    window.open(`https://wa.me/573186049903?text=${encodedMessage}`, "_blank", "noopener,noreferrer")
+    const waUrl = `https://wa.me/573186049903?text=${encodedMessage}`
+    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+      window.location.href = waUrl
+    } else {
+      window.open(waUrl, "_blank", "noopener,noreferrer")
+    }
   }
 
   return (

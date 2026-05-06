@@ -59,7 +59,12 @@ export function Services() {
   }, [])
 
   const handleClick = (msg: string) => {
-    window.open(`https://wa.me/573186049903?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer")
+    const url = `https://wa.me/573186049903?text=${encodeURIComponent(msg)}`
+    if (/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+      window.location.href = url
+    } else {
+      window.open(url, "_blank", "noopener,noreferrer")
+    }
   }
 
   return (
