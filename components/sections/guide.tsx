@@ -64,17 +64,16 @@ export function Guide() {
           className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold mb-5 leading-tight"
           style={{ color: "oklch(0.97 0.005 50)" }}
         >
-          ¡Planifica tu boda{" "}
-          <span style={{ color: "oklch(0.65 0.18 18)" }}>sin morir</span>
-          <br className="hidden md:block" /> en el intento!
+          ¡Haz realidad{" "}
+          <span style={{ color: "oklch(0.65 0.18 18)" }}>el día que</span>
+          <br className="hidden md:block" /> siempre soñaste!
         </h2>
 
         <p
           className="text-base md:text-lg leading-relaxed mb-10"
           style={{ color: "oklch(0.78 0.015 30)" }}
         >
-          Una guía gratuita con el paso a paso que toda novia necesita,
-          desde el primer detalle hasta el gran día.
+          Una guía gratuita con el paso a paso que toda boda necesita.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
