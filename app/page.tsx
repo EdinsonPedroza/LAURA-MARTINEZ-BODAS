@@ -13,6 +13,7 @@ const About        = dynamic(() => import("@/components/sections/about").then(mo
 // const Benefits  = dynamic(() => import("@/components/sections/benefits").then(mod => mod.Benefits))
 const Gallery      = dynamic(() => import("@/components/sections/gallery").then(mod => mod.Gallery))
 // const Testimonials = dynamic(() => import("@/components/sections/testimonials").then(mod => mod.Testimonials))
+const Guide        = dynamic(() => import("@/components/sections/guide").then(mod => mod.Guide))
 const CTA          = dynamic(() => import("@/components/sections/cta").then(mod => mod.CTA))
 const Contact      = dynamic(() => import("@/components/sections/contact").then(mod => mod.Contact))
 
@@ -25,6 +26,7 @@ export default function Home() {
       <Services />
       <About />
       <Gallery />
+      <Guide />
       <CTA />
       <Contact />
       <Footer />
