@@ -28,6 +28,7 @@ export function About() {
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+  const [yearsCount, setYearsCount] = useState(0)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -37,6 +38,19 @@ export function About() {
     if (sectionRef.current) observer.observe(sectionRef.current)
     return () => observer.disconnect()
   }, [])
+
+  // Counter animation for "14+" badge
+  useEffect(() => {
+    if (!isVisible) return
+    const target = 14
+    let current = 0
+    const interval = setInterval(() => {
+      current = Math.min(current + 1, target)
+      setYearsCount(current)
+      if (current >= target) clearInterval(interval)
+    }, 55)
+    return () => clearInterval(interval)
+  }, [isVisible])
 
   useEffect(() => {
     // Skip on touch-only devices (mobile/tablet with no pointer)
@@ -124,7 +138,7 @@ export function About() {
                 textShadow: "0px 4px 20px rgba(0,0,0,0.1)",
               }}
             >
-              14
+              {yearsCount}
             </span>
           </div>
 
@@ -199,7 +213,7 @@ export function About() {
                   className="font-display font-bold leading-none tracking-tighter"
                   style={{ fontSize: "clamp(2rem, 5vw, 4.5rem)" }}
                 >
-                  14
+                  {yearsCount}
                 </span>
                 <span
                   className="font-display font-medium opacity-80"

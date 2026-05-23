@@ -1,9 +1,16 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { Download, BookOpen } from "lucide-react"
+import { Download, BookOpen, Sparkles } from "lucide-react"
 
 const GUIDE_URL = "https://www.lauramartinezbodas.com/wp-content/uploads/2025/05/Guiadebodas.pdf"
+
+const steps = [
+  { number: "01", label: "Definir fecha y lugar" },
+  { number: "02", label: "Elegir proveedores" },
+  { number: "03", label: "Diseñar la ceremonia" },
+  { number: "04", label: "Disfrutar el gran día" },
+]
 
 export function Guide() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -18,6 +25,12 @@ export function Guide() {
     return () => observer.disconnect()
   }, [])
 
+  const stagger = (i: number) => ({
+    opacity: visible ? 1 : 0,
+    transform: visible ? "translateY(0)" : "translateY(28px)",
+    transition: `opacity 0.7s ${i * 110}ms ease, transform 0.7s ${i * 110}ms cubic-bezier(0.16,1,0.3,1)`,
+  })
+
   return (
     <section
       ref={sectionRef}
@@ -25,7 +38,7 @@ export function Guide() {
       className="relative overflow-hidden py-24 md:py-32"
       style={{ backgroundColor: "oklch(0.08 0.018 8)" }}
     >
-      {/* Background texture */}
+      {/* Dot-grid background */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -34,71 +47,125 @@ export function Guide() {
         }}
       />
 
-      {/* Glow */}
+      {/* Top glow */}
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none"
         style={{
-          width: "600px",
-          height: "300px",
-          background: "radial-gradient(ellipse at top, oklch(0.44 0.225 15 / 0.12) 0%, transparent 70%)",
+          width: "700px",
+          height: "320px",
+          background: "radial-gradient(ellipse at top, oklch(0.44 0.225 15 / 0.14) 0%, transparent 70%)",
         }}
       />
 
+      {/* Animated rotating ring — purely decorative */}
       <div
-        className="relative z-10 max-w-2xl mx-auto px-4 md:px-8 text-center"
+        className="absolute -top-24 -right-24 w-80 h-80 rounded-full pointer-events-none"
         style={{
-          opacity: visible ? 1 : 0,
-          transform: visible ? "translateY(0)" : "translateY(28px)",
-          transition: "opacity 0.7s ease, transform 0.7s ease",
+          border: "1px solid oklch(0.44 0.225 15 / 0.10)",
+          animation: "spin-slow 20s linear infinite",
         }}
-      >
-        <div className="flex items-center justify-center gap-3 mb-5">
+      />
+      <div
+        className="absolute -bottom-16 -left-16 w-56 h-56 rounded-full pointer-events-none"
+        style={{
+          border: "1px solid oklch(0.44 0.225 15 / 0.08)",
+          animation: "spin-slow 28s linear infinite reverse",
+        }}
+      />
+
+      <div className="relative z-10 max-w-4xl mx-auto px-4 md:px-8">
+
+        {/* Eyebrow */}
+        <div className="flex items-center justify-center gap-3 mb-6" style={stagger(0)}>
           <div className="w-8 h-px" style={{ background: "linear-gradient(90deg, transparent, oklch(0.44 0.225 15))" }} />
-          <span className="text-[10px] tracking-[0.35em] uppercase font-semibold" style={{ color: "oklch(0.65 0.18 18)" }}>
+          <span className="text-[10px] tracking-[0.38em] uppercase font-semibold flex items-center gap-2" style={{ color: "oklch(0.65 0.18 18)" }}>
+            <Sparkles className="w-3 h-3" />
             Recurso gratuito
           </span>
           <div className="w-8 h-px" style={{ background: "linear-gradient(90deg, oklch(0.44 0.225 15), transparent)" }} />
         </div>
 
-        <h2
-          className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold mb-5 leading-tight"
-          style={{ color: "oklch(0.97 0.005 50)" }}
-        >
-          ¡Haz realidad {" "}
-          <span style={{ color: "oklch(0.65 0.18 18)" }}>el día que</span>
-          <br className="hidden md:block" /> siempre soñaste!
-        </h2>
+        {/* Heading */}
+        <div style={stagger(1)}>
+          <h2
+            className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold mb-5 leading-tight text-center"
+            style={{ color: "oklch(0.97 0.005 50)" }}
+          >
+            ¡Haz realidad{" "}
+            <span style={{ color: "oklch(0.65 0.18 18)" }}>el día que</span>
+            <br className="hidden md:block" /> siempre soñaste!
+          </h2>
+        </div>
 
-        <p
-          className="text-base md:text-lg leading-relaxed mb-10"
-          style={{ color: "oklch(0.78 0.015 30)" }}
-        >
-          Una guía gratuita con el paso a paso que toda boda necesita.
-        </p>
+        <div style={stagger(2)}>
+          <p
+            className="text-base md:text-lg leading-relaxed mb-12 text-center mx-auto max-w-xl"
+            style={{ color: "oklch(0.78 0.015 30)" }}
+          >
+            Una guía gratuita con el paso a paso que toda boda necesita.
+          </p>
+        </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        {/* Step pills */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-12">
+          {steps.map((s, i) => (
+            <div
+              key={s.number}
+              className="rounded-xl px-4 py-3 text-center relative overflow-hidden"
+              style={{
+                background: "oklch(0.12 0.022 8)",
+                border: "1px solid oklch(0.44 0.225 15 / 0.14)",
+                opacity: visible ? 1 : 0,
+                transform: visible ? "translateY(0) scale(1)" : "translateY(20px) scale(0.95)",
+                transition: `opacity 0.6s ${300 + i * 80}ms cubic-bezier(0.16,1,0.3,1), transform 0.6s ${300 + i * 80}ms cubic-bezier(0.34,1.56,0.64,1)`,
+              }}
+            >
+              <p
+                className="font-display font-black leading-none mb-1"
+                style={{ fontSize: "2rem", color: "oklch(0.44 0.225 15 / 0.35)", letterSpacing: "-0.04em" }}
+              >
+                {s.number}
+              </p>
+              <p className="text-[11px] font-medium" style={{ color: "oklch(0.75 0.012 30)" }}>
+                {s.label}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4" style={stagger(5)}>
           <a
             href={GUIDE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 px-8 py-4 rounded-full font-semibold text-sm uppercase transition-all duration-300"
+            className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-full font-semibold text-sm uppercase overflow-hidden"
             style={{
               background: "linear-gradient(135deg, oklch(0.44 0.225 15), oklch(0.35 0.20 10))",
               color: "#fff",
               letterSpacing: "0.14em",
               boxShadow: "0 0 28px oklch(0.44 0.225 15 / 0.35)",
+              transition: "transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateY(-2px) scale(1.03)"
-              e.currentTarget.style.boxShadow = "0 0 40px oklch(0.44 0.225 15 / 0.55)"
+              e.currentTarget.style.transform = "translateY(-3px) scale(1.04)"
+              e.currentTarget.style.boxShadow = "0 0 44px oklch(0.44 0.225 15 / 0.6)"
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = "translateY(0) scale(1)"
               e.currentTarget.style.boxShadow = "0 0 28px oklch(0.44 0.225 15 / 0.35)"
             }}
           >
-            <Download className="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-0.5" />
-            Descargar guía gratis
+            {/* Shimmer sweep */}
+            <span
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%)",
+                animation: "shimmer-slide 2.4s linear infinite",
+              }}
+            />
+            <Download className="w-4 h-4 relative z-10 transition-transform duration-300 group-hover:-translate-y-0.5" />
+            <span className="relative z-10">Descargar guía gratis</span>
           </a>
 
           <div className="flex items-center gap-2" style={{ color: "oklch(0.50 0.012 30)" }}>

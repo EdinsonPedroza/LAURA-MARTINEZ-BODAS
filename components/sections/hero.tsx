@@ -195,6 +195,46 @@ export function Hero() {
         </div>
       </div>
 
+      {/* Scroll indicator — bounces to invite scroll */}
+      <div
+        className="absolute bottom-8 left-1/2 z-20 flex flex-col items-center gap-1.5"
+        style={{
+          opacity: visible ? 1 : 0,
+          transform: "translateX(-50%)",
+          transition: "opacity 1s 2s ease",
+        }}
+      >
+        <span
+          style={{
+            fontFamily: "var(--font-inter)",
+            fontSize: "8px",
+            letterSpacing: "0.45em",
+            textTransform: "uppercase",
+            color: "rgba(255,255,255,0.45)",
+          }}
+        >
+          Scroll
+        </span>
+        {/* Animated line */}
+        <div
+          className="relative overflow-hidden"
+          style={{ width: "1px", height: "36px", background: "rgba(255,255,255,0.15)" }}
+        >
+          <div
+            className="absolute top-0 left-0 w-full"
+            style={{
+              height: "40%",
+              background: "linear-gradient(to bottom, transparent, oklch(0.44 0.225 15), transparent)",
+              animation: visible ? "scroll-line 1.6s ease-in-out 2.2s infinite" : "none",
+            }}
+          />
+        </div>
+        <ChevronDown
+          className="w-4 h-4"
+          style={{ color: "oklch(0.44 0.225 15 / 0.8)", animation: "chevron-bounce 1.5s ease-in-out 2.4s infinite" }}
+        />
+      </div>
+
     </section>
   )
 }

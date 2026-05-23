@@ -1,23 +1,70 @@
+"use client"
+
+import { useEffect, useRef, useState } from "react"
 import { Heart } from "lucide-react"
 import Image from "next/image"
 
 export function Footer() {
   const year = new Date().getFullYear()
+  const footerRef = useRef<HTMLElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setIsVisible(true); observer.disconnect() } },
+      { threshold: 0.08 }
+    )
+    if (footerRef.current) observer.observe(footerRef.current)
+    return () => observer.disconnect()
+  }, [])
+
+  const stagger = (delay: number) => ({
+    opacity: isVisible ? 1 : 0,
+    transform: isVisible ? "translateY(0)" : "translateY(20px)",
+    transition: `opacity 0.9s ${delay}ms cubic-bezier(0.16,1,0.3,1), transform 0.9s ${delay}ms cubic-bezier(0.16,1,0.3,1)`,
+  })
 
   return (
     <footer
+      ref={footerRef}
       className="relative py-16 overflow-hidden"
       style={{ background: "oklch(0.08 0.030 5)" }}
     >
+      {/* Giant brand watermark — signature de la casa */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
+      >
+        <span
+          className="font-serif font-black whitespace-nowrap"
+          style={{
+            fontSize: "clamp(4rem, 14vw, 14rem)",
+            color: "oklch(0.44 0.225 15 / 0.04)",
+            letterSpacing: "-0.04em",
+            lineHeight: 1,
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "translateY(0) scale(1)" : "translateY(40px) scale(0.94)",
+            transition: "opacity 1.4s 0.2s cubic-bezier(0.16,1,0.3,1), transform 1.4s 0.2s cubic-bezier(0.16,1,0.3,1)",
+          }}
+        >
+          Laura Martínez
+        </span>
+      </div>
+
       {/* Background crimson glow */}
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-48 blur-[100px] pointer-events-none"
         style={{ background: "oklch(0.44 0.225 15 / 0.10)" }}
       />
+
       {/* Top accent line */}
       <div
-        className="absolute top-0 left-0 right-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, oklch(0.44 0.225 15 / 0.5), transparent)" }}
+        className="absolute top-0 left-0 right-0 h-px origin-center pointer-events-none"
+        style={{
+          background: "linear-gradient(90deg, transparent, oklch(0.44 0.225 15 / 0.5), transparent)",
+          transform: isVisible ? "scaleX(1)" : "scaleX(0)",
+          transition: "transform 1.2s 0.1s cubic-bezier(0.16,1,0.3,1)",
+        }}
       />
 
       <div className="container mx-auto px-4 relative z-10">
@@ -25,7 +72,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-10 mb-12">
 
           {/* Brand */}
-          <div className="text-center md:text-left">
+          <div className="text-center md:text-left" style={stagger(0)}>
             <div className="relative h-6 w-48 mb-4 mx-auto md:mx-0">
               <Image
                 src="/images/Logo-Blanco-1536x244.png"
@@ -44,7 +91,7 @@ export function Footer() {
           </div>
 
           {/* Nav links */}
-          <nav className="flex flex-wrap justify-center gap-6">
+          <nav className="flex flex-wrap justify-center gap-6" style={stagger(100)}>
             {[
               { href: "#servicios",   l: "Servicios" },
               { href: "#quien-soy",   l: "Quién Soy" },
@@ -63,13 +110,13 @@ export function Footer() {
           </nav>
 
           {/* Social */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3" style={stagger(200)}>
             <a
               href="https://www.instagram.com/bodaslauramartinez"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-400 hover:scale-110"
+              className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg"
               style={{ background: "linear-gradient(135deg, #833AB4, #FD1D1D, #F77737)" }}
             >
               <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -81,7 +128,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
-              className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-400 hover:scale-110"
+              className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg"
               style={{ background: "#1877F2" }}
             >
               <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -93,7 +140,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp"
-              className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-400 hover:scale-110"
+              className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg"
               style={{ background: "#25D366" }}
             >
               <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -105,12 +152,16 @@ export function Footer() {
 
         {/* Divider */}
         <div
-          className="h-px mb-8"
-          style={{ background: "linear-gradient(90deg, transparent, oklch(0.44 0.225 15 / 0.3), transparent)" }}
+          className="h-px mb-8 origin-center"
+          style={{
+            background: "linear-gradient(90deg, transparent, oklch(0.44 0.225 15 / 0.3), transparent)",
+            transform: isVisible ? "scaleX(1)" : "scaleX(0)",
+            transition: "transform 1s 0.4s cubic-bezier(0.16,1,0.3,1)",
+          }}
         />
 
         {/* Bottom row */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4" style={stagger(400)}>
           <p
             className="text-xs font-light tracking-wide"
             style={{ color: "oklch(0.40 0.020 30)" }}
