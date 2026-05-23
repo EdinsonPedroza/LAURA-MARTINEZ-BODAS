@@ -5,13 +5,6 @@ import { Download, BookOpen, Sparkles } from "lucide-react"
 
 const GUIDE_URL = "https://www.lauramartinezbodas.com/wp-content/uploads/2025/05/Guiadebodas.pdf"
 
-const steps = [
-  { number: "01", label: "Definir fecha y lugar" },
-  { number: "02", label: "Elegir proveedores" },
-  { number: "03", label: "Diseñar la ceremonia" },
-  { number: "04", label: "Disfrutar el gran día" },
-]
-
 export function Guide() {
   const sectionRef = useRef<HTMLElement>(null)
   const [visible, setVisible] = useState(false)
@@ -104,33 +97,6 @@ export function Guide() {
           >
             Una guía gratuita con el paso a paso que toda boda necesita.
           </p>
-        </div>
-
-        {/* Step pills */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-12">
-          {steps.map((s, i) => (
-            <div
-              key={s.number}
-              className="rounded-xl px-4 py-3 text-center relative overflow-hidden"
-              style={{
-                background: "oklch(0.12 0.022 8)",
-                border: "1px solid oklch(0.44 0.225 15 / 0.14)",
-                opacity: visible ? 1 : 0,
-                transform: visible ? "translateY(0) scale(1)" : "translateY(20px) scale(0.95)",
-                transition: `opacity 0.6s ${300 + i * 80}ms cubic-bezier(0.16,1,0.3,1), transform 0.6s ${300 + i * 80}ms cubic-bezier(0.34,1.56,0.64,1)`,
-              }}
-            >
-              <p
-                className="font-display font-black leading-none mb-1"
-                style={{ fontSize: "2rem", color: "oklch(0.44 0.225 15 / 0.35)", letterSpacing: "-0.04em" }}
-              >
-                {s.number}
-              </p>
-              <p className="text-[11px] font-medium" style={{ color: "oklch(0.75 0.012 30)" }}>
-                {s.label}
-              </p>
-            </div>
-          ))}
         </div>
 
         {/* CTA */}
