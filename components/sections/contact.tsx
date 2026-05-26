@@ -1,11 +1,23 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { MapPin, Phone, Mail, Clock, Send } from "lucide-react"
+
+const contactSchema = z.object({
+  name:    z.string().min(2, "Mínimo 2 caracteres").max(100, "Máximo 100 caracteres"),
+  phone:   z.string().min(7, "Teléfono inválido").max(20, "Teléfono inválido")
+             .regex(/^[\d\s\+\-\(\)]+$/, "Solo números y símbolos de teléfono"),
+  email:   z.string().email("Email inválido"),
+  date:    z.string().optional(),
+  message: z.string().min(10, "Mínimo 10 caracteres").max(2000, "Máximo 2000 caracteres"),
+})
+
+type ContactErrors = Partial<Record<keyof z.infer<typeof contactSchema>, string>>
 
 const contactInfo = [
   {
@@ -44,6 +56,7 @@ export function Contact() {
     date: "",
     message: ""
   })
+  const [errors, setErrors] = useState<ContactErrors>({})
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -70,20 +83,21 @@ export function Contact() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    
-    // Build WhatsApp message with form data
-    const message = `¡Hola Laura! Me gustaría agendar una asesoría para mi boda.
 
-*Datos de contacto:*
-- Nombre: ${formData.name}
-- Teléfono: ${formData.phone}
-- Email: ${formData.email}
-${formData.date ? `- Fecha tentativa de boda: ${formData.date}` : ""}
+    const result = contactSchema.safeParse(formData)
+    if (!result.success) {
+      const fieldErrors: ContactErrors = {}
+      result.error.errors.forEach(err => {
+        const field = err.path[0] as keyof ContactErrors
+        if (!fieldErrors[field]) fieldErrors[field] = err.message
+      })
+      setErrors(fieldErrors)
+      return
+    }
+    setErrors({})
 
-*Mensaje:*
-${formData.message}
-
-¡Gracias!`
+    const { name, phone, email, date, message: msg } = result.data
+    const message = `¡Hola Laura! Me gustaría agendar una asesoría para mi boda.\n\n*Datos de contacto:*\n- Nombre: ${name}\n- Teléfono: ${phone}\n- Email: ${email}${date ? `\n- Fecha tentativa de boda: ${date}` : ""}\n\n*Mensaje:*\n${msg}\n\n¡Gracias!`
 
     // Encode the message for URL
     const encodedMessage = encodeURIComponent(message)
@@ -149,11 +163,13 @@ ${formData.message}
                         name="name"
                         autoComplete="name"
                         placeholder="Tu nombre"
-                        required
                         value={formData.name}
                         onChange={handleInputChange}
+                        aria-invalid={!!errors.name}
+                        aria-describedby={errors.name ? "name-error" : undefined}
                         className="bg-primary-foreground/10 border-primary-foreground/30 text-primary-foreground placeholder:text-primary-foreground/50 focus:border-primary-foreground focus:ring-primary-foreground"
                       />
+                      {errors.name && <p id="name-error" role="alert" className="mt-1 text-xs text-red-400">{errors.name}</p>}
                     </div>
                     <div>
                       <label htmlFor="phone" className="block text-sm font-medium text-primary-foreground mb-2">
@@ -165,14 +181,16 @@ ${formData.message}
                         type="tel"
                         autoComplete="tel"
                         placeholder="Tu teléfono"
-                        required
                         value={formData.phone}
                         onChange={handleInputChange}
+                        aria-invalid={!!errors.phone}
+                        aria-describedby={errors.phone ? "phone-error" : undefined}
                         className="bg-primary-foreground/10 border-primary-foreground/30 text-primary-foreground placeholder:text-primary-foreground/50 focus:border-primary-foreground focus:ring-primary-foreground"
                       />
+                      {errors.phone && <p id="phone-error" role="alert" className="mt-1 text-xs text-red-400">{errors.phone}</p>}
                     </div>
                   </div>
-                  
+
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-primary-foreground mb-2">
                       Email *
@@ -183,18 +201,20 @@ ${formData.message}
                       type="email"
                       autoComplete="email"
                       placeholder="tu@email.com"
-                      required
                       value={formData.email}
                       onChange={handleInputChange}
+                      aria-invalid={!!errors.email}
+                      aria-describedby={errors.email ? "email-error" : undefined}
                       className="bg-primary-foreground/10 border-primary-foreground/30 text-primary-foreground placeholder:text-primary-foreground/50 focus:border-primary-foreground focus:ring-primary-foreground"
                     />
+                    {errors.email && <p id="email-error" role="alert" className="mt-1 text-xs text-red-400">{errors.email}</p>}
                   </div>
-                  
+
                   <div>
                     <label htmlFor="date" className="block text-sm font-medium text-primary-foreground mb-2">
                       Fecha tentativa de la boda
                     </label>
-                    <Input 
+                    <Input
                       id="date"
                       name="date"
                       type="date"
@@ -203,21 +223,23 @@ ${formData.message}
                       className="bg-primary-foreground/10 border-primary-foreground/30 text-primary-foreground placeholder:text-primary-foreground/50 focus:border-primary-foreground focus:ring-primary-foreground [color-scheme:dark]"
                     />
                   </div>
-                  
+
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-primary-foreground mb-2">
                       Mensaje *
                     </label>
-                    <Textarea 
+                    <Textarea
                       id="message"
                       name="message"
                       placeholder="Cuéntanos sobre tu boda soñada..."
                       rows={4}
-                      required
                       value={formData.message}
                       onChange={handleInputChange}
+                      aria-invalid={!!errors.message}
+                      aria-describedby={errors.message ? "message-error" : undefined}
                       className="bg-primary-foreground/10 border-primary-foreground/30 text-primary-foreground placeholder:text-primary-foreground/50 focus:border-primary-foreground focus:ring-primary-foreground resize-none"
                     />
+                    {errors.message && <p id="message-error" role="alert" className="mt-1 text-xs text-red-400">{errors.message}</p>}
                   </div>
                   
                   <Button 

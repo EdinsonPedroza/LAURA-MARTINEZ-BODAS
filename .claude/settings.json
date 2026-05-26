@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"/c/Users/57318/Desktop/LANDING PALMIRA/LAURA MARTINEZ BODAS/LAURA-MARTINEZ-BODAS\" && ls -la)",
+      "Read(//c/c/Users/57318/Desktop/LANDING PALMIRA/LAURA MARTINEZ BODAS/**)",
+      "Bash(npm audit *)",
+      "Bash(pnpm build *)",
+      "Bash(dir \"c:\\\\Users\\\\57318\\\\Desktop\\\\LANDING PALMIRA\\\\\" 2>&1)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\57318\\Desktop\\LANDING PALMIRA\\Queens Palmira",
+      "c:\\Users\\57318\\Desktop\\LANDING PALMIRA\\SALCHIMAX"
+    ]
+  }
+}
