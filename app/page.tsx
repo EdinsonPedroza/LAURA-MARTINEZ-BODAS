@@ -22,33 +22,33 @@ export default function Home() {
       <Header />
       <Hero />
 
-      {/* Diagonal slash ← from left */}
-      <SectionCurtain type="slash">
+      {/* Dark bar slash → reveals services on scroll */}
+      <SectionCurtain color="oklch(0.07 0.018 5)" duration={750}>
         <Services />
       </SectionCurtain>
 
-      {/* Iris burst from center of image */}
-      <SectionCurtain type="radial" origin="42% 55%">
+      {/* Crimson slash → about */}
+      <SectionCurtain color="oklch(0.44 0.225 15)" accentColor="oklch(0.72 0.065 70)" duration={680}>
         <About />
       </SectionCurtain>
 
-      {/* Reverse slash ← from right */}
-      <SectionCurtain type="slash-reverse">
+      {/* Dark slash → gallery */}
+      <SectionCurtain color="oklch(0.06 0.015 5)" duration={800} barWidth="70%">
         <Gallery />
       </SectionCurtain>
 
-      {/* Diagonal slash ← from left */}
-      <SectionCurtain type="slash" delay={40}>
+      {/* Wine slash → guide */}
+      <SectionCurtain color="oklch(0.12 0.040 5)" accentColor="oklch(0.44 0.225 15)" duration={640}>
         <Guide />
       </SectionCurtain>
 
-      {/* Radial erupts from bottom — the most dramatic */}
-      <SectionCurtain type="radial" origin="50% 92%">
+      {/* Explosive crimson → CTA */}
+      <SectionCurtain color="oklch(0.44 0.225 15)" accentColor="oklch(0.72 0.065 70)" duration={580} barWidth="80%">
         <CTA />
       </SectionCurtain>
 
-      {/* Reverse slash ← from right */}
-      <SectionCurtain type="slash-reverse" delay={20}>
+      {/* Dark → contact */}
+      <SectionCurtain color="oklch(0.08 0.018 5)" duration={650}>
         <Contact />
       </SectionCurtain>
 

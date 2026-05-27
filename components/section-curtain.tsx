@@ -2,68 +2,39 @@
 import { useEffect, useRef, useState } from "react"
 
 /**
- * Clip-path based section entrance.
- * Zero extra DOM elements — the content itself is the animation surface.
- * Three modes:
- *   "slash"         — diagonal leading edge sweeps left→right
- *   "slash-reverse" — diagonal leading edge sweeps right→left
- *   "radial"        — iris bursts open from the given `origin` point
+ * Wraps a section with a cinematic "sweep bar" reveal.
+ * A solid bar explodes from off-screen left, slashes across the section,
+ * and exits right — giving each section a dramatic theatrical entrance.
+ * Does NOT hide content; sweep fires on top as a visual punctuation.
  */
-
-type Phase = "before" | "primed" | "open"
-export type CurtainType = "slash" | "slash-reverse" | "radial"
-
-function clipPath(type: CurtainType, origin: string, phase: Phase): string | undefined {
-  if (type === "slash") {
-    return phase === "open"
-      ? "polygon(0 0, 114% -12%, 114% 112%, 0 100%)"
-      : "polygon(0 0, 0 0, 0 100%, 0 100%)"
-  }
-  if (type === "slash-reverse") {
-    return phase === "open"
-      ? "polygon(-14% -12%, 100% 0, 100% 100%, -14% 112%)"
-      : "polygon(100% 0, 100% 0, 100% 100%, 100% 100%)"
-  }
-  if (type === "radial") {
-    return phase === "open"
-      ? `circle(160% at ${origin})`
-      : `circle(0% at ${origin})`
-  }
-}
-
-function easing(type: CurtainType): string {
-  if (type === "radial") return "clip-path 1s cubic-bezier(0.16,1,0.3,1)"
-  return "clip-path 0.72s cubic-bezier(0.77,0,0.18,1)"
-}
-
 export function SectionCurtain({
   children,
-  type = "slash",
-  origin = "50% 50%",
+  color = "oklch(0.07 0.018 5)",
+  accentColor = "oklch(0.44 0.225 15)",
+  barWidth = "62%",
+  duration = 720,
   delay = 0,
 }: {
   children: React.ReactNode
-  type?: CurtainType
-  origin?: string
+  color?: string
+  accentColor?: string
+  barWidth?: string
+  duration?: number
   delay?: number
 }) {
-  const outerRef = useRef<HTMLDivElement>(null)
-  const [phase, setPhase] = useState<Phase>("before")
+  const wrapRef = useRef<HTMLDivElement>(null)
+  const [triggered, setTriggered] = useState(false)
+  const [done, setDone] = useState(false)
 
   useEffect(() => {
-    const el = outerRef.current
+    const el = wrapRef.current
     if (!el) return
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return
         obs.disconnect()
-        setTimeout(() => {
-          setPhase("primed")
-          // Two rAF ticks — let browser paint the clipped state before transitioning
-          requestAnimationFrame(() =>
-            requestAnimationFrame(() => setPhase("open"))
-          )
-        }, delay)
+        const t = setTimeout(() => setTriggered(true), delay)
+        return () => clearTimeout(t)
       },
       { threshold: 0.06 }
     )
@@ -71,20 +42,56 @@ export function SectionCurtain({
     return () => obs.disconnect()
   }, [delay])
 
-  const cp = clipPath(type, origin, phase)
-  const transition = phase === "open" ? easing(type) : "none"
-
   return (
-    <div ref={outerRef} style={{ position: "relative" }}>
-      <div
-        style={{
-          clipPath: cp,
-          transition,
-          willChange: phase !== "before" ? "clip-path" : "auto",
-        }}
-      >
-        {children}
-      </div>
+    <div ref={wrapRef} style={{ position: "relative", overflow: "hidden" }}>
+      {children}
+
+      {triggered && !done && (
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            inset: 0,
+            zIndex: 48,
+            pointerEvents: "none",
+            overflow: "hidden",
+          }}
+        >
+          {/* Thin crimson leading-edge accent */}
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              bottom: 0,
+              left: 0,
+              width: "4px",
+              background: `linear-gradient(to bottom,
+                transparent 0%,
+                ${accentColor} 20%,
+                ${accentColor} 80%,
+                transparent 100%)`,
+              animation: `section-sweep-bar ${duration * 0.9}ms cubic-bezier(0.77,0,0.18,1) forwards`,
+              boxShadow: `0 0 20px 6px ${accentColor}`,
+            }}
+            onAnimationEnd={() => setDone(true)}
+          />
+          {/* Main body of the curtain bar */}
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              bottom: 0,
+              left: 0,
+              width: barWidth,
+              background: `linear-gradient(to right,
+                ${color} 0%,
+                ${color} 94%,
+                transparent 100%)`,
+              animation: `section-sweep-bar ${duration}ms cubic-bezier(0.77,0,0.18,1) forwards`,
+            }}
+          />
+        </div>
+      )}
     </div>
   )
 }
