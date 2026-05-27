@@ -2,29 +2,28 @@
 import { useEffect, useRef, useState } from "react"
 
 /**
- * Wraps a section with a cinematic "sweep bar" reveal.
- * A solid bar explodes from off-screen left, slashes across the section,
- * and exits right — giving each section a dramatic theatrical entrance.
- * Does NOT hide content; sweep fires on top as a visual punctuation.
+ * "Assembly build" entrance: the section reveals itself in discrete steps,
+ * snapping from bottom to top — like rows of bricks being laid.
+ *
+ * Uses clip-path + CSS steps() timing: zero extra DOM, pure GPU.
+ * Each step snaps in the next horizontal band of content, creating the
+ * visual of the section being built piece-by-piece.
  */
 export function SectionCurtain({
   children,
-  color = "oklch(0.07 0.018 5)",
-  accentColor = "oklch(0.44 0.225 15)",
-  barWidth = "62%",
-  duration = 720,
+  steps = 8,
+  duration = 880,
   delay = 0,
+  skew = 4,          // degrees of diagonal on the leading edge (0 = straight)
 }: {
   children: React.ReactNode
-  color?: string
-  accentColor?: string
-  barWidth?: string
+  steps?: number
   duration?: number
   delay?: number
+  skew?: number
 }) {
   const wrapRef = useRef<HTMLDivElement>(null)
   const [triggered, setTriggered] = useState(false)
-  const [done, setDone] = useState(false)
 
   useEffect(() => {
     const el = wrapRef.current
@@ -33,65 +32,36 @@ export function SectionCurtain({
       ([entry]) => {
         if (!entry.isIntersecting) return
         obs.disconnect()
-        const t = setTimeout(() => setTriggered(true), delay)
-        return () => clearTimeout(t)
+        setTimeout(() => setTriggered(true), delay)
       },
-      { threshold: 0.06 }
+      { threshold: 0.05 }
     )
     obs.observe(el)
     return () => obs.disconnect()
   }, [delay])
 
-  return (
-    <div ref={wrapRef} style={{ position: "relative", overflow: "hidden" }}>
-      {children}
+  // The leading-edge skew is encoded directly into the polygon end-state.
+  // clip-path animates all four polygon points simultaneously via steps().
+  // Start: a zero-height slice at the very bottom (nothing visible)
+  // End:   full rect with a slight diagonal top edge
+  const skewPct = skew        // how many % the right side lags behind the left
 
-      {triggered && !done && (
-        <div
-          aria-hidden
-          style={{
-            position: "absolute",
-            inset: 0,
-            zIndex: 48,
-            pointerEvents: "none",
-            overflow: "hidden",
-          }}
-        >
-          {/* Thin crimson leading-edge accent */}
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              bottom: 0,
-              left: 0,
-              width: "4px",
-              background: `linear-gradient(to bottom,
-                transparent 0%,
-                ${accentColor} 20%,
-                ${accentColor} 80%,
-                transparent 100%)`,
-              animation: `section-sweep-bar ${duration * 0.9}ms cubic-bezier(0.77,0,0.18,1) forwards`,
-              boxShadow: `0 0 20px 6px ${accentColor}`,
-            }}
-            onAnimationEnd={() => setDone(true)}
-          />
-          {/* Main body of the curtain bar */}
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              bottom: 0,
-              left: 0,
-              width: barWidth,
-              background: `linear-gradient(to right,
-                ${color} 0%,
-                ${color} 94%,
-                transparent 100%)`,
-              animation: `section-sweep-bar ${duration}ms cubic-bezier(0.77,0,0.18,1) forwards`,
-            }}
-          />
-        </div>
-      )}
+  const hidden = `polygon(-2% 100%, 102% 100%, 102% 100%, -2% 100%)`
+  const visible = `polygon(-2% -2%, 102% ${skewPct}%, 102% 102%, -2% 102%)`
+
+  return (
+    <div ref={wrapRef}>
+      <div
+        style={{
+          clipPath: triggered ? visible : hidden,
+          transition: triggered
+            ? `clip-path ${duration}ms steps(${steps}, end)`
+            : "none",
+          willChange: triggered ? "clip-path" : "auto",
+        }}
+      >
+        {children}
+      </div>
     </div>
   )
 }

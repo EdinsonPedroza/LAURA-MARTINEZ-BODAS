@@ -22,33 +22,33 @@ export default function Home() {
       <Header />
       <Hero />
 
-      {/* Dark bar slash → reveals services on scroll */}
-      <SectionCurtain color="oklch(0.07 0.018 5)" duration={750}>
+      {/* Services — 8 blocks, diagonal */}
+      <SectionCurtain steps={8} duration={880} skew={4}>
         <Services />
       </SectionCurtain>
 
-      {/* Crimson slash → about */}
-      <SectionCurtain color="oklch(0.44 0.225 15)" accentColor="oklch(0.72 0.065 70)" duration={680}>
+      {/* About — 6 blocks, steeper diagonal */}
+      <SectionCurtain steps={6} duration={720} skew={7}>
         <About />
       </SectionCurtain>
 
-      {/* Dark slash → gallery */}
-      <SectionCurtain color="oklch(0.06 0.015 5)" duration={800} barWidth="70%">
+      {/* Gallery — 10 blocks, fastest per-block snap */}
+      <SectionCurtain steps={10} duration={1000} skew={3}>
         <Gallery />
       </SectionCurtain>
 
-      {/* Wine slash → guide */}
-      <SectionCurtain color="oklch(0.12 0.040 5)" accentColor="oklch(0.44 0.225 15)" duration={640}>
+      {/* Guide — 7 blocks */}
+      <SectionCurtain steps={7} duration={800} skew={5}>
         <Guide />
       </SectionCurtain>
 
-      {/* Explosive crimson → CTA */}
-      <SectionCurtain color="oklch(0.44 0.225 15)" accentColor="oklch(0.72 0.065 70)" duration={580} barWidth="80%">
+      {/* CTA — 5 blocks, most explosive (fewer steps = bigger jumps) */}
+      <SectionCurtain steps={5} duration={600} skew={8}>
         <CTA />
       </SectionCurtain>
 
-      {/* Dark → contact */}
-      <SectionCurtain color="oklch(0.08 0.018 5)" duration={650}>
+      {/* Contact — 8 blocks, slight diagonal */}
+      <SectionCurtain steps={8} duration={840} skew={3}>
         <Contact />
       </SectionCurtain>
 
