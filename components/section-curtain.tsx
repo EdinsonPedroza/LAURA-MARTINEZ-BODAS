@@ -2,28 +2,36 @@
 import { useEffect, useRef, useState } from "react"
 
 /**
- * "Assembly build" entrance: the section reveals itself in discrete steps,
- * snapping from bottom to top — like rows of bricks being laid.
- *
- * Uses clip-path + CSS steps() timing: zero extra DOM, pure GPU.
- * Each step snaps in the next horizontal band of content, creating the
- * visual of the section being built piece-by-piece.
+ * Two modes:
+ *   "assembly" — section snaps in from bottom upward, like blocks being stacked
+ *   "sweep"    — a colored bar sweeps left→right with crimson leading-edge glow
  */
 export function SectionCurtain({
   children,
-  steps = 8,
-  duration = 880,
+  mode = "sweep",
+  // sweep props
+  color = "oklch(0.07 0.018 5)",
+  accentColor = "oklch(0.44 0.225 15)",
+  barWidth = "62%",
+  duration = 720,
   delay = 0,
-  skew = 4,          // degrees of diagonal on the leading edge (0 = straight)
+  // assembly props
+  steps = 8,
+  skew = 4,
 }: {
   children: React.ReactNode
-  steps?: number
+  mode?: "sweep" | "assembly"
+  color?: string
+  accentColor?: string
+  barWidth?: string
   duration?: number
   delay?: number
+  steps?: number
   skew?: number
 }) {
   const wrapRef = useRef<HTMLDivElement>(null)
   const [triggered, setTriggered] = useState(false)
+  const [done, setDone] = useState(false)
 
   useEffect(() => {
     const el = wrapRef.current
@@ -40,28 +48,51 @@ export function SectionCurtain({
     return () => obs.disconnect()
   }, [delay])
 
-  // The leading-edge skew is encoded directly into the polygon end-state.
-  // clip-path animates all four polygon points simultaneously via steps().
-  // Start: a zero-height slice at the very bottom (nothing visible)
-  // End:   full rect with a slight diagonal top edge
-  const skewPct = skew        // how many % the right side lags behind the left
-
-  const hidden = `polygon(-2% 100%, 102% 100%, 102% 100%, -2% 100%)`
-  const visible = `polygon(-2% -2%, 102% ${skewPct}%, 102% 102%, -2% 102%)`
-
-  return (
-    <div ref={wrapRef}>
-      <div
-        style={{
-          clipPath: triggered ? visible : hidden,
-          transition: triggered
-            ? `clip-path ${duration}ms steps(${steps}, end)`
-            : "none",
-          willChange: triggered ? "clip-path" : "auto",
-        }}
-      >
-        {children}
+  // ── ASSEMBLY MODE ──────────────────────────────────────────────────────────
+  if (mode === "assembly") {
+    const hidden  = `polygon(-2% 100%, 102% 100%, 102% 100%, -2% 100%)`
+    const visible = `polygon(-2% -2%, 102% ${skew}%, 102% 102%, -2% 102%)`
+    return (
+      <div ref={wrapRef}>
+        <div
+          style={{
+            clipPath: triggered ? visible : hidden,
+            transition: triggered ? `clip-path ${duration}ms steps(${steps}, end)` : "none",
+            willChange: triggered ? "clip-path" : "auto",
+          }}
+        >
+          {children}
+        </div>
       </div>
+    )
+  }
+
+  // ── SWEEP MODE (default) ───────────────────────────────────────────────────
+  return (
+    <div ref={wrapRef} style={{ position: "relative", overflow: "hidden" }}>
+      {children}
+      {triggered && !done && (
+        <div aria-hidden style={{ position: "absolute", inset: 0, zIndex: 48, pointerEvents: "none", overflow: "hidden" }}>
+          {/* Crimson leading-edge glow */}
+          <div
+            style={{
+              position: "absolute", top: 0, bottom: 0, left: 0, width: "4px",
+              background: `linear-gradient(to bottom, transparent 0%, ${accentColor} 20%, ${accentColor} 80%, transparent 100%)`,
+              animation: `section-sweep-bar ${duration * 0.9}ms cubic-bezier(0.77,0,0.18,1) forwards`,
+              boxShadow: `0 0 20px 6px ${accentColor}`,
+            }}
+            onAnimationEnd={() => setDone(true)}
+          />
+          {/* Main bar */}
+          <div
+            style={{
+              position: "absolute", top: 0, bottom: 0, left: 0, width: barWidth,
+              background: `linear-gradient(to right, ${color} 0%, ${color} 94%, transparent 100%)`,
+              animation: `section-sweep-bar ${duration}ms cubic-bezier(0.77,0,0.18,1) forwards`,
+            }}
+          />
+        </div>
+      )}
     </div>
   )
 }
