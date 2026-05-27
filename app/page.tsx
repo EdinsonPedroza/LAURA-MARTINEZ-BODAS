@@ -22,8 +22,8 @@ export default function Home() {
       <Header />
       <Hero />
 
-      {/* Services — assembly build, bloques de abajo hacia arriba */}
-      <SectionCurtain mode="assembly" steps={8} duration={880} skew={4}>
+      {/* Services — crimson sweep igual que el resto */}
+      <SectionCurtain mode="sweep" color="oklch(0.44 0.225 15)" accentColor="oklch(0.72 0.065 70)" duration={750}>
         <Services />
       </SectionCurtain>
 
