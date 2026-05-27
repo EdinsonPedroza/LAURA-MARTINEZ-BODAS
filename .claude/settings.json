@@ -5,7 +5,9 @@
       "Read(//c/c/Users/57318/Desktop/LANDING PALMIRA/LAURA MARTINEZ BODAS/**)",
       "Bash(npm audit *)",
       "Bash(pnpm build *)",
-      "Bash(dir \"c:\\\\Users\\\\57318\\\\Desktop\\\\LANDING PALMIRA\\\\\" 2>&1)"
+      "Bash(dir \"c:\\\\Users\\\\57318\\\\Desktop\\\\LANDING PALMIRA\\\\\" 2>&1)",
+      "Bash(Get-ChildItem -Recurse -Force)",
+      "Bash(Select-Object FullName)"
     ],
     "additionalDirectories": [
       "c:\\Users\\57318\\Desktop\\LANDING PALMIRA\\Queens Palmira",

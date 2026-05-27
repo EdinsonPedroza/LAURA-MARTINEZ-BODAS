@@ -706,6 +706,101 @@ a, button, [role="button"] {
 }
 
 /* ═══════════════════════════════════════════
+   BRUTAL SECTION TRANSITIONS
+   ═══════════════════════════════════════════ */
+
+/* Ultra-aggressive slam from below with bounce-back */
+@keyframes slam-up {
+  0%   { transform: translateY(220px) scale(0.72) rotateX(16deg); opacity: 0; filter: blur(36px); }
+  52%  { transform: translateY(-18px) scale(1.04) rotateX(-2.5deg); filter: blur(1px); }
+  70%  { transform: translateY(8px) scale(0.985) rotateX(1deg); filter: blur(0); }
+  86%  { transform: translateY(-4px) scale(1.005); }
+  100% { transform: translateY(0) scale(1) rotateX(0); opacity: 1; }
+}
+
+/* Impact drop — headline crashes from top */
+@keyframes impact-drop {
+  0%   { transform: translateY(-180%) skewY(-8deg) scaleY(1.3); opacity: 0; filter: blur(30px); }
+  52%  { transform: translateY(10%) skewY(2deg) scaleY(1); filter: blur(3px); }
+  70%  { transform: translateY(-5%) skewY(-0.8deg); filter: blur(0); }
+  85%  { transform: translateY(2.5%) skewY(0.3deg); }
+  100% { transform: translateY(0) skewY(0) scaleY(1); opacity: 1; }
+}
+
+/* Horizontal blasts with rotation + skew */
+@keyframes blast-left {
+  0%   { transform: translateX(-145%) rotate(-5deg) skewX(-8deg) scale(0.86); opacity: 0; filter: blur(24px); }
+  55%  { transform: translateX(7%) rotate(1.5deg) skewX(1deg) scale(1.025); filter: blur(0); }
+  75%  { transform: translateX(-3.5%) rotate(-0.5deg) skewX(0) scale(0.993); }
+  100% { transform: translateX(0) rotate(0) skewX(0) scale(1); opacity: 1; }
+}
+@keyframes blast-right {
+  0%   { transform: translateX(145%) rotate(5deg) skewX(8deg) scale(0.86); opacity: 0; filter: blur(24px); }
+  55%  { transform: translateX(-7%) rotate(-1.5deg) skewX(-1deg) scale(1.025); filter: blur(0); }
+  75%  { transform: translateX(3.5%) rotate(0.5deg) skewX(0) scale(0.993); }
+  100% { transform: translateX(0) rotate(0) skewX(0) scale(1); opacity: 1; }
+}
+
+/* Explosive scale entrance from oversized */
+@keyframes explosive-enter {
+  0%   { transform: scale(1.55) rotate(-3.5deg); opacity: 0; filter: blur(38px) brightness(1.6); }
+  40%  { transform: scale(0.95) rotate(1deg); opacity: 1; filter: blur(4px) brightness(1.1); }
+  68%  { transform: scale(1.02) rotate(0deg); filter: blur(0) brightness(1); }
+  84%  { transform: scale(0.99); }
+  100% { transform: scale(1); opacity: 1; filter: blur(0); }
+}
+
+/* 3-D card flip entrance */
+@keyframes card-flip-in {
+  0%   { transform: perspective(1400px) rotateY(-48deg) translateX(-70px) scale(0.80); opacity: 0; filter: blur(16px); }
+  56%  { transform: perspective(1400px) rotateY(6deg) translateX(7px) scale(1.03); filter: blur(0); }
+  78%  { transform: perspective(1400px) rotateY(-2deg) translateX(-2px) scale(0.993); }
+  100% { transform: perspective(1400px) rotateY(0) translateX(0) scale(1); opacity: 1; }
+}
+
+/* Title shatter — oversized then collapses into place */
+@keyframes title-shatter {
+  0%   { transform: scale(2.5) translateY(-50px); opacity: 0; filter: blur(48px); letter-spacing: 0.6em; }
+  45%  { opacity: 1; filter: blur(12px); }
+  72%  { letter-spacing: -0.01em; filter: blur(0); transform: scale(1.02) translateY(3px); }
+  100% { transform: scale(1) translateY(0); opacity: 1; filter: blur(0); }
+}
+
+/* Section sweep bar — cinematic reveal across screen */
+@keyframes section-sweep-bar {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+/* Brutal scroll reveal — far stronger than base version */
+.scroll-animate-brutal {
+  opacity: 0;
+  transform: translateY(180px) scale(0.76) rotateX(12deg);
+  filter: blur(28px);
+  transform-origin: bottom center;
+  perspective: 1200px;
+  transition:
+    opacity 1.5s cubic-bezier(0.16,1,0.3,1),
+    transform 1.5s cubic-bezier(0.16,1,0.3,1),
+    filter 1.3s cubic-bezier(0.16,1,0.3,1);
+  will-change: transform, opacity, filter;
+}
+.scroll-animate-brutal.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1) rotateX(0);
+  filter: blur(0);
+}
+
+/* Utility classes */
+.animate-slam-up       { animation: slam-up 1.1s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-impact-drop   { animation: impact-drop 1.05s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-blast-left    { animation: blast-left 1.05s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-blast-right   { animation: blast-right 1.05s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-explosive     { animation: explosive-enter 1.1s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-card-flip     { animation: card-flip-in 1.05s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-title-shatter { animation: title-shatter 1.3s cubic-bezier(0.16,1,0.3,1) both; }
+
+/* ═══════════════════════════════════════════
    REDUCED MOTION — ACCESSIBILITY
    ═══════════════════════════════════════════ */
 

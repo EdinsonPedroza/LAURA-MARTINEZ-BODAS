@@ -117,9 +117,13 @@ export function Services() {
           className="max-w-2xl mx-auto text-center mb-16 md:mb-20"
           style={{
             opacity: isVisible ? 1 : 0,
-            transform: isVisible ? "translateY(0) scale(1)" : "translateY(80px) scale(0.92)",
-            filter: isVisible ? "blur(0)" : "blur(14px)",
-            transition: "opacity 1.2s cubic-bezier(0.16,1,0.3,1), transform 1.2s cubic-bezier(0.16,1,0.3,1), filter 1.1s cubic-bezier(0.16,1,0.3,1)",
+            transform: isVisible
+              ? "translateY(0) scale(1) rotateX(0)"
+              : "translateY(120px) scale(0.80) rotateX(14deg)",
+            filter: isVisible ? "blur(0)" : "blur(22px)",
+            transition: "opacity 1.4s cubic-bezier(0.16,1,0.3,1), transform 1.4s cubic-bezier(0.16,1,0.3,1), filter 1.2s cubic-bezier(0.16,1,0.3,1)",
+            perspective: "1200px",
+            transformOrigin: "bottom center",
           }}
         >
           <span className="font-display text-[11px] tracking-[0.45em] uppercase text-accent mb-5 block font-semibold mx-auto">
@@ -142,9 +146,13 @@ export function Services() {
               className="group cursor-default"
               style={{
                 opacity: isVisible ? 1 : 0,
-                transform: isVisible ? "translateY(0) scale(1)" : "translateY(70px) scale(0.94)",
-                filter: isVisible ? "blur(0)" : "blur(10px)",
-                transition: `opacity 1s ${i * 150 + 200}ms cubic-bezier(0.16,1,0.3,1), transform 1s ${i * 150 + 200}ms cubic-bezier(0.16,1,0.3,1), filter 1s ${i * 150 + 200}ms cubic-bezier(0.16,1,0.3,1)`,
+                transform: isVisible
+                  ? "translateY(0) scale(1) rotate(0deg) rotateX(0deg)"
+                  : `translateY(170px) scale(0.72) rotate(${i % 2 === 0 ? -3.5 : 3.5}deg) rotateX(14deg)`,
+                filter: isVisible ? "blur(0)" : "blur(22px)",
+                transition: `opacity 1.4s ${i * 200 + 250}ms cubic-bezier(0.16,1,0.3,1), transform 1.4s ${i * 200 + 250}ms cubic-bezier(0.16,1,0.3,1), filter 1.2s ${i * 200 + 250}ms cubic-bezier(0.16,1,0.3,1)`,
+                perspective: "1400px",
+                transformOrigin: "bottom center",
               }}
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
@@ -159,8 +167,10 @@ export function Services() {
                   boxShadow: hovered === i
                     ? "0 24px 60px rgba(0,0,0,0.6), 0 0 40px oklch(0.44 0.225 15 / 0.10)"
                     : "0 4px 24px rgba(0,0,0,0.35)",
-                  transform: hovered === i ? "translateY(-5px)" : "translateY(0)",
-                  transition: "border 0.4s ease, box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1)",
+                  transform: hovered === i
+                    ? "translateY(-14px) scale(1.018) rotateY(1.5deg)"
+                    : "translateY(0) scale(1) rotateY(0)",
+                  transition: "border 0.45s ease, box-shadow 0.45s ease, transform 0.45s cubic-bezier(0.34,1.56,0.64,1)",
                 }}
               >
                 {/* Image */}

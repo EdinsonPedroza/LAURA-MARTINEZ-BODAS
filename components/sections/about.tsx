@@ -117,9 +117,11 @@ export function About() {
           className="relative overflow-hidden min-h-[75vw] lg:min-h-0"
           style={{
             opacity: isVisible ? 1 : 0,
-            transform: isVisible ? "translateX(0)" : "translateX(-60px)",
-            filter: isVisible ? "blur(0)" : "blur(12px)",
-            transition: "opacity 1.2s cubic-bezier(0.16,1,0.3,1), transform 1.2s cubic-bezier(0.16,1,0.3,1), filter 1.1s cubic-bezier(0.16,1,0.3,1)",
+            transform: isVisible
+              ? "translateX(0) skewX(0deg) scale(1) rotate(0deg)"
+              : "translateX(-110%) skewX(-10deg) scale(0.82) rotate(-2.5deg)",
+            filter: isVisible ? "blur(0)" : "blur(28px)",
+            transition: "opacity 1.4s cubic-bezier(0.16,1,0.3,1), transform 1.5s cubic-bezier(0.16,1,0.3,1), filter 1.2s cubic-bezier(0.16,1,0.3,1)",
           }}
         >
           {/* Ghost watermark number */}
@@ -237,9 +239,11 @@ export function About() {
           className="flex flex-col justify-center px-8 md:px-12 lg:px-16 py-20 relative z-10"
           style={{
             opacity: isVisible ? 1 : 0,
-            transform: isVisible ? "translateX(0)" : "translateX(60px)",
-            filter: isVisible ? "blur(0)" : "blur(12px)",
-            transition: "opacity 1.2s 0.15s cubic-bezier(0.16,1,0.3,1), transform 1.2s 0.15s cubic-bezier(0.16,1,0.3,1), filter 1.1s 0.15s cubic-bezier(0.16,1,0.3,1)",
+            transform: isVisible
+              ? "translateX(0) skewX(0deg) scale(1)"
+              : "translateX(90%) skewX(7deg) scale(0.88)",
+            filter: isVisible ? "blur(0)" : "blur(26px)",
+            transition: "opacity 1.4s 0.18s cubic-bezier(0.16,1,0.3,1), transform 1.5s 0.18s cubic-bezier(0.16,1,0.3,1), filter 1.2s 0.18s cubic-bezier(0.16,1,0.3,1)",
           }}
         >
           {/* Eyebrow */}
@@ -303,9 +307,11 @@ export function About() {
                   border: "1px solid oklch(0.87 0.012 45)",
                   boxShadow: "0 2px 12px rgba(0,0,0,0.05)",
                   opacity: isVisible ? 1 : 0,
-                  transform: isVisible ? "translateX(0)" : "translateX(30px)",
-                  filter: isVisible ? "blur(0)" : "blur(4px)",
-                  transition: `opacity 0.8s ${500 + i * 100}ms cubic-bezier(0.16,1,0.3,1), transform 0.8s ${500 + i * 100}ms cubic-bezier(0.16,1,0.3,1), filter 0.8s ${500 + i * 100}ms, border-color 0.3s`,
+                  transform: isVisible
+                    ? "translateX(0) rotate(0deg) scale(1)"
+                    : `translateX(110px) rotate(${i % 2 === 0 ? 4 : -3}deg) scale(0.88)`,
+                  filter: isVisible ? "blur(0)" : "blur(10px)",
+                  transition: `opacity 1s ${550 + i * 130}ms cubic-bezier(0.16,1,0.3,1), transform 1s ${550 + i * 130}ms cubic-bezier(0.16,1,0.3,1), filter 0.9s ${550 + i * 130}ms, border-color 0.3s`,
                 }}
                 onMouseEnter={e => (e.currentTarget.style.borderColor = "oklch(0.44 0.225 15 / 0.35)")}
                 onMouseLeave={e => (e.currentTarget.style.borderColor = "oklch(0.44 0.225 15 / 0.10)")}
