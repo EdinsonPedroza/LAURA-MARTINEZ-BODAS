@@ -17,8 +17,7 @@ export function Hero() {
     transform: visible
       ? "translateX(0) skewX(0deg) scale(1)"
       : "translateX(-80px) skewX(-6deg) scale(0.88)",
-    filter: visible ? "blur(0)" : "blur(12px)",
-    transition: `opacity 1.1s ${delay}s cubic-bezier(0.16,1,0.3,1), transform 1.2s ${delay}s cubic-bezier(0.16,1,0.3,1), filter 1s ${delay}s cubic-bezier(0.16,1,0.3,1)`,
+    transition: `opacity 1.1s ${delay}s cubic-bezier(0.16,1,0.3,1), transform 1.2s ${delay}s cubic-bezier(0.16,1,0.3,1)`,
   })
 
   return (

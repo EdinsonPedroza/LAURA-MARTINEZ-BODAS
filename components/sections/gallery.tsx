@@ -67,8 +67,7 @@ export function Gallery() {
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? "translateY(0) scale(1)" : "translateY(90px) scale(0.90)",
-            filter: isVisible ? "blur(0)" : "blur(16px)",
-            transition: "opacity 1.3s cubic-bezier(0.16,1,0.3,1), transform 1.3s cubic-bezier(0.16,1,0.3,1), filter 1.2s cubic-bezier(0.16,1,0.3,1)",
+            transition: "opacity 1.3s cubic-bezier(0.16,1,0.3,1), transform 1.3s cubic-bezier(0.16,1,0.3,1)",
           }}
         >
           <span className="font-display text-[11px] tracking-[0.45em] uppercase text-accent mb-5 block font-medium">
@@ -102,8 +101,7 @@ export function Gallery() {
                 transform: isVisible
                   ? hovered === i ? "scale(1.012)" : "scale(1)"
                   : `translateY(${40 + i * 5}px)`,
-                filter: isVisible ? "blur(0)" : "blur(8px)",
-                transition: `opacity 0.8s ${i * 60}ms cubic-bezier(0.16,1,0.3,1), transform 0.55s cubic-bezier(0.34,1.56,0.64,1), filter 0.8s ${i * 60}ms cubic-bezier(0.16,1,0.3,1)`,
+                transition: `opacity 0.8s ${i * 60}ms cubic-bezier(0.16,1,0.3,1), transform 0.55s cubic-bezier(0.34,1.56,0.64,1)`,
                 zIndex: hovered === i ? 2 : 1,
               }}
               onMouseEnter={() => setHovered(i)}

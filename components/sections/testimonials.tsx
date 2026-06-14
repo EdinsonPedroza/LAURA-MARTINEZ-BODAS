@@ -99,9 +99,9 @@ export function Testimonials() {
         {/* Header */}
         <div
           className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-10 blur-sm"
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
-          style={{ transition: "opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1), filter 1s" }}
+          style={{ transition: "opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1)" }}
         >
           <span className="font-display text-[11px] tracking-[0.45em] uppercase text-accent mb-5 block font-medium">
             Testimonios

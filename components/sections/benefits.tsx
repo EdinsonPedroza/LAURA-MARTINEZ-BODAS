@@ -96,8 +96,7 @@ export function Benefits() {
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? "translateY(0) scale(1)" : "translateY(60px) scale(0.96)",
-            filter: isVisible ? "blur(0)" : "blur(8px)",
-            transition: "opacity 1.1s cubic-bezier(0.16,1,0.3,1), transform 1.1s cubic-bezier(0.16,1,0.3,1), filter 1.1s cubic-bezier(0.16,1,0.3,1)",
+            transition: "opacity 1.1s cubic-bezier(0.16,1,0.3,1), transform 1.1s cubic-bezier(0.16,1,0.3,1)",
           }}
         >
           <span className="font-display text-[11px] tracking-[0.45em] uppercase mb-4 block font-medium"
@@ -125,8 +124,7 @@ export function Benefits() {
                 style={{
                   opacity: isVisible ? 1 : 0,
                   transform: isVisible ? "translateY(0) scale(1)" : "translateY(60px) scale(0.94)",
-                  filter: isVisible ? "blur(0)" : "blur(8px)",
-                  transition: `opacity 0.9s ${delay}ms cubic-bezier(0.16,1,0.3,1), transform 0.9s ${delay}ms cubic-bezier(0.16,1,0.3,1), filter 0.9s ${delay}ms cubic-bezier(0.16,1,0.3,1)`,
+                  transition: `opacity 0.9s ${delay}ms cubic-bezier(0.16,1,0.3,1), transform 0.9s ${delay}ms cubic-bezier(0.16,1,0.3,1)`,
                 }}
               >
                 <div

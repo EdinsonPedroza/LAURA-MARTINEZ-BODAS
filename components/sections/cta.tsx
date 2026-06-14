@@ -56,8 +56,7 @@ export function CTA() {
   const revealStyle = (delay: number) => ({
     opacity: isVisible ? 1 : 0,
     transform: isVisible ? "translateY(0) scale(1)" : "translateY(50px) scale(0.96)",
-    filter: isVisible ? "blur(0)" : "blur(6px)",
-    transition: `opacity 1.2s ${delay}ms cubic-bezier(0.16,1,0.3,1), transform 1.2s ${delay}ms cubic-bezier(0.16,1,0.3,1), filter 1.2s ${delay}ms cubic-bezier(0.16,1,0.3,1)`,
+    transition: `opacity 1.2s ${delay}ms cubic-bezier(0.16,1,0.3,1), transform 1.2s ${delay}ms cubic-bezier(0.16,1,0.3,1)`,
   })
 
   return (

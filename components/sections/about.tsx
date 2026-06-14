@@ -120,8 +120,7 @@ export function About() {
             transform: isVisible
               ? "translateX(0) skewX(0deg) scale(1) rotate(0deg)"
               : "translateX(-110%) skewX(-10deg) scale(0.82) rotate(-2.5deg)",
-            filter: isVisible ? "blur(0)" : "blur(28px)",
-            transition: "opacity 1.4s cubic-bezier(0.16,1,0.3,1), transform 1.5s cubic-bezier(0.16,1,0.3,1), filter 1.2s cubic-bezier(0.16,1,0.3,1)",
+            transition: "opacity 1.4s cubic-bezier(0.16,1,0.3,1), transform 1.5s cubic-bezier(0.16,1,0.3,1)",
           }}
         >
           {/* Ghost watermark number */}
@@ -242,8 +241,7 @@ export function About() {
             transform: isVisible
               ? "translateX(0) skewX(0deg) scale(1)"
               : "translateX(90%) skewX(7deg) scale(0.88)",
-            filter: isVisible ? "blur(0)" : "blur(26px)",
-            transition: "opacity 1.4s 0.18s cubic-bezier(0.16,1,0.3,1), transform 1.5s 0.18s cubic-bezier(0.16,1,0.3,1), filter 1.2s 0.18s cubic-bezier(0.16,1,0.3,1)",
+            transition: "opacity 1.4s 0.18s cubic-bezier(0.16,1,0.3,1), transform 1.5s 0.18s cubic-bezier(0.16,1,0.3,1)",
           }}
         >
           {/* Eyebrow */}
@@ -310,8 +308,7 @@ export function About() {
                   transform: isVisible
                     ? "translateX(0) rotate(0deg) scale(1)"
                     : `translateX(110px) rotate(${i % 2 === 0 ? 4 : -3}deg) scale(0.88)`,
-                  filter: isVisible ? "blur(0)" : "blur(10px)",
-                  transition: `opacity 1s ${550 + i * 130}ms cubic-bezier(0.16,1,0.3,1), transform 1s ${550 + i * 130}ms cubic-bezier(0.16,1,0.3,1), filter 0.9s ${550 + i * 130}ms, border-color 0.3s`,
+                  transition: `opacity 1s ${550 + i * 130}ms cubic-bezier(0.16,1,0.3,1), transform 1s ${550 + i * 130}ms cubic-bezier(0.16,1,0.3,1), border-color 0.3s`,
                 }}
                 onMouseEnter={e => (e.currentTarget.style.borderColor = "oklch(0.44 0.225 15 / 0.35)")}
                 onMouseLeave={e => (e.currentTarget.style.borderColor = "oklch(0.44 0.225 15 / 0.10)")}

@@ -104,8 +104,7 @@ function StatCard({
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? "translateY(0) scale(1)" : "translateY(60px) scale(0.80)",
-        filter: isVisible ? "blur(0)" : "blur(14px)",
-        transition: `opacity 1s ${i * 180}ms cubic-bezier(0.16,1,0.3,1), transform 1s ${i * 180}ms cubic-bezier(0.16,1,0.3,1), filter 1s ${i * 180}ms cubic-bezier(0.16,1,0.3,1)`,
+        transition: `opacity 1s ${i * 180}ms cubic-bezier(0.16,1,0.3,1), transform 1s ${i * 180}ms cubic-bezier(0.16,1,0.3,1)`,
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -348,8 +347,7 @@ export function Stats() {
         style={{
           opacity: isVisible ? 1 : 0,
           transform: isVisible ? "translateY(0)" : "translateY(40px)",
-          filter: isVisible ? "blur(0)" : "blur(8px)",
-          transition: "opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1), filter 1s cubic-bezier(0.16,1,0.3,1)",
+          transition: "opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1)",
         }}
       >
         <span
