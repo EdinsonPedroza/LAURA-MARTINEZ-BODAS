@@ -5,7 +5,7 @@ import { PageIntro } from "@/components/page-intro"
 import { Footer } from "@/components/sections/footer"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 import { GlobalScrollArrow } from "@/components/global-scroll-arrow"
-import { SectionCurtain } from "@/components/section-curtain"
+import { SectionTransition } from "@/components/section-transition"
 
 // Lazy loading the sections that operate below the fold
 const Services = dynamic(() => import("@/components/sections/services").then(mod => mod.Services))
@@ -22,36 +22,26 @@ export default function Home() {
       <Header />
       <Hero />
 
-      {/* Services — crimson sweep igual que el resto */}
-      <SectionCurtain mode="sweep" color="oklch(0.44 0.225 15)" accentColor="oklch(0.72 0.065 70)" duration={750}>
-        <Services />
-      </SectionCurtain>
+      {/* Animated divider between each section (same style as the other landings) */}
+      <SectionTransition accent="crimson" />
+      <Services />
 
-      {/* Crimson sweep → about */}
-      <SectionCurtain mode="sweep" color="oklch(0.44 0.225 15)" accentColor="oklch(0.72 0.065 70)" duration={680}>
-        <About />
-      </SectionCurtain>
+      <SectionTransition accent="gold" />
+      <About />
 
-      {/* Dark sweep → gallery */}
-      <SectionCurtain mode="sweep" color="oklch(0.06 0.015 5)" duration={800} barWidth="70%">
-        <Gallery />
-      </SectionCurtain>
+      <SectionTransition accent="dark" />
+      <Gallery />
 
-      {/* Wine sweep → guide */}
-      <SectionCurtain mode="sweep" color="oklch(0.12 0.040 5)" accentColor="oklch(0.44 0.225 15)" duration={640}>
-        <Guide />
-      </SectionCurtain>
+      <SectionTransition accent="crimson" />
+      <Guide />
 
-      {/* Explosive crimson → CTA */}
-      <SectionCurtain mode="sweep" color="oklch(0.44 0.225 15)" accentColor="oklch(0.72 0.065 70)" duration={580} barWidth="80%">
-        <CTA />
-      </SectionCurtain>
+      <SectionTransition accent="gold" />
+      <CTA />
 
-      {/* Dark sweep → contact */}
-      <SectionCurtain mode="sweep" color="oklch(0.08 0.018 5)" duration={650}>
-        <Contact />
-      </SectionCurtain>
+      <SectionTransition accent="dark" />
+      <Contact />
 
+      <SectionTransition accent="crimson" />
       <Footer />
       <WhatsAppButton />
       <GlobalScrollArrow />
