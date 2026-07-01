@@ -33,7 +33,9 @@ export function Header() {
   const prevSection = useRef("")
 
   useEffect(() => {
-    const handleScroll = () => {
+    let ticking = false
+    const compute = () => {
+      ticking = false
       const scrolled = window.scrollY > 60
       if (scrolled !== prevScrolled.current) {
         prevScrolled.current = scrolled
@@ -54,7 +56,12 @@ export function Header() {
         }
       }
     }
-    handleScroll()
+    const handleScroll = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(compute)
+    }
+    compute()
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])

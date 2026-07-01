@@ -39,6 +39,7 @@ export function PageIntro() {
           background: "oklch(0.055 0.012 8)",
           transform: isOpening ? "translateY(-101%)" : "translateY(0)",
           transition: isOpening ? "transform 1.25s cubic-bezier(0.76,0,0.24,1)" : "none",
+          willChange: "transform",
         }}
       />
 
@@ -51,6 +52,7 @@ export function PageIntro() {
           background: "oklch(0.055 0.012 8)",
           transform: isOpening ? "translateY(101%)" : "translateY(0)",
           transition: isOpening ? "transform 1.25s cubic-bezier(0.76,0,0.24,1)" : "none",
+          willChange: "transform",
         }}
       />
 

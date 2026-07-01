@@ -30,6 +30,7 @@ export function Hero() {
           opacity: visible ? 1 : 0,
           transform: visible ? "scale(1)" : "scale(1.05)",
           transition: "opacity 2.5s 0.1s ease, transform 8s 0.1s cubic-bezier(0.16,1,0.3,1)",
+          willChange: "transform, opacity",
         }}
       >
         <Image

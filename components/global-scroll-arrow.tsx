@@ -17,7 +17,9 @@ export function GlobalScrollArrow() {
   }, [])
 
   useEffect(() => {
-    const handleScroll = () => {
+    let ticking = false
+    const compute = () => {
+      ticking = false
       // Determinar en qué sección estamos
       let currentIdx = 0
 
@@ -33,14 +35,16 @@ export function GlobalScrollArrow() {
       }
 
       // Si estamos en la última sección, podemos ocultar la flecha
-      if (currentIdx === SECTIONS.length - 1) {
-        setNextSection(null)
-      } else {
-        setNextSection(SECTIONS[currentIdx + 1])
-      }
+      setNextSection(currentIdx === SECTIONS.length - 1 ? null : SECTIONS[currentIdx + 1])
     }
 
-    handleScroll()
+    const handleScroll = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(compute)
+    }
+
+    compute()
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
