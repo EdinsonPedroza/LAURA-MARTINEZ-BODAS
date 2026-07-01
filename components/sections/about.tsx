@@ -26,8 +26,8 @@ const credentials = [
 
 export function About() {
   const sectionRef = useRef<HTMLElement>(null)
+  const parallaxRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const [yearsCount, setYearsCount] = useState(0)
 
   useEffect(() => {
@@ -52,18 +52,29 @@ export function About() {
     return () => clearInterval(interval)
   }, [isVisible])
 
+  // Parallax on the image card — driven straight through a ref (no re-renders).
   useEffect(() => {
     // Skip on touch-only devices (mobile/tablet with no pointer)
     if (window.matchMedia("(hover: none)").matches) return
+    let rafId = 0
+    let x = 0
+    let y = 0
+    const apply = () => {
+      rafId = 0
+      if (parallaxRef.current) parallaxRef.current.style.transform = `translate(${x}px, ${y}px)`
+    }
     const handleMouse = (e: MouseEvent) => {
       if (!sectionRef.current) return
       const rect = sectionRef.current.getBoundingClientRect()
-      const x = (e.clientX - rect.left - rect.width / 2) / 100
-      const y = (e.clientY - rect.top - rect.height / 2) / 100
-      setMousePos({ x, y })
+      x = ((e.clientX - rect.left - rect.width / 2) / 100) * -0.4
+      y = ((e.clientY - rect.top - rect.height / 2) / 100) * -0.4
+      if (!rafId) rafId = requestAnimationFrame(apply)
     }
     window.addEventListener("mousemove", handleMouse, { passive: true })
-    return () => window.removeEventListener("mousemove", handleMouse)
+    return () => {
+      window.removeEventListener("mousemove", handleMouse)
+      if (rafId) cancelAnimationFrame(rafId)
+    }
   }, [])
 
   return (
@@ -146,9 +157,9 @@ export function About() {
           {/* The image — framed elegant card instead of full bleed */}
           <div className="absolute inset-0 flex items-center justify-center p-6 md:p-12 lg:p-16 z-10 pointer-events-none">
             <div
+              ref={parallaxRef}
               className="relative w-full h-full rounded-[2rem] overflow-hidden pointer-events-auto"
               style={{
-                transform: `translate(${mousePos.x * -0.4}px, ${mousePos.y * -0.4}px)`,
                 transition: "transform 0.6s ease-out",
                 willChange: "transform",
                 boxShadow: "0 30px 60px -15px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0,0,0,0.05)",

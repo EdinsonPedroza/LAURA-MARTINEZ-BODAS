@@ -118,12 +118,10 @@
   from {
     opacity: 0;
     transform: translateY(80px) skewY(5deg);
-    filter: blur(10px);
   }
   to {
     opacity: 1;
     transform: translateY(0) skewY(0);
-    filter: blur(0);
   }
 }
 
@@ -132,20 +130,17 @@
   from {
     opacity: 0;
     transform: translateY(0.6em) rotateX(-90deg) scale(0.8);
-    filter: blur(6px);
   }
   to {
     opacity: 1;
     transform: translateY(0) rotateX(0) scale(1);
-    filter: blur(0);
   }
 }
 
 /* Dramatic reveal from black */
 @keyframes cinematic-reveal {
-  0%   { opacity: 0; transform: scale(0.85) translateY(60px); filter: blur(20px) brightness(0); }
-  60%  { filter: blur(4px) brightness(0.7); }
-  100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0) brightness(1); }
+  0%   { opacity: 0; transform: scale(0.85) translateY(60px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 /* Particle organic movement */
@@ -192,11 +187,11 @@
 @keyframes marquee-rev   { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); }    }
 
 /* Scale in */
-@keyframes scale-in      { from { opacity: 0; transform: scale(0.88); filter: blur(8px); } to { opacity: 1; transform: scale(1); filter: blur(0); } }
+@keyframes scale-in      { from { opacity: 0; transform: scale(0.88); } to { opacity: 1; transform: scale(1); } }
 @keyframes fade-in        { from { opacity: 0; } to { opacity: 1; } }
 @keyframes fade-in-up     { from { opacity: 0; transform: translateY(35px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes slide-in-left  { from { opacity: 0; transform: translateX(-60px); filter: blur(6px); } to { opacity: 1; transform: translateX(0); filter: blur(0); } }
-@keyframes slide-in-right { from { opacity: 0; transform: translateX(60px);  filter: blur(6px); } to { opacity: 1; transform: translateX(0); filter: blur(0); } }
+@keyframes slide-in-left  { from { opacity: 0; transform: translateX(-60px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes slide-in-right { from { opacity: 0; transform: translateX(60px);  } to { opacity: 1; transform: translateX(0); } }
 @keyframes bounce-subtle  { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
 @keyframes scroll-arrow   { 0%, 100% { opacity: 0.25; transform: translateY(0); } 50% { opacity: 1; transform: translateY(7px); } }
 @keyframes rotate-slow    { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -230,9 +225,9 @@
 
 /* Stats counter pop */
 @keyframes stat-pop {
-  0%   { transform: scale(0.5) translateY(20px); opacity: 0; filter: blur(8px); }
+  0%   { transform: scale(0.5) translateY(20px); opacity: 0; }
   70%  { transform: scale(1.08) translateY(-4px); }
-  100% { transform: scale(1) translateY(0); opacity: 1; filter: blur(0); }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
 }
 
 /* Border dance */
@@ -295,10 +290,10 @@
 
 /* Starburst entrance */
 @keyframes starburst {
-  0%   { transform: scale(0) rotate(-30deg); opacity: 0; filter: blur(12px); }
-  60%  { transform: scale(1.15) rotate(5deg); opacity: 1; filter: blur(0); }
+  0%   { transform: scale(0) rotate(-30deg); opacity: 0; }
+  60%  { transform: scale(1.15) rotate(5deg); opacity: 1; }
   80%  { transform: scale(0.97) rotate(-2deg); }
-  100% { transform: scale(1) rotate(0deg); opacity: 1; filter: blur(0); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
 }
 
 /* Diagonal wipe — for section backgrounds */
@@ -315,8 +310,8 @@
 
 /* Page entrance — very first load */
 @keyframes page-enter {
-  0%   { opacity: 0; transform: translateY(12px); filter: blur(4px); }
-  100% { opacity: 1; transform: translateY(0);    filter: blur(0); }
+  0%   { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0);    }
 }
 
 /* Number explode (for counter finish) */
@@ -403,9 +398,8 @@
    ═══════════════════════════════════════════ */
 
 @keyframes section-rise {
-  0%   { opacity: 0; transform: translateY(120px) scale(0.91) rotateX(6deg); filter: blur(18px); }
-  60%  { filter: blur(2px); }
-  100% { opacity: 1; transform: translateY(0) scale(1) rotateX(0deg); filter: blur(0); }
+  0%   { opacity: 0; transform: translateY(80px) scale(0.94); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @keyframes section-wipe-left {
@@ -424,58 +418,51 @@
 
 .scroll-animate {
   opacity: 0;
-  transform: translateY(100px) scale(0.92) rotateX(4deg);
-  filter: blur(6px);
+  transform: translateY(60px) scale(0.96);
   transform-origin: bottom center;
-  perspective: 1000px;
   will-change: transform, opacity;
   transition:
-    opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 1.4s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.scroll-animate.visible { opacity: 1; transform: translateY(0) scale(1) rotateX(0deg); filter: blur(0); will-change: auto; }
+.scroll-animate.visible { opacity: 1; transform: translateY(0) scale(1); will-change: auto; }
 
 .scroll-animate-scale {
   opacity: 0;
-  transform: scale(0.75);
-  filter: blur(6px);
+  transform: scale(0.82);
   will-change: transform, opacity;
   transition:
-    opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1),
-    filter 1s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.scroll-animate-scale.visible { opacity: 1; transform: scale(1); filter: blur(0); will-change: auto; }
+.scroll-animate-scale.visible { opacity: 1; transform: scale(1); will-change: auto; }
 
 .scroll-animate-left {
   opacity: 0;
-  transform: translateX(-100px) scale(0.96);
-  filter: blur(4px);
+  transform: translateX(-80px) scale(0.98);
   will-change: transform, opacity;
-  transition: opacity 1.2s cubic-bezier(0.16,1,0.3,1), transform 1.2s cubic-bezier(0.16,1,0.3,1), filter 1.2s cubic-bezier(0.16,1,0.3,1);
+  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
 }
-.scroll-animate-left.visible { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); will-change: auto; }
+.scroll-animate-left.visible { opacity: 1; transform: translateX(0) scale(1); will-change: auto; }
 
 .scroll-animate-right {
   opacity: 0;
-  transform: translateX(100px) scale(0.96);
-  filter: blur(4px);
+  transform: translateX(80px) scale(0.98);
   will-change: transform, opacity;
-  transition: opacity 1.2s cubic-bezier(0.16,1,0.3,1), transform 1.2s cubic-bezier(0.16,1,0.3,1), filter 1.2s cubic-bezier(0.16,1,0.3,1);
+  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
 }
-.scroll-animate-right.visible { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); will-change: auto; }
+.scroll-animate-right.visible { opacity: 1; transform: translateX(0) scale(1); will-change: auto; }
 
 /* ═══════════════════════════════════════════
    STAGGER CHILDREN
    ═══════════════════════════════════════════ */
 
 .stagger-children > * {
-  opacity: 0; transform: translateY(40px); filter: blur(3px);
+  opacity: 0; transform: translateY(40px);
 }
 .stagger-children.visible > * {
-  opacity: 1; transform: translateY(0); filter: blur(0);
-  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1), filter 0.9s cubic-bezier(0.16,1,0.3,1);
+  opacity: 1; transform: translateY(0);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
 }
 .stagger-children.visible > *:nth-child(1) { transition-delay: 0.05s; }
 .stagger-children.visible > *:nth-child(2) { transition-delay: 0.15s; }
