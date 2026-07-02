@@ -524,18 +524,18 @@
 /* Halo pulsante detrás del botón principal (respira para llamar la atención) */
 .cta-glow {
   position: absolute;
-  inset: -7px;
+  inset: -5px;
   border-radius: 9999px;
   background: oklch(0.44 0.225 15);
-  filter: blur(18px);
-  opacity: 0.45;
+  filter: blur(16px);
+  opacity: 0.28;
   z-index: -1;
   pointer-events: none;
-  animation: cta-breathe 2.9s ease-in-out infinite;
+  animation: cta-breathe 3.2s ease-in-out infinite;
 }
 @keyframes cta-breathe {
-  0%, 100% { opacity: 0.3;  transform: scale(0.94); }
-  50%      { opacity: 0.65; transform: scale(1.06); }
+  0%, 100% { opacity: 0.18; transform: scale(0.96); }
+  50%      { opacity: 0.38; transform: scale(1.03); }
 }
 
 /* Destello automático que barre el botón (además del hover) */
@@ -546,10 +546,10 @@
   left: -120%;
   width: 55%;
   height: 100%;
-  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.45), transparent);
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.22), transparent);
   transform: skewX(-20deg);
   pointer-events: none;
-  animation: cta-sheen 5s ease-in-out infinite;
+  animation: cta-sheen 6s ease-in-out infinite;
 }
 @keyframes cta-sheen {
   0%   { left: -120%; }
