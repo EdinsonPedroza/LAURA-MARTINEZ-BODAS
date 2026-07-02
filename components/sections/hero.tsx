@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Image from "next/image"
-import { Calendar, MessageCircle, ChevronDown } from "lucide-react"
+import { Calendar, MessageCircle, ChevronDown, ArrowRight } from "lucide-react"
 
 export function Hero() {
   const [visible, setVisible] = useState(false)
@@ -125,41 +125,44 @@ export function Hero() {
               <div className="flex flex-col sm:flex-row gap-3">
 
                 {/* Primary */}
-                <a
-                  href="#contacto"
-                  className="btn-elegant inline-flex items-center justify-center gap-2.5 text-white"
-                  style={{
-                    padding: "14px 32px",
-                    fontFamily: "var(--font-inter)",
-                    fontWeight: 500,
-                    fontSize: "0.72rem",
-                    letterSpacing: "0.18em",
-                    textTransform: "uppercase",
-                    background: "oklch(0.44 0.225 15)",
-                    boxShadow: "0 4px 24px oklch(0.44 0.225 15 / 0.65), 0 2px 8px rgba(0,0,0,0.5)",
-                    transition: "all 0.35s cubic-bezier(0.34,1.56,0.64,1)",
-                  }}
-                  onMouseEnter={e => {
-                    const el = e.currentTarget as HTMLElement
-                    el.style.boxShadow = "0 12px 44px oklch(0.44 0.225 15 / 0.85), 0 4px 16px rgba(0,0,0,0.6)"
-                    el.style.transform = "translateY(-3px) scale(1.03)"
-                  }}
-                  onMouseLeave={e => {
-                    const el = e.currentTarget as HTMLElement
-                    el.style.boxShadow = "0 4px 24px oklch(0.44 0.225 15 / 0.65), 0 2px 8px rgba(0,0,0,0.5)"
-                    el.style.transform = "translateY(0) scale(1)"
-                  }}
-                >
-                  <Calendar className="h-3.5 w-3.5 flex-shrink-0 relative z-10" />
-                  <span className="relative z-10">Asesoría gratuita</span>
-                </a>
+                <div className="relative inline-flex">
+                  <span aria-hidden className="cta-glow" />
+                  <a
+                    href="#contacto"
+                    className="btn-elegant btn-hero-primary inline-flex items-center justify-center gap-2.5 text-white w-full"
+                    style={{
+                      padding: "14px 32px",
+                      fontFamily: "var(--font-inter)",
+                      fontWeight: 500,
+                      fontSize: "0.72rem",
+                      letterSpacing: "0.18em",
+                      textTransform: "uppercase",
+                      background: "oklch(0.44 0.225 15)",
+                      boxShadow: "0 4px 24px oklch(0.44 0.225 15 / 0.65), 0 2px 8px rgba(0,0,0,0.5)",
+                      transition: "all 0.35s cubic-bezier(0.34,1.56,0.64,1)",
+                    }}
+                    onMouseEnter={e => {
+                      const el = e.currentTarget as HTMLElement
+                      el.style.boxShadow = "0 12px 44px oklch(0.44 0.225 15 / 0.9), 0 4px 16px rgba(0,0,0,0.6)"
+                      el.style.transform = "translateY(-3px) scale(1.04)"
+                    }}
+                    onMouseLeave={e => {
+                      const el = e.currentTarget as HTMLElement
+                      el.style.boxShadow = "0 4px 24px oklch(0.44 0.225 15 / 0.65), 0 2px 8px rgba(0,0,0,0.5)"
+                      el.style.transform = "translateY(0) scale(1)"
+                    }}
+                  >
+                    <Calendar className="cta-icon h-3.5 w-3.5 flex-shrink-0 relative z-10" />
+                    <span className="relative z-10">Asesoría gratuita</span>
+                  </a>
+                </div>
 
                 {/* Secondary */}
                 <a
                   href="https://wa.me/573186049903?text=Hola%20Laura,%20estoy%20interesado/a%20en%20tus%20servicios%20de%20wedding%20planner"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2.5"
+                  className="btn-hero-secondary group inline-flex items-center justify-center gap-2.5"
                   style={{
                     padding: "14px 32px",
                     fontFamily: "var(--font-inter)",
@@ -190,6 +193,7 @@ export function Hero() {
                 >
                   <MessageCircle className="h-3.5 w-3.5 flex-shrink-0" />
                   Escríbenos
+                  <ArrowRight className="cta-arrow h-3.5 w-3.5 flex-shrink-0 opacity-70" />
                 </a>
               </div>
             </div>
