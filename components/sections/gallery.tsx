@@ -67,7 +67,7 @@ export function Gallery() {
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? "translateY(0) scale(1)" : "translateY(90px) scale(0.90)",
-            transition: "opacity 1.3s cubic-bezier(0.16,1,0.3,1), transform 1.3s cubic-bezier(0.16,1,0.3,1)",
+            transition: "opacity var(--reveal-xl) cubic-bezier(0.16,1,0.3,1), transform var(--reveal-xl) cubic-bezier(0.16,1,0.3,1)",
           }}
         >
           <span className="font-display text-[11px] tracking-[0.45em] uppercase text-accent mb-5 block font-medium">
@@ -88,7 +88,7 @@ export function Gallery() {
         className="relative z-10 px-4 md:px-8 pb-24 md:pb-32"
         style={{
           opacity: isVisible ? 1 : 0,
-          transition: "opacity 0.6s 0.3s ease",
+          transition: "opacity 0.6s calc(300ms * var(--stagger-scale)) ease",
         }}
       >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
@@ -101,7 +101,7 @@ export function Gallery() {
                 transform: isVisible
                   ? hovered === i ? "scale(1.012)" : "scale(1)"
                   : `translateY(${40 + i * 5}px)`,
-                transition: `opacity 0.8s ${i * 60}ms cubic-bezier(0.16,1,0.3,1), transform 0.55s cubic-bezier(0.34,1.56,0.64,1)`,
+                transition: `opacity var(--reveal-md) calc(${i * 60}ms * var(--stagger-scale)) cubic-bezier(0.16,1,0.3,1), transform 0.55s cubic-bezier(0.34,1.56,0.64,1)`,
                 zIndex: hovered === i ? 2 : 1,
               }}
               onMouseEnter={() => setHovered(i)}
@@ -224,7 +224,8 @@ export function Gallery() {
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? "translateY(0)" : "translateY(16px)",
-            transition: "opacity 1s 1s ease, transform 1s 1s cubic-bezier(0.16,1,0.3,1)",
+            transition: "opacity var(--reveal-lg) ease, transform var(--reveal-lg) cubic-bezier(0.16,1,0.3,1)",
+            transitionDelay: "calc(1000ms * var(--stagger-scale))",
           }}
         >
           <div className="h-px flex-1 max-w-24" style={{ background: "linear-gradient(to right, transparent, oklch(0.44 0.225 15 / 0.5))" }} />

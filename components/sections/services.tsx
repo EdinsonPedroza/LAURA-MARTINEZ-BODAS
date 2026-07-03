@@ -120,7 +120,7 @@ export function Services() {
             transform: isVisible
               ? "translateY(0) scale(1) rotateX(0)"
               : "translateY(120px) scale(0.80) rotateX(14deg)",
-            transition: "opacity 1.4s cubic-bezier(0.16,1,0.3,1), transform 1.4s cubic-bezier(0.16,1,0.3,1)",
+            transition: "opacity var(--reveal-xl) cubic-bezier(0.16,1,0.3,1), transform var(--reveal-xl) cubic-bezier(0.16,1,0.3,1)",
             perspective: "1200px",
             transformOrigin: "bottom center",
           }}
@@ -148,7 +148,8 @@ export function Services() {
                 transform: isVisible
                   ? "translateY(0) scale(1) rotate(0deg) rotateX(0deg)"
                   : `translateY(170px) scale(0.72) rotate(${i % 2 === 0 ? -3.5 : 3.5}deg) rotateX(14deg)`,
-                transition: `opacity 1.4s ${i * 200 + 250}ms cubic-bezier(0.16,1,0.3,1), transform 1.4s ${i * 200 + 250}ms cubic-bezier(0.16,1,0.3,1)`,
+                transition: "opacity var(--reveal-xl) cubic-bezier(0.16,1,0.3,1), transform var(--reveal-xl) cubic-bezier(0.16,1,0.3,1)",
+                transitionDelay: `calc(${i * 200 + 250}ms * var(--stagger-scale))`,
                 perspective: "1400px",
                 transformOrigin: "bottom center",
               }}

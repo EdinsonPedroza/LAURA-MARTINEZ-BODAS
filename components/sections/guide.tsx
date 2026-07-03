@@ -21,7 +21,7 @@ export function Guide() {
   const stagger = (i: number) => ({
     opacity: visible ? 1 : 0,
     transform: visible ? "translateY(0)" : "translateY(28px)",
-    transition: `opacity 0.7s ${i * 110}ms ease, transform 0.7s ${i * 110}ms cubic-bezier(0.16,1,0.3,1)`,
+    transition: `opacity var(--reveal-sm) calc(${i * 110}ms * var(--stagger-scale)) ease, transform var(--reveal-sm) calc(${i * 110}ms * var(--stagger-scale)) cubic-bezier(0.16,1,0.3,1)`,
   })
 
   return (

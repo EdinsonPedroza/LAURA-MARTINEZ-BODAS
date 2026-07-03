@@ -120,7 +120,7 @@ export function Contact() {
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? "translateY(0) scale(1)" : "translateY(60px) scale(0.96)",
-            transition: "opacity 1.1s cubic-bezier(0.16,1,0.3,1), transform 1.1s cubic-bezier(0.16,1,0.3,1)",
+            transition: "opacity var(--reveal-lg) cubic-bezier(0.16,1,0.3,1), transform var(--reveal-lg) cubic-bezier(0.16,1,0.3,1)",
           }}
         >
           <span className="font-display text-[11px] tracking-[0.45em] uppercase text-primary-foreground/70 mb-5 block font-medium">
@@ -141,7 +141,7 @@ export function Contact() {
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? "translateX(0) scale(1)" : "translateX(-80px) scale(0.97)",
-              transition: "opacity 1.1s 200ms cubic-bezier(0.16,1,0.3,1), transform 1.1s 200ms cubic-bezier(0.16,1,0.3,1)",
+              transition: "opacity var(--reveal-lg) calc(200ms * var(--stagger-scale)) cubic-bezier(0.16,1,0.3,1), transform var(--reveal-lg) calc(200ms * var(--stagger-scale)) cubic-bezier(0.16,1,0.3,1)",
             }}
           >
             <Card className="bg-primary-foreground/10 border-primary-foreground/20 shadow-2xl backdrop-blur-sm">
@@ -262,7 +262,7 @@ export function Contact() {
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? "translateX(0) scale(1)" : "translateX(80px) scale(0.97)",
-              transition: "opacity 1.1s 400ms cubic-bezier(0.16,1,0.3,1), transform 1.1s 400ms cubic-bezier(0.16,1,0.3,1)",
+              transition: "opacity var(--reveal-lg) calc(400ms * var(--stagger-scale)) cubic-bezier(0.16,1,0.3,1), transform var(--reveal-lg) calc(400ms * var(--stagger-scale)) cubic-bezier(0.16,1,0.3,1)",
             }}
           >
             <div className="space-y-6">

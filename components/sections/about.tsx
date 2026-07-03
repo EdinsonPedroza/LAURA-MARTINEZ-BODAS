@@ -131,7 +131,7 @@ export function About() {
             transform: isVisible
               ? "translateX(0) skewX(0deg) scale(1) rotate(0deg)"
               : "translateX(-110%) skewX(-10deg) scale(0.82) rotate(-2.5deg)",
-            transition: "opacity 1.4s cubic-bezier(0.16,1,0.3,1), transform 1.5s cubic-bezier(0.16,1,0.3,1)",
+            transition: "opacity var(--reveal-xl) cubic-bezier(0.16,1,0.3,1), transform var(--reveal-xl) cubic-bezier(0.16,1,0.3,1)",
           }}
         >
           {/* Ghost watermark number */}
@@ -216,7 +216,8 @@ export function About() {
                 color: "white",
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? "translateY(0)" : "translateY(30px)",
-                transition: "opacity 1s 0.6s, transform 1s 0.6s cubic-bezier(0.16,1,0.3,1)",
+                transition: "opacity var(--reveal-lg), transform var(--reveal-lg) cubic-bezier(0.16,1,0.3,1)",
+                transitionDelay: "calc(600ms * var(--stagger-scale))",
                 boxShadow: "0 12px 28px -8px oklch(0.44 0.225 15 / 0.5), inset 0 1px 0 rgba(255,255,255,0.15)",
               }}
             >
@@ -252,7 +253,8 @@ export function About() {
             transform: isVisible
               ? "translateX(0) skewX(0deg) scale(1)"
               : "translateX(90%) skewX(7deg) scale(0.88)",
-            transition: "opacity 1.4s 0.18s cubic-bezier(0.16,1,0.3,1), transform 1.5s 0.18s cubic-bezier(0.16,1,0.3,1)",
+            transition: "opacity var(--reveal-xl) cubic-bezier(0.16,1,0.3,1), transform var(--reveal-xl) cubic-bezier(0.16,1,0.3,1)",
+            transitionDelay: "calc(180ms * var(--stagger-scale))",
           }}
         >
           {/* Eyebrow */}
@@ -319,7 +321,8 @@ export function About() {
                   transform: isVisible
                     ? "translateX(0) rotate(0deg) scale(1)"
                     : `translateX(110px) rotate(${i % 2 === 0 ? 4 : -3}deg) scale(0.88)`,
-                  transition: `opacity 1s ${550 + i * 130}ms cubic-bezier(0.16,1,0.3,1), transform 1s ${550 + i * 130}ms cubic-bezier(0.16,1,0.3,1), border-color 0.3s`,
+                  transition: "opacity var(--reveal-lg) cubic-bezier(0.16,1,0.3,1), transform var(--reveal-lg) cubic-bezier(0.16,1,0.3,1), border-color 0.3s",
+                  transitionDelay: `calc(${550 + i * 130}ms * var(--stagger-scale)), calc(${550 + i * 130}ms * var(--stagger-scale)), 0ms`,
                 }}
                 onMouseEnter={e => (e.currentTarget.style.borderColor = "oklch(0.44 0.225 15 / 0.35)")}
                 onMouseLeave={e => (e.currentTarget.style.borderColor = "oklch(0.44 0.225 15 / 0.10)")}
@@ -342,7 +345,8 @@ export function About() {
               borderLeft: "2px solid oklch(0.44 0.225 15)",
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? "translateY(0)" : "translateY(20px)",
-              transition: "opacity 0.9s 700ms cubic-bezier(0.16,1,0.3,1), transform 0.9s 700ms cubic-bezier(0.16,1,0.3,1)",
+              transition: "opacity var(--reveal-md) cubic-bezier(0.16,1,0.3,1), transform var(--reveal-md) cubic-bezier(0.16,1,0.3,1)",
+              transitionDelay: "calc(700ms * var(--stagger-scale))",
             }}
           >
             <p className="font-serif text-base font-medium italic leading-relaxed"

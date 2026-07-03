@@ -22,7 +22,7 @@ export default function Home() {
       <Header />
       <Hero />
 
-      {/* Animated divider between each section (same style as the other landings) */}
+      {/* Kinetic slash divider — replays every time it enters the viewport */}
       <SectionTransition accent="crimson" />
       <Services />
 
