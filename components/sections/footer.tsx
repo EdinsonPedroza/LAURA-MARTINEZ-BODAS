@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Heart } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 export function Footer() {
   const year = new Date().getFullYear()
@@ -168,6 +169,20 @@ export function Footer() {
           >
             © {year} Laura Martínez Bodas. Todos los derechos reservados.
           </p>
+          <nav className="flex items-center gap-5">
+            {[
+              { href: "/terminos",   l: "Términos y Condiciones" },
+              { href: "/privacidad", l: "Privacidad" },
+            ].map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="footer-nav-link text-xs tracking-widest uppercase font-light"
+              >
+                {link.l}
+              </Link>
+            ))}
+          </nav>
           <p
             className="flex items-center gap-1.5 text-xs font-light"
             style={{ color: "oklch(0.40 0.020 30)" }}
