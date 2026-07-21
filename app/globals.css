@@ -158,6 +158,13 @@
   50%       { transform: translateY(-14px); }
 }
 
+/* Barely-there float — for elements that shouldn't distract (e.g. hero collage) */
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
+}
+.animate-float-soft { animation: float-soft 6.5s ease-in-out infinite; }
+
 /* Line expand from center */
 @keyframes line-grow {
   from { transform: scaleX(0); opacity: 0; }

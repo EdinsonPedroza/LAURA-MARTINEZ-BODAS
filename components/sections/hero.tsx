@@ -4,7 +4,7 @@ import { useEffect, useState, type CSSProperties } from "react"
 import Image from "next/image"
 import { Calendar, MessageCircle, ChevronDown, ArrowRight } from "lucide-react"
 
-type GlassPhoto = {
+type CollagePhoto = {
   src: string
   alt: string
   side: "left" | "right"
@@ -18,81 +18,81 @@ type GlassPhoto = {
   minBreak: "md" | "lg"
 }
 
-// Collage a lado y lado — piezas superpuestas con distinto tamaño/rotación, título en el centro
-const glassPhotos: GlassPhoto[] = [
-  // ── Izquierda ──
+// Collage a lado y lado — cluster compacto de fotos superpuestas (estilo Polaroid), título en el centro
+const collagePhotos: CollagePhoto[] = [
+  // ── Izquierda — cluster superpuesto ──
   {
-    src: "/images/gallery-couple.jpg",
-    alt: "Pareja de novios celebrando",
+    src: "/images/Decoracion.jpg",
+    alt: "Decoración de mesa de boda",
     side: "left",
-    pos: { top: "16%", left: "2%" },
-    size: { w: 158, h: 196 },
-    rotate: -8,
+    pos: { top: "22%", left: "0%" },
+    size: { w: 148, h: 182 },
+    rotate: -11,
     delay: 0.55,
     floatDelay: 0,
-    z: 12,
-    minBreak: "md",
+    z: 11,
+    minBreak: "lg",
   },
   {
-    src: "/images/gallery-bouquet.jpg",
-    alt: "Ramo de novia con detalles florales",
+    src: "/images/1.jpg",
+    alt: "Beso de novios",
     side: "left",
-    pos: { top: "38%", left: "10%" },
-    size: { w: 122, h: 152 },
-    rotate: 6,
-    delay: 0.75,
-    floatDelay: 1.1,
+    pos: { top: "30%", left: "9%" },
+    size: { w: 196, h: 240 },
+    rotate: 4,
+    delay: 0.7,
+    floatDelay: 0.9,
     z: 13,
     minBreak: "md",
   },
   {
-    src: "/images/gallery-table.jpg",
-    alt: "Decoración de mesa para boda",
+    src: "/images/2.jpg",
+    alt: "Novios felices",
     side: "left",
-    pos: { top: "60%", left: "1%" },
-    size: { w: 112, h: 140 },
-    rotate: -4,
-    delay: 0.95,
-    floatDelay: 2.1,
-    z: 11,
-    minBreak: "lg",
-  },
-  // ── Derecha ──
-  {
-    src: "/images/gallery-ceremony.jpg",
-    alt: "Ceremonia de boda decorada",
-    side: "right",
-    pos: { top: "14%", right: "2%" },
-    size: { w: 158, h: 196 },
-    rotate: 8,
-    delay: 0.6,
-    floatDelay: 0.6,
-    z: 12,
-    minBreak: "md",
-  },
-  {
-    src: "/images/gallery-venue.jpg",
-    alt: "Lugar para recepción de boda",
-    side: "right",
-    pos: { top: "37%", right: "10%" },
-    size: { w: 122, h: 152 },
+    pos: { top: "56%", left: "3%" },
+    size: { w: 150, h: 186 },
     rotate: -6,
-    delay: 0.8,
-    floatDelay: 1.6,
+    delay: 0.9,
+    floatDelay: 1.7,
+    z: 12,
+    minBreak: "md",
+  },
+  // ── Derecha — cluster superpuesto (espejo) ──
+  {
+    src: "/images/atardecer.jpg",
+    alt: "Iluminación romántica de boda",
+    side: "right",
+    pos: { top: "20%", right: "0%" },
+    size: { w: 148, h: 182 },
+    rotate: 10,
+    delay: 0.6,
+    floatDelay: 0.5,
+    z: 11,
+    minBreak: "lg",
+  },
+  {
+    src: "/images/3.jpg",
+    alt: "Ceremonia de boda",
+    side: "right",
+    pos: { top: "29%", right: "9%" },
+    size: { w: 196, h: 240 },
+    rotate: -5,
+    delay: 0.75,
+    floatDelay: 1.3,
     z: 13,
     minBreak: "md",
   },
   {
-    src: "/images/gallery-lighting.jpg",
-    alt: "Iluminación decorativa para boda",
+    src: "/images/4.jpg",
+    alt: "Ceremonia en iglesia",
     side: "right",
-    pos: { top: "59%", right: "1%" },
-    size: { w: 110, h: 138 },
-    rotate: 5,
-    delay: 1.0,
-    floatDelay: 2.4,
-    z: 11,
-    minBreak: "lg",
+    pos: { top: "55%", right: "2%" },
+    size: { w: 150, h: 186 },
+    rotate: 7,
+    delay: 0.95,
+    floatDelay: 2.2,
+    z: 12,
+    minBreak: "md",
   },
 ]
 
@@ -110,11 +110,11 @@ export function Hero() {
     transition: `opacity 1.1s ${delay}s cubic-bezier(0.16,1,0.3,1), transform 1.2s ${delay}s cubic-bezier(0.16,1,0.3,1)`,
   })
 
-  const glassReveal = (photo: GlassPhoto) => ({
+  const collageReveal = (photo: CollagePhoto) => ({
     opacity: visible ? 1 : 0,
     transform: visible
       ? `translateY(0) rotate(${photo.rotate}deg) scale(1)`
-      : `translateY(${photo.side === "left" ? "-" : ""}40px) translateX(${photo.side === "left" ? "-70px" : "70px"}) rotate(${photo.rotate * 2.4}deg) scale(0.8)`,
+      : `translateY(${photo.side === "left" ? "-" : ""}18px) translateX(${photo.side === "left" ? "-32px" : "32px"}) rotate(${photo.rotate * 1.5}deg) scale(0.92)`,
     transition: `opacity 1.3s ${photo.delay}s cubic-bezier(0.16,1,0.3,1), transform 1.4s ${photo.delay}s cubic-bezier(0.16,1,0.3,1)`,
   })
 
@@ -137,67 +137,69 @@ export function Hero() {
           fill
           sizes="100vw"
           className="object-cover"
-          style={{ objectPosition: "50% 28%" }}
+          style={{ objectPosition: "50% 28%", filter: "brightness(0.5) saturate(0.82) contrast(1.05)" }}
           priority
         />
-        {/* Vignette radial — oscuro en el centro (texto), claro en las esquinas (fotos) */}
+        {/* Oscurecimiento uniforme — evita que el fondo "brille" y compita con el texto */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "rgba(0,0,0,0.45)" }} />
+        {/* Vignette radial — oscuro en el centro (texto), un poco más claro hacia las esquinas (fotos) */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 62% 58% at 50% 56%, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.55) 42%, rgba(0,0,0,0.15) 70%, rgba(0,0,0,0) 100%)",
+              "radial-gradient(ellipse 62% 58% at 50% 56%, rgba(0,0,0,0.93) 0%, rgba(0,0,0,0.75) 42%, rgba(0,0,0,0.48) 70%, rgba(0,0,0,0.32) 100%)",
           }}
         />
         {/* Top vignette */}
         <div
           className="absolute top-0 left-0 right-0 h-36 pointer-events-none"
-          style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.5), transparent)" }}
+          style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.62), transparent)" }}
         />
         {/* Bottom vignette — legibilidad del indicador de scroll */}
         <div
           className="absolute bottom-0 left-0 right-0 h-28 pointer-events-none"
-          style={{ background: "linear-gradient(to top, rgba(0,0,0,0.5), transparent)" }}
+          style={{ background: "linear-gradient(to top, rgba(0,0,0,0.62), transparent)" }}
         />
       </div>
 
-      {/* Collage de fotos — Glassmorphism, a lado y lado del título centrado */}
-      {glassPhotos.map((photo, i) => (
+      {/* Collage de fotos — impresas tipo foto física (papel + sombra), a lado y lado del título centrado */}
+      {collagePhotos.map((photo, i) => (
         <div
           key={photo.src}
           className={photo.minBreak === "lg" ? "hidden lg:block absolute" : "hidden md:block absolute"}
-          style={{ ...photo.pos, zIndex: photo.z, ...glassReveal(photo) }}
+          style={{ ...photo.pos, zIndex: photo.z, ...collageReveal(photo) }}
         >
           <div
-            className="animate-float"
+            className="animate-float-soft"
             style={{ animationDelay: `${photo.floatDelay}s` }}
           >
+            {/* Marco de papel — Polaroid real: borde blanco parejo, más grueso abajo */}
             <div
-              className="relative overflow-hidden"
+              className="relative"
               style={{
-                width: "clamp(88px, 8vw, " + photo.size.w + "px)",
-                height: "clamp(110px, 10vw, " + photo.size.h + "px)",
-                borderRadius: "1.25rem",
-                background: "rgba(255,255,255,0.10)",
-                backdropFilter: "blur(18px)",
-                WebkitBackdropFilter: "blur(18px)",
-                border: "1px solid rgba(255,255,255,0.30)",
-                boxShadow: "0 24px 50px -14px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.35)",
-                padding: "6px",
+                width: "clamp(112px, 10vw, " + photo.size.w + "px)",
+                height: "clamp(140px, 12.5vw, " + photo.size.h + "px)",
+                borderRadius: "0.3rem",
+                background: "oklch(0.995 0.003 50)",
+                boxShadow:
+                  "0 28px 48px -14px rgba(0,0,0,0.65), 0 6px 14px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(0,0,0,0.05)",
+                padding: "8px 8px 20px 8px",
               }}
             >
-              <div className="relative w-full h-full rounded-[0.9rem] overflow-hidden">
+              <div className="relative w-full h-full overflow-hidden" style={{ borderRadius: "2px" }}>
                 <Image
                   src={photo.src}
                   alt={photo.alt}
                   fill
                   sizes="180px"
+                  quality={88}
                   className="object-cover"
                   loading={i === 0 ? "eager" : "lazy"}
                 />
-                {/* Glass sheen */}
+                {/* Brillo diagonal sutil — gloss de papel fotográfico, no vidrio esmerilado */}
                 <div
                   className="absolute inset-0 pointer-events-none"
-                  style={{ background: "linear-gradient(135deg, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0) 45%)" }}
+                  style={{ background: "linear-gradient(135deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 35%)" }}
                 />
               </div>
             </div>
@@ -223,7 +225,7 @@ export function Hero() {
               }}
             >
               <span style={{ width: "24px", height: "1px", background: "oklch(0.65 0.225 15)" }} />
-              Wedding Planner · Palmira
+              Valle del Cauca, Colombia
               <span style={{ width: "24px", height: "1px", background: "oklch(0.65 0.225 15)" }} />
             </span>
           </div>
@@ -231,25 +233,29 @@ export function Hero() {
           {/* Headline — the star of the show */}
           <div style={revealUp(0.35)}>
             <h1
-              className="font-serif font-light text-white leading-[1.05] mb-5"
+              className="text-white leading-[1.05]"
               style={{
+                fontFamily: "var(--font-montserrat), sans-serif",
+                fontWeight: 600,
                 fontSize: "clamp(2.3rem, 5.2vw, 4.2rem)",
                 letterSpacing: "-0.02em",
+                marginTop: "14px",
+                marginBottom: "6px",
                 textShadow:
                   "0 2px 4px rgba(0,0,0,0.9), 0 8px 32px rgba(0,0,0,0.7), 0 16px 64px rgba(0,0,0,0.4)",
               }}
             >
               Hacemos realidad<br />
-              <em
+              <span
                 style={{
-                  fontStyle: "italic",
+                  fontStyle: "normal",
                   color: "oklch(0.65 0.225 15)",
                   textShadow:
                     "0 0 60px oklch(0.44 0.225 15 / 0.7), 0 2px 4px rgba(0,0,0,0.9), 0 8px 32px rgba(0,0,0,0.7)",
                 }}
               >
                 la boda de tus sueños
-              </em>
+              </span>
             </h1>
           </div>
 
@@ -273,17 +279,16 @@ export function Hero() {
               style={{
                 fontFamily: "var(--font-inter)",
                 fontWeight: 300,
-                fontSize: "clamp(0.88rem, 1.2vw, 1rem)",
-                lineHeight: 1.75,
-                maxWidth: "380px",
+                fontSize: "clamp(0.85rem, 1.1vw, 0.95rem)",
+                lineHeight: 1.5,
+                maxWidth: "320px",
                 color: "rgba(255,255,255,0.88)",
                 textShadow: "0 1px 4px rgba(0,0,0,0.9), 0 4px 16px rgba(0,0,0,0.6)",
                 letterSpacing: "0.01em",
-                marginBottom: "2.5rem",
+                marginBottom: "1.75rem",
               }}
             >
-              Cada detalle, cada emoción, cada instante.<br />
-              Creamos experiencias únicas con pasión y dedicación.
+              Cada detalle, cada emoción, con pasión y dedicación.
             </p>
           </div>
 

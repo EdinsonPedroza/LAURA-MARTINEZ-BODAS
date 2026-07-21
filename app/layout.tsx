@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
-import { Playfair_Display, Plus_Jakarta_Sans, DM_Sans } from 'next/font/google'
+import { Playfair_Display, Plus_Jakarta_Sans, DM_Sans, Montserrat } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { ScrollProgress } from '@/components/scroll-progress'
 import './globals.css'
@@ -27,6 +27,13 @@ const jakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700', '800'],
   variable: '--font-outfit',
+  display: 'swap',
+})
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['500', '600', '700'],
+  variable: '--font-montserrat',
   display: 'swap',
 })
 
@@ -112,7 +119,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${dmSans.variable} ${playfair.variable} ${jakartaSans.variable} font-sans antialiased`}>
+      <body className={`${dmSans.variable} ${playfair.variable} ${jakartaSans.variable} ${montserrat.variable} font-sans antialiased`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
