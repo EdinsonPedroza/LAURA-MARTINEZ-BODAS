@@ -12,31 +12,39 @@ export const metadata: Metadata = {
 const sections = [
   {
     title: "1. Responsable del tratamiento",
-    body: "Laura Martínez Bodas, con sede en Palmira, Valle del Cauca (Colombia), es responsable del tratamiento de los datos personales que nos compartes a través de este sitio web, WhatsApp, redes sociales o durante la planeación de tu evento.",
+    body: "Laura Martínez Bodas, con sede en Palmira, Valle del Cauca (Colombia), es responsable del tratamiento de los datos personales que nos compartes a través de este sitio web, WhatsApp, redes sociales o durante la planeación de tu evento. Puedes contactarnos en bodaslauramartinez@gmail.com o al WhatsApp +57 318 604 9903.",
   },
   {
     title: "2. Datos que recolectamos",
-    body: "Recolectamos los datos necesarios para planear tu evento: nombres de la pareja, teléfono y correo de contacto, fecha y lugar tentativo del evento, número estimado de invitados y preferencias de estilo y presupuesto.",
+    body: "Recolectamos los datos necesarios para planear tu evento: nombres de la pareja, teléfono y correo de contacto, fecha y lugar tentativo del evento, número estimado de invitados y preferencias de estilo y presupuesto. A través del formulario de contacto recogemos tu nombre, teléfono, correo, fecha tentativa de la boda y el mensaje que nos escribes.",
   },
   {
     title: "3. Finalidad del tratamiento",
     body: "Usamos tus datos para responder tus consultas, preparar cotizaciones, coordinar proveedores y gestionar la logística de tu evento. Solo compartimos con cada proveedor la información estrictamente necesaria para prestar su servicio. No vendemos tus datos ni los usamos con fines distintos a los aquí descritos.",
   },
   {
-    title: "4. Tus derechos (Ley 1581 de 2012)",
-    body: "De acuerdo con la ley colombiana de protección de datos personales, puedes conocer, actualizar, rectificar y solicitar la supresión de tus datos, así como revocar la autorización otorgada. Para ejercer estos derechos escríbenos por WhatsApp al +57 318 604 9903.",
+    title: "4. Autorización",
+    body: "El tratamiento de tus datos requiere tu autorización previa, expresa e informada, la cual otorgas al marcar la casilla de aceptación del formulario de contacto o al compartirnos tu información por WhatsApp, correo o redes sociales para planear tu evento. Esta autorización puede ser revocada en cualquier momento.",
   },
   {
-    title: "5. Fotografías del evento",
+    title: "5. Tus derechos (Ley 1581 de 2012)",
+    body: "De acuerdo con la ley colombiana de protección de datos personales, puedes conocer, actualizar, rectificar y solicitar la supresión de tus datos, así como revocar la autorización otorgada y solicitar prueba de la misma. Para ejercer estos derechos escríbenos a bodaslauramartinez@gmail.com o por WhatsApp al +57 318 604 9903.",
+  },
+  {
+    title: "6. Consultas y reclamos",
+    body: "Atenderemos tus consultas dentro de los diez (10) días hábiles siguientes a su recibo y tus reclamos dentro de los quince (15) días hábiles, conforme a los artículos 14 y 15 de la Ley 1581 de 2012. Si el plazo no es suficiente, te informaremos los motivos y la fecha en que se atenderá tu solicitud.",
+  },
+  {
+    title: "7. Fotografías del evento",
     body: "Las fotografías de tu boda solo se publican en nuestro portafolio y redes sociales con tu consentimiento. Puedes revocarlo en cualquier momento y retiraremos el contenido correspondiente.",
   },
   {
-    title: "6. Seguridad y conservación",
+    title: "8. Seguridad y conservación",
     body: "Adoptamos medidas razonables para proteger tu información contra acceso no autorizado, pérdida o alteración. Conservamos los datos durante la relación comercial y por los plazos que exija la ley.",
   },
   {
-    title: "7. Cookies y analítica",
-    body: "Este sitio no utiliza cookies de rastreo publicitario. Usamos métricas anónimas de visitas (Vercel Analytics) únicamente para mejorar la experiencia del sitio.",
+    title: "9. Cookies y analítica",
+    body: "Utilizamos métricas anónimas de visitas (Vercel Analytics) y, cuando está habilitado, Google Analytics 4, que instala cookies propias y de terceros para entender de forma agregada cómo se usa el sitio y mejorar la experiencia. Anonimizamos la dirección IP y no usamos estas cookies con fines publicitarios ni de venta de datos. Puedes bloquear o eliminar las cookies desde la configuración de tu navegador; algunas funciones podrían verse afectadas.",
   },
 ]
 

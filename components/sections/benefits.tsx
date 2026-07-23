@@ -103,9 +103,9 @@ export function Benefits() {
             style={{ color: "oklch(0.60 0.20 18)" }}>
             Por Qué Elegirnos
           </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-5 text-balance leading-[1.0] tracking-tight">
+          <h2 className="font-fraunces text-4xl md:text-5xl lg:text-6xl font-normal text-white mb-5 text-balance leading-[1.0] tracking-tight">
             La diferencia de trabajar con{" "}
-            <span className="font-serif font-black" style={{ color: "oklch(0.60 0.20 18)" }}>profesionales</span>
+            <span className="font-fraunces font-normal" style={{ color: "oklch(0.60 0.20 18)" }}>profesionales</span>
           </h2>
           <p className="text-white/75 text-base md:text-lg font-light">
             Más de 100 parejas felices nos respaldan
@@ -186,7 +186,7 @@ export function Benefits() {
                       >
                         {benefit.title}
                       </h3>
-                      <p className="text-gray-700 leading-relaxed text-sm font-medium">
+                      <p className="text-gray-700 leading-relaxed text-base font-medium">
                         {benefit.description}
                       </p>
                     </div>

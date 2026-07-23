@@ -128,9 +128,9 @@ export function Services() {
           <span className="font-display text-[11px] tracking-[0.45em] uppercase text-accent mb-5 block font-semibold mx-auto">
             Servicios
           </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-[3.4rem] font-extrabold text-foreground leading-[1.0] tracking-tight mb-5 mx-auto">
+          <h2 className="font-fraunces text-4xl md:text-5xl lg:text-[3.4rem] font-normal text-foreground leading-[1.0] tracking-tight mb-5 mx-auto">
             Qué hacemos{" "}
-            <span className="font-serif font-black text-accent italic">por ti.</span>
+            <span className="font-fraunces font-normal text-accent">por ti.</span>
           </h2>
           <p className="text-muted-foreground text-lg font-light leading-relaxed max-w-lg mx-auto">
             Cada historia de amor es única. Tu celebración merece una atención igual de especial.
@@ -159,13 +159,13 @@ export function Services() {
               <div
                 className="grid md:grid-cols-[2fr_3fr] rounded-2xl overflow-hidden"
                 style={{
-                  background: "oklch(0.10 0.020 8)",
+                  background: "oklch(0.995 0.005 50)",
                   border: hovered === i
                     ? "1px solid oklch(0.44 0.225 15 / 0.40)"
                     : "1px solid oklch(0.44 0.225 15 / 0.10)",
                   boxShadow: hovered === i
-                    ? "0 24px 60px rgba(0,0,0,0.6), 0 0 40px oklch(0.44 0.225 15 / 0.10)"
-                    : "0 4px 24px rgba(0,0,0,0.35)",
+                    ? "0 24px 50px rgba(0,0,0,0.16), 0 0 30px oklch(0.44 0.225 15 / 0.10)"
+                    : "0 4px 20px rgba(0,0,0,0.08)",
                   transform: hovered === i
                     ? "translateY(-14px) scale(1.018) rotateY(1.5deg)"
                     : "translateY(0) scale(1) rotateY(0)",
@@ -210,7 +210,7 @@ export function Services() {
                 <div
                   className="p-5 md:p-7 flex flex-col justify-center relative overflow-hidden"
                   style={{
-                    backgroundColor: "oklch(0.10 0.020 8)",
+                    backgroundColor: "oklch(0.995 0.005 50)",
                     backgroundImage: "radial-gradient(circle at 1px 1px, oklch(0.44 0.225 15 / 0.10) 1px, transparent 0)",
                     backgroundSize: "24px 24px",
                   }}
@@ -252,16 +252,15 @@ export function Services() {
                     <h3
                       className="font-display text-xl md:text-2xl font-extrabold tracking-wide mt-2 mb-4"
                       style={{
-                        color: hovered === i ? "oklch(0.72 0.18 18)" : "oklch(0.97 0.005 50)",
+                        color: hovered === i ? "oklch(0.44 0.225 15)" : "oklch(0.10 0.025 8)",
                         transition: "color 0.3s",
-                        textShadow: hovered === i ? "0 0 30px oklch(0.44 0.225 15 / 0.3)" : "none",
                         wordSpacing: "0.15em",
                       }}
                     >
                       {s.title}
                     </h3>
 
-                    <p className="text-sm leading-relaxed mb-3 max-w-md" style={{ color: "oklch(0.84 0.018 30)" }}>
+                    <p className="text-base leading-relaxed mb-3 max-w-md" style={{ color: "oklch(0.10 0.025 8)" }}>
                       {s.description}
                     </p>
 
@@ -273,9 +272,9 @@ export function Services() {
                             className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0"
                             style={{ background: "oklch(0.44 0.225 15 / 0.30)" }}
                           >
-                            <Check className="w-2.5 h-2.5" style={{ color: "oklch(0.78 0.18 18)" }} />
+                            <Check className="w-2.5 h-2.5" style={{ color: "oklch(0.44 0.225 15)" }} />
                           </div>
-                          <span className="text-xs font-semibold" style={{ color: "oklch(0.82 0.018 30)" }}>{f}</span>
+                          <span className="text-sm font-semibold" style={{ color: "oklch(0.10 0.025 8)" }}>{f}</span>
                         </div>
                       ))}
                     </div>
@@ -302,23 +301,23 @@ export function Services() {
                           fontWeight: 600,
                           letterSpacing: "0.15em",
                           textTransform: "uppercase",
-                          color: "#ffffff",
-                          background: "rgba(255, 255, 255, 0.04)",
-                          border: "1px solid rgba(255, 255, 255, 0.4)",
-                          boxShadow: "0 0 16px rgba(255, 255, 255, 0.12)",
+                          color: "oklch(0.44 0.225 15)",
+                          background: "oklch(0.44 0.225 15 / 0.06)",
+                          border: "1px solid oklch(0.44 0.225 15 / 0.35)",
+                          boxShadow: "0 0 16px oklch(0.44 0.225 15 / 0.10)",
                           transition: "all 0.3s cubic-bezier(0.34,1.56,0.64,1)",
                         }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.transform = "translateY(-2px) scale(1.02)";
-                          e.currentTarget.style.background = "rgba(255, 255, 255, 0.12)";
-                          e.currentTarget.style.border = "1px solid rgba(255, 255, 255, 0.9)";
-                          e.currentTarget.style.boxShadow = "0 0 25px rgba(255, 255, 255, 0.3)";
+                          e.currentTarget.style.background = "oklch(0.44 0.225 15 / 0.12)";
+                          e.currentTarget.style.border = "1px solid oklch(0.44 0.225 15 / 0.9)";
+                          e.currentTarget.style.boxShadow = "0 0 25px oklch(0.44 0.225 15 / 0.22)";
                         }}
                         onMouseLeave={(e) => {
                           e.currentTarget.style.transform = "translateY(0) scale(1)";
-                          e.currentTarget.style.background = "rgba(255, 255, 255, 0.04)";
-                          e.currentTarget.style.border = "1px solid rgba(255, 255, 255, 0.4)";
-                          e.currentTarget.style.boxShadow = "0 0 16px rgba(255, 255, 255, 0.12)";
+                          e.currentTarget.style.background = "oklch(0.44 0.225 15 / 0.06)";
+                          e.currentTarget.style.border = "1px solid oklch(0.44 0.225 15 / 0.35)";
+                          e.currentTarget.style.boxShadow = "0 0 16px oklch(0.44 0.225 15 / 0.10)";
                         }}
                       >
                         <span className="relative z-10 text-center">Quiero este servicio</span>

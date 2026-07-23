@@ -81,7 +81,7 @@ export function Guide() {
         {/* Heading */}
         <div style={stagger(1)}>
           <h2
-            className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold mb-5 leading-tight text-center"
+            className="font-fraunces text-4xl md:text-5xl lg:text-6xl font-normal mb-5 leading-tight text-center"
             style={{ color: "oklch(0.97 0.005 50)" }}
           >
             ¡Haz realidad{" "}
@@ -134,7 +134,7 @@ export function Guide() {
             <span className="relative z-10">Descargar guía gratis</span>
           </a>
 
-          <div className="flex items-center gap-2" style={{ color: "oklch(0.50 0.012 30)" }}>
+          <div className="flex items-center gap-2" style={{ color: "oklch(0.10 0.025 8)" }}>
             <BookOpen className="w-4 h-4" />
             <span className="text-xs tracking-wide">PDF · Gratuito · Sin registro</span>
           </div>

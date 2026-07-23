@@ -1,10 +1,12 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import Link from "next/link"
 import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { Checkbox } from "@/components/ui/checkbox"
 import { Card, CardContent } from "@/components/ui/card"
 import { MapPin, Phone, Mail, Clock, Send } from "lucide-react"
 
@@ -57,6 +59,8 @@ export function Contact() {
     message: ""
   })
   const [errors, setErrors] = useState<ContactErrors>({})
+  const [consent, setConsent] = useState(false)
+  const [consentError, setConsentError] = useState(false)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -85,16 +89,22 @@ export function Contact() {
     e.preventDefault()
 
     const result = contactSchema.safeParse(formData)
-    if (!result.success) {
+    const hasConsent = consent
+
+    if (!result.success || !hasConsent) {
       const fieldErrors: ContactErrors = {}
-      result.error.errors.forEach(err => {
-        const field = err.path[0] as keyof ContactErrors
-        if (!fieldErrors[field]) fieldErrors[field] = err.message
-      })
+      if (!result.success) {
+        result.error.errors.forEach(err => {
+          const field = err.path[0] as keyof ContactErrors
+          if (!fieldErrors[field]) fieldErrors[field] = err.message
+        })
+      }
       setErrors(fieldErrors)
+      setConsentError(!hasConsent)
       return
     }
     setErrors({})
+    setConsentError(false)
 
     const { name, phone, email, date, message: msg } = result.data
     const message = `¡Hola Laura! Me gustaría agendar una asesoría para mi boda.\n\n*Datos de contacto:*\n- Nombre: ${name}\n- Teléfono: ${phone}\n- Email: ${email}${date ? `\n- Fecha tentativa de boda: ${date}` : ""}\n\n*Mensaje:*\n${msg}\n\n¡Gracias!`
@@ -126,9 +136,9 @@ export function Contact() {
           <span className="font-display text-[11px] tracking-[0.45em] uppercase text-primary-foreground/70 mb-5 block font-medium">
             Contacto
           </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary-foreground mb-5 text-balance leading-[1.0] tracking-tight">
+          <h2 className="font-fraunces text-4xl md:text-5xl lg:text-6xl font-normal text-primary-foreground mb-5 text-balance leading-[1.0] tracking-tight">
             Comienza a planear tu{" "}
-            <span className="font-serif font-black text-primary-foreground/90">boda soñada</span>
+            <span className="font-fraunces font-normal text-primary-foreground/90">boda soñada</span>
           </h2>
           <p className="text-primary-foreground/70 leading-relaxed">
             Estamos listos para escucharte y crear la boda perfecta para ti.
@@ -240,7 +250,40 @@ export function Contact() {
                     {errors.message && <p id="message-error" role="alert" className="mt-1 text-xs text-red-400">{errors.message}</p>}
                   </div>
                   
-                  <Button 
+                  {/* Data-processing consent — required by Ley 1581 de 2012 / Decreto 1377 de 2013 */}
+                  <div>
+                    <div className="flex items-start gap-3">
+                      <Checkbox
+                        id="consent"
+                        checked={consent}
+                        onCheckedChange={(v) => {
+                          setConsent(v === true)
+                          if (v === true) setConsentError(false)
+                        }}
+                        aria-invalid={consentError}
+                        aria-describedby={consentError ? "consent-error" : undefined}
+                        className="mt-0.5 border-primary-foreground/40 data-[state=checked]:bg-primary-foreground data-[state=checked]:text-foreground data-[state=checked]:border-primary-foreground"
+                      />
+                      <label htmlFor="consent" className="text-sm text-primary-foreground/70 leading-relaxed cursor-pointer">
+                        Autorizo el tratamiento de mis datos personales conforme a la{" "}
+                        <Link
+                          href="/privacidad"
+                          target="_blank"
+                          className="text-primary-foreground font-medium underline underline-offset-2 hover:text-primary-foreground/80"
+                        >
+                          Política de Privacidad
+                        </Link>{" "}
+                        para ser contactada sobre la planeación de mi evento. *
+                      </label>
+                    </div>
+                    {consentError && (
+                      <p id="consent-error" role="alert" className="mt-2 text-xs text-red-400">
+                        Debes autorizar el tratamiento de tus datos para continuar.
+                      </p>
+                    )}
+                  </div>
+
+                  <Button
                     type="submit"
                     size="lg"
                     className="w-full btn-elegant bg-primary-foreground text-foreground hover:bg-primary-foreground/90 py-6 text-lg font-medium transition-all duration-300 hover:scale-[1.02]"
@@ -248,7 +291,7 @@ export function Contact() {
                     <Send className="mr-2 h-5 w-5" />
                     Agendar por WhatsApp
                   </Button>
-                  
+
                   <p className="text-center text-primary-foreground/50 text-sm">
                     Al enviar, serás redirigido a WhatsApp con tu mensaje
                   </p>

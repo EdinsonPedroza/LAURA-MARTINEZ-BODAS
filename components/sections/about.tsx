@@ -212,13 +212,13 @@ export function About() {
             <div
               className="flex items-center gap-3 md:gap-6 px-4 py-3 md:px-7 md:pt-4 md:pb-5 rounded-2xl md:rounded-[2rem]"
               style={{
-                background: "oklch(0.44 0.225 15)",
+                background: "oklch(0.50 0.25 18)",
                 color: "white",
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? "translateY(0)" : "translateY(30px)",
                 transition: "opacity var(--reveal-lg), transform var(--reveal-lg) cubic-bezier(0.16,1,0.3,1)",
                 transitionDelay: "calc(600ms * var(--stagger-scale))",
-                boxShadow: "0 12px 28px -8px oklch(0.44 0.225 15 / 0.5), inset 0 1px 0 rgba(255,255,255,0.15)",
+                boxShadow: "0 12px 28px -8px oklch(0.50 0.25 18 / 0.5), inset 0 1px 0 rgba(255,255,255,0.15)",
               }}
             >
               <div className="flex items-start">
@@ -268,16 +268,15 @@ export function About() {
 
           {/* Heading — oversized, brutal */}
           <h2
-            className="font-display font-extrabold leading-[0.92] tracking-tight mb-8"
-            style={{ fontSize: "clamp(2.8rem, 5.5vw, 5rem)", color: "oklch(0.09 0.025 8)" }}
+            className="font-fraunces font-normal leading-[0.92] tracking-tight mb-8"
+            style={{ fontSize: "clamp(2.1rem, 3.9vw, 3.3rem)", color: "oklch(0.09 0.025 8)" }}
           >
-            Con pasión,<br />
-            <em className="font-serif font-black not-italic"
-              style={{ color: "oklch(0.60 0.20 18)", fontStyle: "italic" }}>
-              experiencia
+            Hacemos de tu boda<br />
+            una experiencia{" "}
+            <em className="font-fraunces font-normal not-italic"
+              style={{ color: "oklch(0.50 0.25 18)" }}>
+              inolvidable.
             </em>
-            <br />
-            y corazón.
           </h2>
 
           {/* Crimson divider */}
@@ -287,20 +286,23 @@ export function About() {
           </div>
 
           {/* Bio */}
-          <div className="space-y-4 mb-10" style={{ color: "oklch(0.35 0.018 10)" }}>
+          <div className="space-y-4 mb-10" style={{ color: "oklch(0.10 0.025 8)" }}>
             <p className="text-base leading-relaxed">
               Soy{" "}
               <strong style={{ color: "oklch(0.10 0.025 8)", fontWeight: 700 }}>
-                Publicista de la Universidad Autónoma de Occidente
+                profesional de la Universidad Autónoma de Occidente
               </strong>
-              , y llevo 14 años organizando bodas con todo mimo, paciencia y responsabilidad.
+              , y llevo 14 años organizando{" "}
+              <strong style={{ color: "oklch(0.10 0.025 8)", fontWeight: 700 }}>
+                bodas
+              </strong> con todo mimo, paciencia y responsabilidad.
             </p>
-            <p className="text-sm leading-relaxed">
+            <p className="text-base leading-relaxed">
               Me especialicé como Wedding Planner con{" "}
               <strong style={{ color: "oklch(0.10 0.025 8)" }}>INIBEP</strong> y{" "}
               <strong style={{ color: "oklch(0.10 0.025 8)" }}>ABC</strong> — Asociación de Consultoras Nupciales.
             </p>
-            <p className="text-sm font-medium italic" style={{ color: "oklch(0.44 0.225 15)" }}>
+            <p className="text-base font-medium italic" style={{ color: "oklch(0.25 0.35 18)" }}>
               Estoy preparada y lista para hacer realidad la boda de tus sueños.
             </p>
           </div>
@@ -332,7 +334,7 @@ export function About() {
                 </div>
                 <div>
                   <p className="text-xs font-semibold" style={{ color: "oklch(0.12 0.025 8)" }}>{c.title}</p>
-                  <p className="text-[11px]" style={{ color: "oklch(0.48 0.015 25)" }}>{c.description}</p>
+                  <p className="text-[11px]" style={{ color: "oklch(0.10 0.025 8)" }}>{c.description}</p>
                 </div>
               </div>
             ))}
@@ -350,7 +352,7 @@ export function About() {
             }}
           >
             <p className="font-serif text-base font-medium italic leading-relaxed"
-              style={{ color: "oklch(0.30 0.018 10)" }}>
+              style={{ color: "oklch(0.10 0.025 8)" }}>
               "El día de tu boda, tu único trabajo es disfrutar, bailar, reír y ser feliz."
             </p>
           </div>
@@ -359,11 +361,11 @@ export function About() {
           <div className="flex items-center gap-4 pt-6"
             style={{ borderTop: "1px solid oklch(0.87 0.012 45)" }}>
             <div>
-              <p className="font-serif text-2xl font-bold" style={{ color: "oklch(0.60 0.20 18)" }}>
+              <p className="font-fraunces font-normal text-2xl leading-none tracking-tight" style={{ color: "oklch(0.50 0.25 18)" }}>
                 Laura Martinez
               </p>
               <p className="font-display text-[9px] tracking-[0.35em] uppercase mt-0.5"
-                style={{ color: "oklch(0.50 0.015 25)" }}>
+                style={{ color: "oklch(0.10 0.025 8)" }}>
                 Wedding Planner Certificada
               </p>
             </div>

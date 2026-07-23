@@ -118,12 +118,12 @@ export function CTA() {
 
           {/* Title */}
           <div style={revealStyle(150)}>
-            <h2 className="font-display text-5xl md:text-6xl lg:text-8xl font-extrabold text-white mb-2 leading-[0.95] tracking-tight">
+            <h2 className="font-fraunces text-5xl md:text-6xl lg:text-8xl font-normal text-white mb-2 leading-[0.95] tracking-tight">
               Tu boda merece ser
             </h2>
           </div>
           <div style={revealStyle(280)}>
-            <h2 className="font-serif text-5xl md:text-6xl lg:text-8xl font-black text-accent mb-10 leading-[0.95] tracking-tight">
+            <h2 className="font-fraunces text-5xl md:text-6xl lg:text-8xl font-normal text-accent mb-10 leading-[0.95] tracking-tight">
               perfecta
             </h2>
           </div>

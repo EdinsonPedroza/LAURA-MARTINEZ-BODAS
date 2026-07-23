@@ -5,7 +5,6 @@ import { PageIntro } from "@/components/page-intro"
 import { Footer } from "@/components/sections/footer"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 import { GlobalScrollArrow } from "@/components/global-scroll-arrow"
-import { SectionTransition } from "@/components/section-transition"
 
 // Lazy loading the sections that operate below the fold
 const Services = dynamic(() => import("@/components/sections/services").then(mod => mod.Services))
@@ -22,26 +21,12 @@ export default function Home() {
       <Header />
       <Hero />
 
-      {/* Kinetic slash divider — replays every time it enters the viewport */}
-      <SectionTransition accent="crimson" />
-      <Services />
-
-      <SectionTransition accent="gold" />
       <About />
-
-      <SectionTransition accent="dark" />
+      <Services />
       <Gallery />
-
-      <SectionTransition accent="crimson" />
       <Guide />
-
-      <SectionTransition accent="gold" />
       <CTA />
-
-      <SectionTransition accent="dark" />
       <Contact />
-
-      <SectionTransition accent="crimson" />
       <Footer />
       <WhatsAppButton />
       <GlobalScrollArrow />
