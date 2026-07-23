@@ -148,21 +148,6 @@ export function Gallery() {
                 }}
               />
 
-              {/* Film counter — top left */}
-              <div
-                aria-hidden="true"
-                className="absolute top-3 left-3 font-display font-black leading-none select-none"
-                style={{
-                  fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
-                  color: "rgba(255,255,255,0.12)",
-                  letterSpacing: "-0.04em",
-                  opacity: hovered === i ? 0 : 1,
-                  transition: "opacity 0.3s ease",
-                }}
-              >
-                {String(i + 1).padStart(2, "0")}
-              </div>
-
               {/* Hover content */}
               <div
                 className="absolute bottom-0 left-0 right-0 p-4 md:p-5"
@@ -172,11 +157,6 @@ export function Gallery() {
                   transition: "transform 0.45s cubic-bezier(0.16,1,0.3,1), opacity 0.4s ease",
                 }}
               >
-                {/* Film number on hover */}
-                <p aria-hidden="true" className="font-display font-black text-white/20 leading-none mb-1 select-none"
-                  style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", letterSpacing: "-0.05em" }}>
-                  {String(i + 1).padStart(2, "0")}
-                </p>
                 <p className="font-serif text-sm md:text-base text-white font-medium leading-tight">{img.alt}</p>
                 <div className="mt-2 flex items-center gap-2">
                   <div className="h-px flex-1 max-w-[2rem]" style={{ background: "oklch(0.44 0.225 15)" }} />

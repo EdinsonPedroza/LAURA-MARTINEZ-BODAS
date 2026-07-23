@@ -6,40 +6,36 @@ import { Check, ArrowRight } from "lucide-react"
 
 const services = [
   {
-    number: "01",
     image: "/images/boda.png",
     objectPosition: "center 70%",
     title: "Planificación Full Time",
     subtitle: "Desde el primer sí hasta el último baile",
     description: "Tú sueñas el momento, nosotros nos encargamos de hacerlo realidad. Gestión completa de tu boda de principio a fin.",
-    features: ["Proveedores seleccionados", "Logística completa", "Planificación detallada", "Coordinación total"],
+    features: [],
     whatsappMessage: "Hola Laura, me interesa el servicio de Wedding Planner Full Time. Me gustaría recibir más información.",
   },
   {
-    number: "02",
     image: "/images/service-coordination.jpg",
     title: "Coordinación Love Day",
     subtitle: "El gran día en manos expertas",
     description: "Ya organizaste todo, pero necesitas que el día sea perfecto. Nuestro equipo asegura que nada falle.",
-    features: ["Supervisión del evento", "Coordinación de proveedores", "Timeline del día", "Resolución de imprevistos"],
+    features: [],
     whatsappMessage: "Hola Laura, me interesa el servicio de Coordinación Love Day. Me gustaría recibir más información.",
   },
   {
-    number: "03",
     image: "/images/service-destination.jpg",
     title: "Bodas Destino",
     subtitle: "Colombia como escenario de tu amor",
     description: "Vives fuera pero quieres casarte en Colombia. Organizamos todo de forma remota, sin complicaciones.",
-    features: ["Organización remota", "Venue scouting", "Proveedores locales", "Coordinación internacional"],
+    features: [],
     whatsappMessage: "Hola Laura, me interesa el servicio de Bodas Destino. Vivo fuera de Colombia y me gustaría organizar mi boda allá.",
   },
   {
-    number: "04",
     image: "/images/Gemini_Generated_Image_8hax0w8hax0w8hax.png",
     title: "Asesoría Virtual",
     subtitle: "2 horas de claridad y dirección",
     description: "Sesión personalizada para resolver todas tus dudas y darte el plan de acción que necesitas.",
-    features: ["Optimización de presupuesto", "Organización correcta", "Consejos profesionales", "Plan de acción"],
+    features: [],
     whatsappMessage: "Hola Laura, me interesa la Asesoría Virtual de 2 horas. Me gustaría agendar una sesión.",
   },
 ]
@@ -110,7 +106,7 @@ export function Services() {
         style={{ background: "linear-gradient(90deg, transparent 10%, oklch(0.44 0.225 15 / 0.10) 50%, transparent 90%)" }}
       />
 
-      <div className="container mx-auto px-4 py-20 md:py-28 relative z-10">
+      <div className="container mx-auto px-4 pt-12 md:pt-16 pb-20 md:pb-28 relative z-10">
 
         {/* Header */}
         <div
@@ -193,17 +189,6 @@ export function Services() {
                       background: "linear-gradient(to right, rgba(0,0,0,0.12) 0%, transparent 100%)",
                     }}
                   />
-                  {/* Service number */}
-                  <div
-                    className="absolute top-4 left-4 font-display font-black leading-none select-none"
-                    style={{
-                      fontSize: "3.5rem",
-                      color: "rgba(255,255,255,0.18)",
-                      letterSpacing: "-0.05em",
-                    }}
-                  >
-                    {s.number}
-                  </div>
                 </div>
 
                 {/* Content */}
@@ -260,24 +245,26 @@ export function Services() {
                       {s.title}
                     </h3>
 
-                    <p className="text-base leading-relaxed mb-3 max-w-md" style={{ color: "oklch(0.10 0.025 8)" }}>
+                    <p className="text-base leading-relaxed mb-3 max-w-lg" style={{ color: "oklch(0.10 0.025 8)" }}>
                       {s.description}
                     </p>
 
                     {/* Features */}
-                    <div className="grid grid-cols-2 gap-y-1.5 gap-x-4 mb-4">
-                      {s.features.map((f) => (
-                        <div key={f} className="flex items-center gap-2">
-                          <div
-                            className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0"
-                            style={{ background: "oklch(0.44 0.225 15 / 0.30)" }}
-                          >
-                            <Check className="w-2.5 h-2.5" style={{ color: "oklch(0.44 0.225 15)" }} />
+                    {s.features.length > 0 && (
+                      <div className="grid grid-cols-2 gap-y-1.5 gap-x-4 mb-4">
+                        {s.features.map((f) => (
+                          <div key={f} className="flex items-center gap-2">
+                            <div
+                              className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0"
+                              style={{ background: "oklch(0.44 0.225 15 / 0.30)" }}
+                            >
+                              <Check className="w-2.5 h-2.5" style={{ color: "oklch(0.44 0.225 15)" }} />
+                            </div>
+                            <span className="text-sm font-semibold" style={{ color: "oklch(0.10 0.025 8)" }}>{f}</span>
                           </div>
-                          <span className="text-sm font-semibold" style={{ color: "oklch(0.10 0.025 8)" }}>{f}</span>
-                        </div>
-                      ))}
-                    </div>
+                        ))}
+                      </div>
+                    )}
 
                     {/* Divider */}
                     <div
@@ -320,7 +307,7 @@ export function Services() {
                           e.currentTarget.style.boxShadow = "0 0 16px oklch(0.44 0.225 15 / 0.10)";
                         }}
                       >
-                        <span className="relative z-10 text-center">Quiero este servicio</span>
+                        <span className="relative z-10 text-center">Me interesa este servicio</span>
                         <ArrowRight
                           className="w-3.5 h-3.5 relative z-10 transition-transform duration-300 group-hover/btn:translate-x-1.5"
                         />

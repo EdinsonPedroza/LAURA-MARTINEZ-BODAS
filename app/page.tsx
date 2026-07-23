@@ -7,11 +7,11 @@ import { WhatsAppButton } from "@/components/whatsapp-button"
 import { GlobalScrollArrow } from "@/components/global-scroll-arrow"
 
 // Lazy loading the sections that operate below the fold
-const Services = dynamic(() => import("@/components/sections/services").then(mod => mod.Services))
-const About    = dynamic(() => import("@/components/sections/about").then(mod => mod.About))
-const Gallery  = dynamic(() => import("@/components/sections/gallery").then(mod => mod.Gallery))
-const Guide    = dynamic(() => import("@/components/sections/guide").then(mod => mod.Guide))
-const CTA      = dynamic(() => import("@/components/sections/cta").then(mod => mod.CTA))
+const Services     = dynamic(() => import("@/components/sections/services").then(mod => mod.Services))
+const About        = dynamic(() => import("@/components/sections/about").then(mod => mod.About))
+const Gallery      = dynamic(() => import("@/components/sections/gallery").then(mod => mod.Gallery))
+const Testimonials = dynamic(() => import("@/components/sections/testimonials").then(mod => mod.Testimonials))
+const CTA          = dynamic(() => import("@/components/sections/cta").then(mod => mod.CTA))
 const Contact  = dynamic(() => import("@/components/sections/contact").then(mod => mod.Contact))
 
 export default function Home() {
@@ -24,7 +24,7 @@ export default function Home() {
       <About />
       <Services />
       <Gallery />
-      <Guide />
+      <Testimonials />
       <CTA />
       <Contact />
       <Footer />

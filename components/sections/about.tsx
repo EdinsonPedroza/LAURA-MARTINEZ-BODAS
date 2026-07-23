@@ -121,7 +121,7 @@ export function About() {
       />
 
       {/* ────────────── LAYOUT ────────────── */}
-      <div className="grid lg:grid-cols-[1fr_1fr] items-stretch min-h-[90vh]">
+      <div className="grid lg:grid-cols-[1fr_1fr] items-stretch min-h-[80vh] lg:min-h-[70vh]">
 
         {/* ═══ LEFT — IMAGE COLUMN ═══ */}
         <div
@@ -247,7 +247,7 @@ export function About() {
 
         {/* ═══ RIGHT — TEXT COLUMN ═══ */}
         <div
-          className="flex flex-col justify-center px-8 md:px-12 lg:px-16 py-20 relative z-10"
+          className="flex flex-col justify-center px-8 md:px-12 lg:px-16 py-14 md:py-16 relative z-10"
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible

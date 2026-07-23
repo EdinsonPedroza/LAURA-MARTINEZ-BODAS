@@ -3,7 +3,9 @@
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Calendar, MessageCircle } from "lucide-react"
+import { Calendar, MessageCircle, Download } from "lucide-react"
+
+const GUIDE_URL = "https://www.lauramartinezbodas.com/wp-content/uploads/2025/05/Guiadebodas.pdf"
 
 export function CTA() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -174,6 +176,17 @@ export function CTA() {
                 </a>
               </Button>
             </div>
+
+            {/* Free guide download */}
+            <a
+              href={GUIDE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-flex items-center gap-2 text-white/60 hover:text-white text-sm tracking-wide underline underline-offset-4 transition-colors"
+            >
+              <Download className="h-4 w-4" />
+              Descargar guía gratis de bodas (PDF)
+            </a>
           </div>
         </div>
       </div>
