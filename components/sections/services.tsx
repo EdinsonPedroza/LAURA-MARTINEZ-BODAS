@@ -2,40 +2,36 @@
 
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
-import { Check, ArrowRight } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
 const services = [
   {
     image: "/images/boda.png",
     objectPosition: "center 70%",
     title: "Planificación Full Time",
-    subtitle: "Desde el primer sí hasta el último baile",
     description: "Tú sueñas el momento, nosotros nos encargamos de hacerlo realidad. Gestión completa de tu boda de principio a fin.",
-    features: [],
+    features: ["Concepto y estética", "Selección de proveedores", "Presupuesto y cronograma", "Coordinación el día del evento"],
     whatsappMessage: "Hola Laura, me interesa el servicio de Wedding Planner Full Time. Me gustaría recibir más información.",
   },
   {
     image: "/images/service-coordination.jpg",
     title: "Coordinación Love Day",
-    subtitle: "El gran día en manos expertas",
     description: "Ya organizaste todo, pero necesitas que el día sea perfecto. Nuestro equipo asegura que nada falle.",
-    features: [],
+    features: ["Supervisión del evento", "Coordinación de proveedores", "Timeline del día", "Resolución de imprevistos"],
     whatsappMessage: "Hola Laura, me interesa el servicio de Coordinación Love Day. Me gustaría recibir más información.",
   },
   {
     image: "/images/service-destination.jpg",
     title: "Bodas Destino",
-    subtitle: "Colombia como escenario de tu amor",
     description: "Vives fuera pero quieres casarte en Colombia. Organizamos todo de forma remota, sin complicaciones.",
-    features: [],
+    features: ["Organización remota", "Selección de venue", "Proveedores locales", "Coordinación internacional"],
     whatsappMessage: "Hola Laura, me interesa el servicio de Bodas Destino. Vivo fuera de Colombia y me gustaría organizar mi boda allá.",
   },
   {
     image: "/images/Gemini_Generated_Image_8hax0w8hax0w8hax.png",
     title: "Asesoría Virtual",
-    subtitle: "2 horas de claridad y dirección",
     description: "Sesión personalizada para resolver todas tus dudas y darte el plan de acción que necesitas.",
-    features: [],
+    features: ["Optimización de presupuesto", "Plan de acción", "Consejos profesionales", "Sesión de 2 horas"],
     whatsappMessage: "Hola Laura, me interesa la Asesoría Virtual de 2 horas. Me gustaría agendar una sesión.",
   },
 ]
@@ -125,8 +121,8 @@ export function Services() {
             Servicios
           </span>
           <h2 className="font-fraunces text-4xl md:text-5xl lg:text-[3.4rem] font-normal text-foreground leading-[1.0] tracking-tight mb-5 mx-auto">
-            Qué hacemos{" "}
-            <span className="font-fraunces font-normal text-accent">por ti.</span>
+            Tu gran día comienza aquí{" "}
+            <span className="font-fraunces font-normal text-accent">Descúbrelo</span>
           </h2>
           <p className="text-muted-foreground text-lg font-light leading-relaxed max-w-lg mx-auto">
             Cada historia de amor es única. Tu celebración merece una atención igual de especial.
@@ -222,20 +218,8 @@ export function Services() {
                   />
 
                   <div className="relative z-10">
-                    {/* Badge */}
-                    <span
-                      className="inline-block self-start px-3 py-1 rounded-full text-[10px] tracking-[0.3em] uppercase font-semibold mb-2"
-                      style={{
-                        background: "oklch(0.44 0.225 15 / 0.15)",
-                        color: "oklch(0.65 0.18 18)",
-                        border: "1px solid oklch(0.44 0.225 15 / 0.20)",
-                      }}
-                    >
-                      {s.subtitle}
-                    </span>
-
                     <h3
-                      className="font-display text-xl md:text-2xl font-extrabold tracking-wide mt-2 mb-4"
+                      className="font-display text-xl md:text-2xl font-extrabold tracking-wide mb-4"
                       style={{
                         color: hovered === i ? "oklch(0.44 0.225 15)" : "oklch(0.10 0.025 8)",
                         transition: "color 0.3s",
@@ -249,21 +233,19 @@ export function Services() {
                       {s.description}
                     </p>
 
-                    {/* Features */}
+                    {/* Includes — editorial run-in list, no badges */}
                     {s.features.length > 0 && (
-                      <div className="grid grid-cols-2 gap-y-1.5 gap-x-4 mb-4">
-                        {s.features.map((f) => (
-                          <div key={f} className="flex items-center gap-2">
-                            <div
-                              className="w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0"
-                              style={{ background: "oklch(0.44 0.225 15 / 0.30)" }}
-                            >
-                              <Check className="w-2.5 h-2.5" style={{ color: "oklch(0.44 0.225 15)" }} />
-                            </div>
-                            <span className="text-sm font-semibold" style={{ color: "oklch(0.10 0.025 8)" }}>{f}</span>
-                          </div>
-                        ))}
-                      </div>
+                      <p className="text-sm leading-relaxed mb-4 max-w-lg">
+                        <span
+                          className="font-display text-[10px] tracking-[0.3em] uppercase font-semibold mr-2"
+                          style={{ color: "oklch(0.44 0.225 15)" }}
+                        >
+                          Incluye
+                        </span>
+                        <span style={{ color: "oklch(0.32 0.020 15)" }}>
+                          {s.features.join("  ·  ")}
+                        </span>
+                      </p>
                     )}
 
                     {/* Divider */}

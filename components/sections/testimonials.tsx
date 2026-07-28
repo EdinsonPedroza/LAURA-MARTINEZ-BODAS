@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { Star } from "lucide-react"
 
 const testimonials = [
   {
@@ -29,6 +30,10 @@ const testimonials = [
   }
 ]
 
+function initialsOf(name: string) {
+  return name.trim().charAt(0).toUpperCase()
+}
+
 export function Testimonials() {
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
@@ -41,8 +46,6 @@ export function Testimonials() {
     if (sectionRef.current) observer.observe(sectionRef.current)
     return () => observer.disconnect()
   }, [])
-
-  const [hero, ...rest] = testimonials
 
   return (
     <section
@@ -94,51 +97,55 @@ export function Testimonials() {
           </p>
         </div>
 
-        {/* Hero quote */}
-        <div
-          className="max-w-3xl mx-auto text-center mb-16 md:mb-20"
-          style={{
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? "translateY(0)" : "translateY(36px)",
-            transition: "opacity var(--reveal-lg) cubic-bezier(0.16,1,0.3,1), transform var(--reveal-lg) cubic-bezier(0.16,1,0.3,1)",
-            transitionDelay: "calc(150ms * var(--stagger-scale))",
-          }}
-        >
-          <p
-            className="font-fraunces italic font-normal leading-snug mb-6"
-            style={{ fontSize: "clamp(1.4rem, 3vw, 2.1rem)", color: "oklch(0.09 0.025 8)" }}
-          >
-            &ldquo;{hero.text}&rdquo;
-          </p>
-          <div className="flex items-center justify-center gap-4">
-            <div style={{ width: "2rem", height: "1px", background: "oklch(0.44 0.225 15)" }} />
-            <span className="font-display text-[10px] tracking-[0.35em] uppercase font-semibold" style={{ color: "oklch(0.44 0.225 15)" }}>
-              {hero.name}
-            </span>
-            <div style={{ width: "2rem", height: "1px", background: "oklch(0.44 0.225 15)" }} />
-          </div>
-        </div>
-
-        {/* Remaining quotes — asymmetric editorial grid */}
-        <div className="grid md:grid-cols-3 gap-x-10 gap-y-10 max-w-5xl mx-auto">
-          {rest.map((t, i) => (
+        {/* Reviews grid — uniform cards, real trust cues */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 max-w-5xl mx-auto">
+          {testimonials.map((t, i) => (
             <div
               key={t.name}
-              className="relative pl-5"
+              className="flex flex-col rounded-xl p-6"
               style={{
-                borderLeft: "2px solid oklch(0.44 0.225 15 / 0.35)",
+                background: "oklch(0.995 0.005 50)",
+                border: "1px solid oklch(0.87 0.014 45)",
+                boxShadow: "0 2px 12px rgba(0,0,0,0.05)",
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? "translateY(0)" : "translateY(24px)",
-                transition: "opacity var(--reveal-md) cubic-bezier(0.16,1,0.3,1), transform var(--reveal-md) cubic-bezier(0.16,1,0.3,1)",
-                transitionDelay: `calc(${300 + i * 100}ms * var(--stagger-scale))`,
+                transition: "opacity var(--reveal-md) cubic-bezier(0.16,1,0.3,1), transform var(--reveal-md) cubic-bezier(0.16,1,0.3,1), border-color 0.3s",
+                transitionDelay: `calc(${i * 90 + 150}ms * var(--stagger-scale))`,
               }}
+              onMouseEnter={e => (e.currentTarget.style.borderColor = "oklch(0.44 0.225 15 / 0.35)")}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = "oklch(0.87 0.014 45)")}
             >
-              <p className="font-fraunces italic text-base leading-relaxed mb-3" style={{ color: "oklch(0.10 0.025 8)" }}>
+              {/* Stars — static, ink/gold, no glow */}
+              <div className="flex gap-0.5 mb-3" aria-label="5 de 5 estrellas">
+                {[...Array(5)].map((_, s) => (
+                  <Star key={s} className="w-3.5 h-3.5" style={{ fill: "oklch(0.65 0.18 18)", color: "oklch(0.65 0.18 18)" }} />
+                ))}
+              </div>
+
+              {/* Quote */}
+              <p className="font-fraunces italic text-base leading-relaxed mb-5 flex-1" style={{ color: "oklch(0.10 0.025 8)" }}>
                 &ldquo;{t.text}&rdquo;
               </p>
-              <p className="font-display text-[10px] tracking-[0.3em] uppercase font-semibold" style={{ color: "oklch(0.32 0.020 15)" }}>
-                {t.name}
-              </p>
+
+              {/* Author — monogram stamp, not an AI-avatar circle */}
+              <div className="flex items-center gap-3 pt-4" style={{ borderTop: "1px solid oklch(0.90 0.010 45)" }}>
+                <div
+                  className="w-8 h-8 rounded-full flex items-center justify-center shrink-0"
+                  style={{ border: "1px solid oklch(0.44 0.225 15 / 0.35)" }}
+                >
+                  <span className="font-fraunces text-sm" style={{ color: "oklch(0.44 0.225 15)" }}>
+                    {initialsOf(t.name)}
+                  </span>
+                </div>
+                <div>
+                  <p className="font-display text-[11px] tracking-[0.15em] font-semibold" style={{ color: "oklch(0.10 0.025 8)" }}>
+                    {t.name}
+                  </p>
+                  <p className="text-[10px] tracking-[0.2em] uppercase" style={{ color: "oklch(0.50 0.020 20)" }}>
+                    Cliente verificada
+                  </p>
+                </div>
+              </div>
             </div>
           ))}
         </div>
