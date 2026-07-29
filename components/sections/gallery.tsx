@@ -138,16 +138,6 @@ export function Gallery() {
                 }}
               />
 
-              {/* Spotlight mask — darkens siblings so hovered image pops */}
-              <div className="absolute inset-0 pointer-events-none"
-                style={{
-                  background: "rgba(0,0,0,0.75)",
-                  opacity: hovered !== null && hovered !== i ? 1 : 0,
-                  transition: "opacity 0.4s ease",
-                  zIndex: 5,
-                }}
-              />
-
               {/* Hover content */}
               <div
                 className="absolute bottom-0 left-0 right-0 p-4 md:p-5"

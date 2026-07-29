@@ -10,28 +10,28 @@ const services = [
     objectPosition: "center 70%",
     title: "Planificación Full Time",
     description: "Tú sueñas el momento, nosotros nos encargamos de hacerlo realidad. Gestión completa de tu boda de principio a fin.",
-    features: ["Concepto y estética", "Selección de proveedores", "Presupuesto y cronograma", "Coordinación el día del evento"],
+    detail: "Definimos juntos el concepto y la estética, elegimos a cada proveedor, cuidamos el presupuesto y armamos el cronograma. El día de la boda estamos ahí, coordinando todo para que tu única tarea sea disfrutar.",
     whatsappMessage: "Hola Laura, me interesa el servicio de Wedding Planner Full Time. Me gustaría recibir más información.",
   },
   {
     image: "/images/service-coordination.jpg",
     title: "Coordinación Love Day",
     description: "Ya organizaste todo, pero necesitas que el día sea perfecto. Nuestro equipo asegura que nada falle.",
-    features: ["Supervisión del evento", "Coordinación de proveedores", "Timeline del día", "Resolución de imprevistos"],
+    detail: "Nos integramos a lo que ya construiste: revisamos cada contrato, armamos el timeline hora por hora y supervisamos a todos los proveedores. Si algo se sale del plan, lo resolvemos antes de que llegue a ti.",
     whatsappMessage: "Hola Laura, me interesa el servicio de Coordinación Love Day. Me gustaría recibir más información.",
   },
   {
     image: "/images/service-destination.jpg",
     title: "Bodas Destino",
     description: "Vives fuera pero quieres casarte en Colombia. Organizamos todo de forma remota, sin complicaciones.",
-    features: ["Organización remota", "Selección de venue", "Proveedores locales", "Coordinación internacional"],
+    detail: "Buscamos el lugar, negociamos con proveedores locales y coordinamos cada detalle desde acá, manteniéndote al día con videollamadas y avances según tu horario. Aterrizas y todo está listo.",
     whatsappMessage: "Hola Laura, me interesa el servicio de Bodas Destino. Vivo fuera de Colombia y me gustaría organizar mi boda allá.",
   },
   {
     image: "/images/Gemini_Generated_Image_8hax0w8hax0w8hax.png",
     title: "Asesoría Virtual",
     description: "Sesión personalizada para resolver todas tus dudas y darte el plan de acción que necesitas.",
-    features: ["Optimización de presupuesto", "Plan de acción", "Consejos profesionales", "Sesión de 2 horas"],
+    detail: "Dos horas para ordenar las ideas: revisamos tu presupuesto, priorizamos lo que de verdad importa y salimos con un plan escrito, paso a paso, para que sigas avanzando con confianza.",
     whatsappMessage: "Hola Laura, me interesa la Asesoría Virtual de 2 horas. Me gustaría agendar una sesión.",
   },
 ]
@@ -233,20 +233,13 @@ export function Services() {
                       {s.description}
                     </p>
 
-                    {/* Includes — editorial run-in list, no badges */}
-                    {s.features.length > 0 && (
-                      <p className="text-sm leading-relaxed mb-4 max-w-lg">
-                        <span
-                          className="font-display text-[10px] tracking-[0.3em] uppercase font-semibold mr-2"
-                          style={{ color: "oklch(0.44 0.225 15)" }}
-                        >
-                          Incluye
-                        </span>
-                        <span style={{ color: "oklch(0.32 0.020 15)" }}>
-                          {s.features.join("  ·  ")}
-                        </span>
-                      </p>
-                    )}
+                    {/* Secondary copy — expands on the service */}
+                    <p
+                      className="text-sm leading-relaxed mb-4 max-w-lg"
+                      style={{ color: "oklch(0.32 0.020 15)" }}
+                    >
+                      {s.detail}
+                    </p>
 
                     {/* Divider */}
                     <div
