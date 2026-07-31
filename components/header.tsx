@@ -53,12 +53,12 @@ export function Header() {
           boxShadow: isScrolled ? "0 8px 30px -12px oklch(0.27 0.022 45 / 0.18)" : "none",
         }}
       >
-        <div className="mx-auto max-w-350 px-6 md:px-10 lg:px-14 grid grid-cols-[auto_1fr_auto] items-center gap-8">
+        <div className="mx-auto max-w-350 px-5 sm:px-6 md:px-10 lg:px-14 grid grid-cols-[auto_1fr_auto] items-center gap-3 sm:gap-6 lg:gap-8">
 
           {/* Wordmark */}
           <Link
             href="/"
-            className="font-fraunces text-xl md:text-2xl font-medium tracking-tight whitespace-nowrap transition-colors duration-500"
+            className="font-fraunces text-[1.05rem] sm:text-xl md:text-2xl font-medium tracking-tight whitespace-nowrap transition-colors duration-500"
             style={{
               color: isScrolled ? "var(--foreground)" : "oklch(0.99 0.005 80)",
               textShadow: isScrolled ? "none" : "0 1px 3px rgba(0,0,0,0.7), 0 4px 16px rgba(0,0,0,0.5)",
@@ -99,9 +99,9 @@ export function Header() {
             {/* Mobile toggle — word in a hairline pill, not a bare label */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="lg:hidden caps-label font-semibold relative z-70 rounded-full transition-colors duration-500"
+              className="lg:hidden caps-label font-semibold relative z-70 rounded-full shrink-0 transition-colors duration-500"
               style={{
-                padding: "0.5rem 1.15rem",
+                padding: "0.45rem 0.9rem",
                 color: isScrolled ? "var(--foreground)" : "oklch(0.99 0.005 80)",
                 border: `1px solid ${isScrolled ? "var(--border)" : "oklch(0.99 0.005 80 / 0.4)"}`,
               }}
