@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react"
 
 const services = [
   {
-    image: "/images/boda.png",
+    image: "/images/3.jpg",
     objectPosition: "center 70%",
     title: "Planificación Full Time",
     description: "Tú sueñas el momento, nosotros nos encargamos de hacerlo realidad. Gestión completa de tu boda de principio a fin.",
@@ -14,14 +14,14 @@ const services = [
     whatsappMessage: "Hola Laura, me interesa el servicio de Wedding Planner Full Time. Me gustaría recibir más información.",
   },
   {
-    image: "/images/service-coordination.jpg",
+    image: "/images/7.jpg",
     title: "Coordinación Love Day",
     description: "Ya organizaste todo, pero necesitas que el día sea perfecto. Nuestro equipo asegura que nada falle.",
     detail: "Nos integramos a lo que ya construiste: revisamos cada contrato, armamos el timeline hora por hora y supervisamos a todos los proveedores. Si algo se sale del plan, lo resolvemos antes de que llegue a ti.",
     whatsappMessage: "Hola Laura, me interesa el servicio de Coordinación Love Day. Me gustaría recibir más información.",
   },
   {
-    image: "/images/service-destination.jpg",
+    image: "/images/atardecer.jpg",
     title: "Bodas Destino",
     description: "Vives fuera pero quieres casarte en Colombia. Organizamos todo de forma remota, sin complicaciones.",
     detail: "Buscamos el lugar, negociamos con proveedores locales y coordinamos cada detalle desde acá, manteniéndote al día con videollamadas y avances según tu horario. Aterrizas y todo está listo.",
