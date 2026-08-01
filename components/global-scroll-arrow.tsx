@@ -16,37 +16,34 @@ export function GlobalScrollArrow() {
     return () => clearTimeout(t)
   }, [])
 
+  // Which section is under the 40% line — resolved by the compositor thread via
+  // IntersectionObserver instead of measuring every section on every scroll frame.
   useEffect(() => {
-    let ticking = false
-    const compute = () => {
-      ticking = false
-      // Determinar en qué sección estamos
-      let currentIdx = 0
+    const crossing = new Set<number>()
+    // Past the last section (footer) nothing crosses the band, so keep the last
+    // known index instead of snapping back to the top of the page.
+    let lastIdx = 0
 
-      for (let i = 0; i < SECTIONS.length; i++) {
-        const el = document.getElementById(SECTIONS[i])
-        if (el) {
-          const rect = el.getBoundingClientRect()
-          // Si la sección ocupa la mayor parte o ya pasó la mitad de la pantalla
-          if (rect.top <= window.innerHeight * 0.4 && rect.bottom >= window.innerHeight * 0.4) {
-            currentIdx = i
-          }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const idx = SECTIONS.indexOf(entry.target.id)
+          if (idx === -1) continue
+          if (entry.isIntersecting) crossing.add(idx)
+          else crossing.delete(idx)
         }
-      }
+        if (crossing.size) lastIdx = Math.max(...crossing)
+        setNextSection(lastIdx >= SECTIONS.length - 1 ? null : SECTIONS[lastIdx + 1])
+      },
+      // A thin band across 40% of the viewport: a section "is current" while it crosses it.
+      { rootMargin: "-40% 0px -59% 0px" }
+    )
 
-      // Si estamos en la última sección, podemos ocultar la flecha
-      setNextSection(currentIdx === SECTIONS.length - 1 ? null : SECTIONS[currentIdx + 1])
+    for (const id of SECTIONS) {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
     }
-
-    const handleScroll = () => {
-      if (ticking) return
-      ticking = true
-      requestAnimationFrame(compute)
-    }
-
-    compute()
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
+    return () => observer.disconnect()
   }, [])
 
   const scrollToNext = () => {

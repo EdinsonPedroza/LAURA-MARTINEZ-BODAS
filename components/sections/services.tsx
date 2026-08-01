@@ -109,12 +109,8 @@ export function Services() {
           className="max-w-2xl mx-auto text-center mb-16 md:mb-20"
           style={{
             opacity: isVisible ? 1 : 0,
-            transform: isVisible
-              ? "translateY(0) scale(1) rotateX(0)"
-              : "translateY(120px) scale(0.80) rotateX(14deg)",
-            transition: "opacity var(--reveal-xl) cubic-bezier(0.16,1,0.3,1), transform var(--reveal-xl) cubic-bezier(0.16,1,0.3,1)",
-            perspective: "1200px",
-            transformOrigin: "bottom center",
+            transform: isVisible ? "translate3d(0, 0, 0)" : "translate3d(0, 48px, 0)",
+            transition: "opacity var(--reveal-lg) cubic-bezier(0.16,1,0.3,1), transform var(--reveal-lg) cubic-bezier(0.16,1,0.3,1)",
           }}
         >
           <span className="font-display text-[11px] tracking-[0.45em] uppercase text-accent mb-5 block font-semibold mx-auto">
@@ -137,13 +133,9 @@ export function Services() {
               className="group cursor-default"
               style={{
                 opacity: isVisible ? 1 : 0,
-                transform: isVisible
-                  ? "translateY(0) scale(1) rotate(0deg) rotateX(0deg)"
-                  : `translateY(170px) scale(0.72) rotate(${i % 2 === 0 ? -3.5 : 3.5}deg) rotateX(14deg)`,
-                transition: "opacity var(--reveal-xl) cubic-bezier(0.16,1,0.3,1), transform var(--reveal-xl) cubic-bezier(0.16,1,0.3,1)",
-                transitionDelay: `calc(${i * 200 + 250}ms * var(--stagger-scale))`,
-                perspective: "1400px",
-                transformOrigin: "bottom center",
+                transform: isVisible ? "translate3d(0, 0, 0)" : "translate3d(0, 56px, 0)",
+                transition: "opacity var(--reveal-lg) cubic-bezier(0.16,1,0.3,1), transform var(--reveal-lg) cubic-bezier(0.16,1,0.3,1)",
+                transitionDelay: `calc(${i * 90 + 120}ms * var(--stagger-scale))`,
               }}
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
@@ -159,8 +151,8 @@ export function Services() {
                     ? "0 24px 50px rgba(0,0,0,0.16), 0 0 30px oklch(0.44 0.225 15 / 0.10)"
                     : "0 4px 20px rgba(0,0,0,0.08)",
                   transform: hovered === i
-                    ? "translateY(-14px) scale(1.018) rotateY(1.5deg)"
-                    : "translateY(0) scale(1) rotateY(0)",
+                    ? "translate3d(0, -14px, 0)"
+                    : "translate3d(0, 0, 0)",
                   transition: "border 0.45s ease, box-shadow 0.45s ease, transform 0.45s cubic-bezier(0.34,1.56,0.64,1)",
                 }}
               >

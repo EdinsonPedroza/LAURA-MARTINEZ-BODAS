@@ -27,31 +27,71 @@ export function CTA() {
 
   useEffect(() => {
     const isTouch = window.matchMedia("(hover: none)").matches
-    const applyTransform = () => {
+    if (isTouch) return
+
+    let rafId = 0
+    // Section geometry is cached and only re-measured on resize, so neither handler
+    // forces a synchronous layout while the user scrolls.
+    let bounds = { top: 0, height: 0 }
+    const measure = () => {
+      if (!sectionRef.current) return
+      const rect = sectionRef.current.getBoundingClientRect()
+      bounds = { top: rect.top + window.scrollY, height: rect.height }
+    }
+
+    const apply = () => {
+      rafId = 0
       if (!bgRef.current) return
       const { scrollY, mouseX, mouseY } = parallax.current
       bgRef.current.style.transform =
-        `translateY(${scrollY}px) translate(${mouseX}px, ${mouseY}px) scale(1.14)`
+        `translate3d(${mouseX}px, ${scrollY + mouseY}px, 0) scale(1.14)`
     }
+    const schedule = () => {
+      if (!rafId) rafId = requestAnimationFrame(apply)
+    }
+
     const handleScroll = () => {
-      if (isTouch || !sectionRef.current) return
-      const rect = sectionRef.current.getBoundingClientRect()
-      const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height)
+      const top = bounds.top - window.scrollY
+      const progress = (window.innerHeight - top) / (window.innerHeight + bounds.height)
       parallax.current.scrollY = progress * 60
-      applyTransform()
+      schedule()
     }
     const handleMouse = (e: MouseEvent) => {
-      if (isTouch || !sectionRef.current) return
-      const rect = sectionRef.current.getBoundingClientRect()
-      parallax.current.mouseX = (e.clientX - rect.left - rect.width / 2) / 60
-      parallax.current.mouseY = (e.clientY - rect.top - rect.height / 2) / 60
-      applyTransform()
+      const top = bounds.top - window.scrollY
+      parallax.current.mouseX = (e.clientX - window.innerWidth / 2) / 60
+      parallax.current.mouseY = (e.clientY - top - bounds.height / 2) / 60
+      schedule()
     }
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    window.addEventListener("mousemove", handleMouse, { passive: true })
-    return () => {
+    const handleResize = () => { measure(); handleScroll() }
+
+    // Nothing runs while the section is off screen.
+    let attached = false
+    const attach = () => {
+      if (attached) return
+      attached = true
+      measure()
+      handleScroll()
+      window.addEventListener("scroll", handleScroll, { passive: true })
+      window.addEventListener("mousemove", handleMouse, { passive: true })
+      window.addEventListener("resize", handleResize, { passive: true })
+    }
+    const detach = () => {
+      if (!attached) return
+      attached = false
       window.removeEventListener("scroll", handleScroll)
       window.removeEventListener("mousemove", handleMouse)
+      window.removeEventListener("resize", handleResize)
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      entry.isIntersecting ? attach() : detach()
+    })
+    if (sectionRef.current) observer.observe(sectionRef.current)
+
+    return () => {
+      observer.disconnect()
+      detach()
+      if (rafId) cancelAnimationFrame(rafId)
     }
   }, [])
 
@@ -68,8 +108,7 @@ export function CTA() {
         ref={bgRef}
         className="absolute inset-0 z-0"
         style={{
-          transform: "translateY(0px) translate(0px, 0px) scale(1.14)",
-          transition: "transform 0.2s ease-out",
+          transform: "translate3d(0px, 0px, 0) scale(1.14)",
           willChange: "transform",
         }}
       >

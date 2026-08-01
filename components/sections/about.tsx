@@ -53,26 +53,53 @@ export function About() {
   }, [isVisible])
 
   // Parallax on the image card — driven straight through a ref (no re-renders).
+  // The listener is only attached while the section is on screen, and the section
+  // rect is cached so no mouse move ever forces a synchronous layout.
   useEffect(() => {
     // Skip on touch-only devices (mobile/tablet with no pointer)
     if (window.matchMedia("(hover: none)").matches) return
+    const section = sectionRef.current
+    if (!section) return
+
     let rafId = 0
     let x = 0
     let y = 0
+    let bounds = { top: 0, height: 0, width: 0 }
+
+    const measure = () => {
+      const rect = section.getBoundingClientRect()
+      bounds = { top: rect.top + window.scrollY, height: rect.height, width: rect.width }
+    }
     const apply = () => {
       rafId = 0
-      if (parallaxRef.current) parallaxRef.current.style.transform = `translate(${x}px, ${y}px)`
+      if (parallaxRef.current) parallaxRef.current.style.transform = `translate3d(${x}px, ${y}px, 0)`
     }
     const handleMouse = (e: MouseEvent) => {
-      if (!sectionRef.current) return
-      const rect = sectionRef.current.getBoundingClientRect()
-      x = ((e.clientX - rect.left - rect.width / 2) / 100) * -0.4
-      y = ((e.clientY - rect.top - rect.height / 2) / 100) * -0.4
+      const top = bounds.top - window.scrollY
+      x = ((e.clientX - bounds.width / 2) / 100) * -0.4
+      y = ((e.clientY - top - bounds.height / 2) / 100) * -0.4
       if (!rafId) rafId = requestAnimationFrame(apply)
     }
-    window.addEventListener("mousemove", handleMouse, { passive: true })
+
+    let attached = false
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !attached) {
+        measure()
+        window.addEventListener("mousemove", handleMouse, { passive: true })
+        window.addEventListener("resize", measure, { passive: true })
+        attached = true
+      } else if (!entry.isIntersecting && attached) {
+        window.removeEventListener("mousemove", handleMouse)
+        window.removeEventListener("resize", measure)
+        attached = false
+      }
+    })
+    observer.observe(section)
+
     return () => {
+      observer.disconnect()
       window.removeEventListener("mousemove", handleMouse)
+      window.removeEventListener("resize", measure)
       if (rafId) cancelAnimationFrame(rafId)
     }
   }, [])
@@ -129,8 +156,8 @@ export function About() {
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible
-              ? "translateX(0) skewX(0deg) scale(1) rotate(0deg)"
-              : "translateX(-110%) skewX(-10deg) scale(0.82) rotate(-2.5deg)",
+              ? "translate3d(0, 0, 0)"
+              : "translate3d(-56px, 0, 0)",
             transition: "opacity var(--reveal-xl) cubic-bezier(0.16,1,0.3,1), transform var(--reveal-xl) cubic-bezier(0.16,1,0.3,1)",
           }}
         >
@@ -251,8 +278,8 @@ export function About() {
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible
-              ? "translateX(0) skewX(0deg) scale(1)"
-              : "translateX(90%) skewX(7deg) scale(0.88)",
+              ? "translate3d(0, 0, 0)"
+              : "translate3d(56px, 0, 0)",
             transition: "opacity var(--reveal-xl) cubic-bezier(0.16,1,0.3,1), transform var(--reveal-xl) cubic-bezier(0.16,1,0.3,1)",
             transitionDelay: "calc(180ms * var(--stagger-scale))",
           }}
@@ -321,8 +348,8 @@ export function About() {
                   boxShadow: "0 2px 12px rgba(0,0,0,0.05)",
                   opacity: isVisible ? 1 : 0,
                   transform: isVisible
-                    ? "translateX(0) rotate(0deg) scale(1)"
-                    : `translateX(110px) rotate(${i % 2 === 0 ? 4 : -3}deg) scale(0.88)`,
+                    ? "translate3d(0, 0, 0)"
+                    : "translate3d(40px, 0, 0)",
                   transition: "opacity var(--reveal-lg) cubic-bezier(0.16,1,0.3,1), transform var(--reveal-lg) cubic-bezier(0.16,1,0.3,1), border-color 0.3s",
                   transitionDelay: `calc(${550 + i * 130}ms * var(--stagger-scale)), calc(${550 + i * 130}ms * var(--stagger-scale)), 0ms`,
                 }}

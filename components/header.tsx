@@ -47,9 +47,9 @@ export function Header() {
         style={{
           paddingTop: isScrolled ? "1rem" : "1.5rem",
           paddingBottom: isScrolled ? "1rem" : "1.5rem",
-          background: isScrolled ? "oklch(0.965 0.011 84 / 0.97)" : "transparent",
-          backdropFilter: isScrolled ? "blur(12px)" : "none",
-          WebkitBackdropFilter: isScrolled ? "blur(12px)" : "none",
+          // Opaque fill instead of backdrop-filter: a blurred backdrop forces the
+          // compositor to re-read the full-width area behind the bar every frame.
+          background: isScrolled ? "oklch(0.965 0.011 84)" : "transparent",
           boxShadow: isScrolled ? "0 8px 30px -12px oklch(0.27 0.022 45 / 0.18)" : "none",
         }}
       >

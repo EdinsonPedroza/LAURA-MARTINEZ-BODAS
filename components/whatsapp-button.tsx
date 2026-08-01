@@ -1,17 +1,31 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 
 export function WhatsAppButton() {
   const [isVisible, setIsVisible] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
+  const shown = useRef(false)
 
   useEffect(() => {
+    let ticking = false
+    // Frame-throttled, and only re-renders when the threshold is actually crossed.
+    const compute = () => {
+      ticking = false
+      const next = window.scrollY > 300
+      if (next !== shown.current) {
+        shown.current = next
+        setIsVisible(next)
+      }
+    }
     const handleScroll = () => {
-      setIsVisible(window.scrollY > 300)
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(compute)
     }
 
+    compute()
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
