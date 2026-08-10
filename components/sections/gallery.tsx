@@ -66,7 +66,7 @@ export function Gallery() {
           className="text-center max-w-3xl mx-auto"
           style={{
             opacity: isVisible ? 1 : 0,
-            transform: isVisible ? "translateY(0) scale(1)" : "translateY(90px) scale(0.90)",
+            transform: isVisible ? "translate3d(0, 0, 0)" : "translate3d(0, 48px, 0)",
             transition: "opacity var(--reveal-xl) cubic-bezier(0.16,1,0.3,1), transform var(--reveal-xl) cubic-bezier(0.16,1,0.3,1)",
           }}
         >
