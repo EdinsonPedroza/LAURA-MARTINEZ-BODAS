@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
 import Link from "next/link"
 
 const navLinks = [
@@ -56,16 +57,20 @@ export function Header() {
         <div className="mx-auto max-w-350 px-5 sm:px-6 md:px-10 lg:px-14 grid grid-cols-[auto_1fr_auto] items-center gap-3 sm:gap-6 lg:gap-8">
 
           {/* Wordmark */}
-          <Link
-            href="/"
-            className="font-fraunces text-[1.05rem] sm:text-xl md:text-2xl font-medium tracking-tight whitespace-nowrap transition-colors duration-500"
-            style={{
-              color: isScrolled ? "var(--foreground)" : "oklch(0.99 0.005 80)",
-              textShadow: isScrolled ? "none" : "0 1px 3px rgba(0,0,0,0.7), 0 4px 16px rgba(0,0,0,0.5)",
-            }}
-          >
-            Laura Martínez{" "}
-            <em style={{ color: isScrolled ? "var(--primary)" : "oklch(0.86 0.06 40)" }}>Bodas</em>
+          <Link href="/" className="shrink-0" aria-label="Laura Martínez Bodas — Inicio">
+            <Image
+              src="/images/Logo-Blanco-1536x244.png"
+              alt="Laura Martínez Bodas"
+              width={1536}
+              height={244}
+              priority
+              className="h-9 sm:h-10 md:h-12 lg:h-14 w-auto transition-[filter] duration-500"
+              style={{
+                filter: isScrolled
+                  ? "brightness(0)"
+                  : "drop-shadow(0 1px 3px rgba(0,0,0,0.7)) drop-shadow(0 4px 16px rgba(0,0,0,0.5))",
+              }}
+            />
           </Link>
 
           {/* Desktop nav — truly centered between logo and CTA */}
