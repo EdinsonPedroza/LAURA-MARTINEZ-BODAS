@@ -59,12 +59,12 @@ export function Header() {
           {/* Wordmark */}
           <Link href="/" className="shrink-0" aria-label="Laura Martínez Bodas — Inicio">
             <Image
-              src="/images/Logo-Blanco-1536x244.png"
+              src="/images/Logo-Blanco-1528x155.png"
               alt="Laura Martínez Bodas"
-              width={1536}
-              height={244}
+              width={1528}
+              height={155}
               priority
-              className="h-9 sm:h-10 md:h-12 lg:h-14 w-auto transition-[filter] duration-500"
+              className="h-6 sm:h-7 md:h-8 lg:h-9 w-auto transition-[filter] duration-500"
               style={{
                 filter: isScrolled
                   ? "brightness(0)"

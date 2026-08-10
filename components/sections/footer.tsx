@@ -76,7 +76,7 @@ export function Footer() {
           <div className="text-center md:text-left" style={stagger(0)}>
             <div className="relative h-6 w-48 mb-4 mx-auto md:mx-0">
               <Image
-                src="/images/Logo-Blanco-1536x244.png"
+                src="/images/Logo-Blanco-1528x155.png"
                 alt="Laura Martínez Bodas"
                 fill
                 sizes="192px"
