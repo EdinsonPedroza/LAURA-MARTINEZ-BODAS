@@ -28,7 +28,7 @@ const services = [
     whatsappMessage: "Hola Laura, me interesa el servicio de Bodas Destino. Vivo fuera de Colombia y me gustaría organizar mi boda allá.",
   },
   {
-    image: "/images/Gemini_Generated_Image_8hax0w8hax0w8hax.png",
+    image: "/images/asesoria-virtual.webp",
     title: "Asesoría Virtual",
     description: "Sesión personalizada para resolver todas tus dudas y darte el plan de acción que necesitas.",
     detail: "Dos horas para ordenar las ideas: revisamos tu presupuesto, priorizamos lo que de verdad importa y salimos con un plan escrito, paso a paso, para que sigas avanzando con confianza.",
