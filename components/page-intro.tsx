@@ -146,26 +146,6 @@ export function PageIntro() {
         >
           Bodas · Eventos · Amor
         </p>
-
-        {/* Watermark: agency signature, bottom right (fade only) */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/lp-watermark.webp"
-          alt=""
-          width={56}
-          height={53}
-          style={{
-            position: "absolute",
-            right: "clamp(20px, 3vw, 36px)",
-            bottom: "clamp(20px, 3vw, 36px)",
-            width: "clamp(44px, 5vw, 56px)",
-            height: "auto",
-            pointerEvents: "none",
-            userSelect: "none",
-            opacity: step >= 2 ? 0.4 : 0,
-            transition: "opacity 0.7s ease",
-          }}
-        />
       </div>
     </div>
   )
